@@ -30,7 +30,7 @@ Make Post request to the below link with the credentials to generate an authenti
 ```py
 import requests
 
-url = "https://tpstreams.com/api/auth/login/"
+url = "https://app.tpstreams.com/api/auth/login/"
 
 payload = "{\n    \"username\": \"hari\",\n    \"password\": \"welcome\"\n}"
 headers = {
@@ -50,7 +50,7 @@ print(response.text)
 re 'uri'
 require 'net/http'
 
-url = URI("https://tpstreams.com/api/auth/login/")
+url = URI("https://app.tpstreams.com/api/auth/login/")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
@@ -77,7 +77,7 @@ puts response.read_body
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://tpstreams.com/api/auth/login/',
+  CURLOPT_URL => 'https://app.tpstreams.com/api/auth/login/',
   CURLOPT_CUSTOMREQUEST => 'POST',
   CURLOPT_POSTFIELDS =>'{
     "username": "<type_your_username_here>",
@@ -99,8 +99,8 @@ echo $response;
 
 ### Response
 
-The response will return an token which should be prefixed with token and included in all API requests to the server in a header that looks like the following:
+The response will return an token which should be prefixed with Token and included in all API requests to the server in a header that looks like the following:
 
 ```bash
-Authorization: token auth-token-string
+Authorization: Token auth-token-string
 ```

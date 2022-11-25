@@ -14,7 +14,7 @@ You need authentication token to access Streams data and resources through the A
 Make Post request to the below link with the credentials to generate an authentication token.
 
 
-**POST https://tpstreams.com/api/auth/login/ **
+**POST https://app.tpstreams.com/api/auth/login/ **
 
 | Name        | Type        | Description |
 | ----------- | ----------- |----------- |

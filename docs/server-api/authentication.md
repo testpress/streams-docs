@@ -16,10 +16,11 @@ Make Post request to the below link with the credentials to generate an authenti
 
 **POST https://app.tpstreams.com/api/auth/login/ **
 
-| Name        | Type        | Description |
-| ----------- | ----------- |----------- |
-| username    | string      | Username of the user |
-| password    | string      | Password of the user |
+| Name               | Type        | Description |
+| -----------        | ----------- |----------- |
+| username           | string      | Username of the user |
+| password           | string      | Password of the user |
+| organization_id    | string      | Organization id |
 
 
 ### Sample code
@@ -32,7 +33,7 @@ import requests
 
 url = "https://app.tpstreams.com/api/auth/login/"
 
-payload = "{\n    \"username\": \"hari\",\n    \"password\": \"welcome\"\n}"
+payload = "{\n    \"username\": \"hari\",\n    \"password\": \"welcome\",\n \"organization_id\": \"auhf2k\"}"
 headers = {
     'content-type': "application/json",
     'cache-control': "no-cache",
@@ -59,7 +60,7 @@ http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 request = Net::HTTP::Post.new(url)
 request["content-type"] = 'application/json'
 request["cache-control"] = 'no-cache'
-request.body = "{\n    \"username\": \"hari\",\n    \"password\": \"welcome\"\n}"
+request.body = "{\n    \"username\": \"hari\",\n    \"password\": \"welcome\",\n \"organization_id\": \"auhf2k\"}"
 
 response = http.request(request)
 puts response.read_body
@@ -81,7 +82,8 @@ curl_setopt_array($curl, array(
   CURLOPT_CUSTOMREQUEST => 'POST',
   CURLOPT_POSTFIELDS =>'{
     "username": "<type_your_username_here>",
-    "password": "<type_your_password_here>"
+    "password": "<type_your_password_here>",
+    "organizatio_id": "<type_your_organization_id_here>"
 }',
   CURLOPT_HTTPHEADER => array(
     'Content-Type: application/json'

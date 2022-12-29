@@ -13,7 +13,7 @@ The iframe embed lets you embed your Streams videos and control the player using
 Add the following script to the html of your web page. This loads the interface that are used to establish communication with the video player. If this script is loaded on-demand later, make sure to wait for the load to complete before calling subsequent methods on the object.
 
 ```js
-<script src="https://sandbox.testpress.in/static/video_player/player.js"></script>
+<script src="https://static.testpress.in/static/js/player.js"></script>
 ```
 
 ### Get a reference to the iframe
@@ -35,7 +35,7 @@ const iframe = document.querySelector("iframe");
 </head>
 <body>
   <iframe width='560' height='315' src='https://lms.testpress.in/embed/cnwKtQwNmbG' title='DDE video 12' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>
-  <script src="https://lms.testpress.in/static/video_player/player.js"></script>
+  <script src="https://static.testpress.in/static/js/player.js"></script>
   <script>
     var iframe = document.querySelector('iframe');
     var player = new Testpress.Player(iframe);

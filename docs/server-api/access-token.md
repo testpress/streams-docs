@@ -4,6 +4,8 @@ sidebar_position: 6
 
 # Access token
 
+For Creation API, Please check [here](../video-embedding/authentication.md)
+
 ### List Access tokens
 
 Make get request to the below API with your video id to list access tokens

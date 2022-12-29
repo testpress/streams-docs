@@ -39,3 +39,6 @@ For valid requests the API server returns a JSON:
     "annotations": []
 }
 ```
+
+
+Other CRED operation APIs are documented [here](../server-api/access-token.md)

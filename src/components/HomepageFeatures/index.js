@@ -8,7 +8,7 @@ const FeatureList = [
     Svg: require('@site/static/img/security-svgrepo-com.svg').default,
     description: (
       <>
-        No downloader, plugin or hack can download the videos streamed through Testpress.
+        No downloader, plugin or hack can download the videos streamed through Streams.
       </>
     ),
   },

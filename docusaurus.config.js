@@ -54,6 +54,12 @@ const config = {
             label: 'Server APIs',
           },
           {
+            type: 'docSidebar',
+            position: 'left',
+            sidebarId: 'videoEmbeddingSidebar',
+            label: 'Video Embedding',
+          },
+          {
             href: 'https://github.com/testpress/streams-docs',
             label: 'GitHub',
             position: 'right',

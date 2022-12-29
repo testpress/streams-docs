@@ -426,7 +426,7 @@ player.setVolume(0.5).then(function(volume) {
 
 ### Apply watermark to the video
 
-This method applies watermark to the video. Please refer to this [doc](../../watermarking.md) for more details on watermarking.
+This method applies watermark to the video. Please refer to this [doc](../watermarking.md) for more details on watermarking.
 
 **Function**
 

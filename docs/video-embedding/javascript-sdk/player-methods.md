@@ -159,6 +159,27 @@ player.getVolume().then(function(volume) {
 });
 ```
 
+### Get user watched time ranges
+
+This methods returns the list of time ranges that user watched in a video.
+
+**Function**
+```js
+played()
+```
+
+**Returns**
+```bash 
+Promise <Array>
+```
+
+**Example**
+```js
+player.played().then(function(ranges) {
+  // ranges => [[0, 120.084666], [155.292928, 161.054032], ...]
+});
+```
+
 ### Pause a video
 
 This method pauses the playback of a video.

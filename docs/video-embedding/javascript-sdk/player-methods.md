@@ -159,6 +159,29 @@ player.getVolume().then(function(volume) {
 });
 ```
 
+### Get the video duration
+
+This method gets the current video duration in seconds.
+
+
+**Function**
+```js
+getDuration()
+```
+
+**Returns**
+```bash 
+Promise <number>
+```
+
+**Example**
+```js
+player.getDuration().then(function(duration) {
+  // duration 596.4630000000002
+});
+```
+
+
 ### Get user watched time ranges
 
 This methods returns the list of time ranges that user watched in a video.

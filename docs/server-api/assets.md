@@ -125,7 +125,7 @@ To get a individual asset in the organization, you need to send an HTTP GET requ
 
 **Endpoint**
 ```bash
-https://app.tpstreams.com/api/v1/<organization_id>/assets/<str:uuid>/
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
 ```
 
 

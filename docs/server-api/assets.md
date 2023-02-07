@@ -119,4 +119,46 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/
 }
 
 ```
+## Get Individual Asset Details
+
+To get a individual asset in the organization, you need to send an HTTP GET request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
+
+**Endpoint**
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
+```
+
+
+**Response**
+```json
+{
+    "title": "sample.mp4",
+    "bytes": null,
+    "type": "video",
+    "video": {
+        "progress": 0,
+        "thumbnails": [],
+        "status": "Completed",
+        "playback_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/56761978-503c-4ad9-9eca-dff4c4cc12db/video.m3u8",
+        "dash_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/56761978-503c-4ad9-9eca-dff4c4cc12db/video.mpd",
+        "preview_thumbnail_url": null,
+        "format": "abr",
+        "resolutions": [
+            "240p"
+        ],
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "enable_drm": true,
+        "tracks": [],
+        "inputs": [
+            {
+                "url": "private/e3e153564cb641b08edb3ae9c85c7211.mp4"
+            }
+        ]
+    },
+    "id": "56761978-503c-4ad9-9eca-dff4c4cc12db",
+    "live_stream": null
+}
+
+```
 

@@ -15,7 +15,7 @@ Webhooks can be configured using a webhook endpoint URL and a secret token to en
 To Create a webhook you need to send an HTTP POST request to the API Endpoint, with the [Authentication Header](../server-api/authentication.md).
 
 ```bash
-http://app.tpstreams.com/api/v1/<organization_id>/webhooks/
+https://app.tpstreams.com/api/v1/<organization_id>/webhooks/
 ```
 **Fields**
 
@@ -50,7 +50,7 @@ To get all the webhooks, you need to send an HTTP GET request to the API Endpoin
 
 **Endpoint**
 ```bash
-http://app.tpstreams.com/api/v1/<organization_id>/webhooks/
+https://app.tpstreams.com/api/v1/<organization_id>/webhooks/
 ```
 
 **Response**
@@ -74,7 +74,7 @@ To update a webhook, you need to send an HTTP PUT request to the API Endpoint, w
 
 **Endpoint**
 ```bash
-http://app.tpstreams.com/api/v1/<organization_id>/webhooks/<webhook_id>/
+https://app.tpstreams.com/api/v1/<organization_id>/webhooks/<webhook_id>/
 ```
 
 **Response**
@@ -91,7 +91,7 @@ To delete a webhook, you need to send an HTTP PUT request to the API Endpoint, w
 
 **Endpoint**
 ```bash
-http://app.tpstreams.com/api/v1/<organization_id>/webhooks/<webhook_id>/
+https://app.tpstreams.com/api/v1/<organization_id>/webhooks/<webhook_id>/
 ```
 
 ## WebHook Response

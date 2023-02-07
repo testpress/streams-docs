@@ -12,7 +12,7 @@ To Upload a asset you need to send an HTTP POST request to the API Endpoint, wit
 
 
 ```bash
-http://app.tpstreams.com/api/v1/<organization_id>/assets/videos/
+https://app.tpstreams.com/api/v1/<organization_id>/assets/videos/
 ```
 
 **Fields**
@@ -78,7 +78,7 @@ To get all assets in the organization, you need to send an HTTP GET request to t
 
 **Endpoint**
 ```bash
-http://app.tpstreams.com/api/v1/<organization_id>/assets/
+https://app.tpstreams.com/api/v1/<organization_id>/assets/
 ```
 
 **Response**

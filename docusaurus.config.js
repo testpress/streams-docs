@@ -60,6 +60,12 @@ const config = {
             label: 'Video Embedding',
           },
           {
+            type: 'docSidebar',
+            position: 'left',
+            sidebarId: 'mobileSdk',
+            label: 'Mobile SDK',
+           },
+          {
             href: 'https://github.com/testpress/streams-docs',
             label: 'GitHub',
             position: 'right',

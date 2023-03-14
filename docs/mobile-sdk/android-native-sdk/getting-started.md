@@ -68,7 +68,7 @@ playerFragment.setOnInitializationListener(object: InitializationListener {
 
 Once you have a player, you can start loading media onto it for playback. You'll need a TpInitParams object to specify which media to load along with your playback preferences.
 
-A TpInitParams object needs videoId, [accessToken](../../authentication.md) and orgCode.
+A TpInitParams object needs videoId, [accessToken](../../server-api/access-token.md) and orgCode.
 
 ``` java
 val parameters = TpInitParams.Builder()

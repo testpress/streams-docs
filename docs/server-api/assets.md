@@ -19,10 +19,11 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/videos/
 
 | Name             | Type         | Description |    Required  |
 | -----------      | -----------  | ----------- |   ---------- |
-| enable_drm       | boolean      |  Enable DRM encryption for transcoded videos. TP Streams supports Widevine and Fairplay DRMs           | False |
-| title            | string      |  Specify a text string or identifier which can be used for filtering or searching the asset.| False |
-| resolutions      | array         | Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma separated string out of the following values: 240p, 360p, 480p, 540p, 720p, and 1080p. Re-sized rendition will retain the input aspect ratio. | True |
-| inputs | json | URL or web address of a file that TP streams should download to create a new asset. | True |
+| enable_drm       | boolean      |  Enable DRM encryption for transcoded videos. TP Streams supports Widevine and Fairplay DRMs           | No |
+| title            | string      |  Specify a text string or identifier which can be used for filtering or searching the asset.| No |
+| resolutions      | array         | Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma separated string out of the following values: 240p, 360p, 480p, 540p, 720p, and 1080p. Re-sized rendition will retain the input aspect ratio. | Yes |
+| inputs | json | URL or web address of a file that TP streams should download to create a new asset. | Yes |
+| folder | string | The UUID of the folder, if you want to upload the video into that specific folder | No |
 
 **Sample request body**
 
@@ -35,7 +36,8 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/videos/
     }
   ],
   "resolutions": ["240p", "360p", "480p", "720p"],
-  "enable_drm": true
+  "enable_drm": true,
+  "folder": "32seYYHeNxE"
 }
 
 ```

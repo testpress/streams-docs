@@ -1,4 +1,8 @@
 /** @type {import('@docusaurus/types').Config} */
+
+const lightCodeTheme = require('prism-react-renderer/themes/github');
+const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+
 const config = {
   title: 'Streams Docs',
   tagline: '',
@@ -77,7 +81,8 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} Testpress Tech labs`,
       },
       prism: {
-        theme: require('prism-react-renderer/themes/dracula'),
+        theme: lightCodeTheme,
+        darkTheme: darkCodeTheme,
         additionalLanguages: ['java', "php", "ruby", "csharp", "go", "kotlin"],
       },
       liveCodeBlock: {

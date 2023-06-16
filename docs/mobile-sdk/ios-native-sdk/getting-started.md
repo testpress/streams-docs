@@ -78,7 +78,7 @@ class ViewController: UIViewController {
         hostingController!.view.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 280)
         addChild(hostingController!)
         view.addSubview(hostingController!.view)
-        hostingController
+        hostingController!.didMove(toParent: self)
     }
 }
 ```

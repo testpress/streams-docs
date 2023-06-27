@@ -164,3 +164,16 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
 
 ```
 
+## Delete Individual Asset
+
+To delete a individual asset in the organization, you need to send an HTTP DELETE request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
+
+**Endpoint**
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
+```
+
+If the specified asset is a folder, it will remove all its child assets.
+
+This will delete the specified asset from your organization
+

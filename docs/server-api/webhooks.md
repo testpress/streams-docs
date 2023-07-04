@@ -22,7 +22,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/webhooks/
 | Name             | Type         | Description |    Required  |
 | -----------      | -----------  | ----------- |   ---------- |
 | url       | string      |  URL to which asset data to be sent.           | True |
-| secret_token            | string      |  secret_token will be sent in x-tpstreams-token.| True |
+| secret_token            | string      |  secret_token will be sent in x-streams-token.| True |
 
 
 **Sample request body**

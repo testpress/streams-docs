@@ -133,7 +133,7 @@ If the value of the parameter "transcode_recorded_video" is set to true, you wil
         "tracks": [],
         "inputs": [
             {
-                "url": "https://static.testpress.in/BigBuckBunny.mp4"
+                "url": "https://static.testpress.in/Data_science_Live_class.mp4"
             }
         ],
     }, 

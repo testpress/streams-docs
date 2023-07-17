@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Getting Started
 
-To use our Flutter player SDK, add `tpstreams_player_sdk` as a dependency in your [pubspec.yaml](https://flutter.dev/docs/development/platform-integration/platform-channels) file.
+To use our Flutter player SDK, add [`tpstreams_player_sdk`](https://pub.dev/packages/tpstreams_player_sdk) as a dependency in your [pubspec.yaml](https://flutter.dev/docs/development/platform-integration/platform-channels) file.
 
 
 ### Initializing TPStreamsSDK 

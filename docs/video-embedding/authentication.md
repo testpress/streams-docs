@@ -30,13 +30,21 @@ https://app.tpstreams.com/api/v1/{{org_code}}/assets/{{asset_id}}/access_tokens/
 For valid requests the API server returns a JSON:
 
 ```js
+
 {
-    "playback_url": "https://app.tpstreams.com/embed/d2ff26b2-f88e-4d6d-a9ce-bb0e3ce858cc/?access_token=609fb114-d45d-4b64-9c95-3a2334bec0ad",
-    "expires_after_first_usage": false,
-    "code": "609fb114-d45d-4b64-9c95-3a2334bec0ad",
-    "status": "Active",
-    "valid_until": null,
-    "annotations": []
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "playback_url": "https://app.tpstreams.com/embed/dcek2m/3XqS4b4UKUm/?access_token=b1aa3af8-9c75-40e9-a051-4c129e84da82",
+            "expires_after_first_usage": false,
+            "code": "b1aa3af8-9c75-40e9-a051-4c129e84da82",
+            "status": "Active",
+            "valid_until": null,
+            "annotations": []
+        }
+    ]
 }
 ```
 

@@ -46,7 +46,8 @@ For valid requests the API server returns a JSON:
         "status": "Not Started",
         "hls_url": "https://d28qihy7z761lk.cloudfront.net/live/4xu8ay/4PtERT9d9uK/video.m3u8",
         "start": null,
-        "transcode_recorded_video": true
+        "transcode_recorded_video": true,
+        "chat_embed_url": null
     },
     "parent_id": null
 }
@@ -78,7 +79,8 @@ Whenever the status of live stream changes, response will be sent to the webhook
         "status": "Available",
         "hls_url": "https://d28qihy7z761lk.cloudfront.net/live/4xu8ay/4PtERT9d9uK/video.m3u8",
         "start": null,
-        "transcode_recorded_video": true
+        "transcode_recorded_video": true,
+        "chat_embed_url":"https://app.tpstreams.com/live-chat/4PtERT9d9uK/"
     },
     "parent_id": null
 }
@@ -144,7 +146,8 @@ If the value of the parameter "transcode_recorded_video" is set to true, you wil
         "status": "Completed",
         "hls_url": "https://d28qihy7z761lk.cloudfront.net/live/4xu8ay/4PtERT9d9uK/video.m3u8",
         "start": null,
-        "transcode_recorded_video": true
+        "transcode_recorded_video": true,
+        "chat_embed_url":"https://app.tpstreams.com/live-chat/4PtERT9d9uK/"
     },
     "parent_id": null
 }

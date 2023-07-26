@@ -8,7 +8,7 @@ TPStreamsSDK is a versatile iOS native SDK with support for both DRM (FairPlay) 
 ### Requirements
 Before integrating TPStreamsSDK into your iOS application, ensure that your project meets the following requirement:
 
-- Minimum Deployment Version: iOS 14 or later
+- Minimum Deployment Version: iOS 11.4 or later
 - Swift: Version 5.5 or later
 
 ### Integration using Swift Package Manager (SPM)
@@ -59,26 +59,31 @@ struct ContentView: View {
 
 #### UIKit Integration
 
-1. Instantiate a TPAVPlayer with the appropriate assetID and accessToken.
-2. Set up the UIHostingController with the TPStreamPlayerView as its rootView
-3. Add the instantiated UIHostingController as a child view controller, add its view as a subview of the ViewController's view, and notify the hostingController that it has moved to the parent view controller.
+1. Instantiate a TPAVPlayer with the relevant assetID and accessToken.
+2. Create an AVPlayerViewController and assign the previously created TPAVPlayer to the player attribute.
+3. Add the AVPlayerViewController.view to the view hierarchy. This will display the video player within the specified playerContainer view.
 
 ``` swift
 class ViewController: UIViewController {
-    let player = TPAVPlayer(assetID: "YOUR_ASSET_ID", accessToken: "YOUR_ACCESS_TOKEN")
-    var hostingController: UIViewController?
-    
+    @IBOutlet weak var playerContainer: UIView!
+
+    var playerViewController: AVPlayerViewController?
+    var player: TPAVPlayer?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupHostingController()
+        self.setupPlayerView()
+        player?.play()
     }
-    
-    private func setupHostingController() {
-        hostingController = UIHostingController(rootView: TPStreamPlayerView(player: player))
-        hostingController!.view.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 280)
-        addChild(hostingController!)
-        view.addSubview(hostingController!.view)
-        hostingController!.didMove(toParent: self)
+
+    func setupPlayerView(){
+        player = TPAVPlayer(assetID: "YOUR_ASSET_ID", accessToken: "YOUR_ACCESS_TOKEN")
+        playerViewController = AVPlayerViewController()
+        playerViewController?.player = player
+
+        addChild(playerViewController!)
+        playerContainer.addSubview(playerViewController!.view)
+        playerViewController!.view.frame = playerContainer.bounds
     }
 }
 ```

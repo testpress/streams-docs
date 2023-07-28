@@ -69,6 +69,12 @@ const config = {
             sidebarId: 'mobileSdk',
             label: 'Mobile SDK',
            },
+           {
+            type: 'docSidebar',
+            position: 'left',
+            sidebarId: 'drmSidebar',
+            label: 'DRM Service',
+           },
           {
             href: 'https://github.com/testpress/streams-docs',
             label: 'GitHub',

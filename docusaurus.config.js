@@ -76,8 +76,8 @@ const config = {
             label: 'DRM Service',
            },
           {
-            href: 'https://github.com/testpress/streams-docs',
-            label: 'GitHub',
+            href: 'https://app.getpostman.com/run-collection/18601519-c80854e6-b34b-4ac2-9423-4935a728a2fc?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D18601519-c80854e6-b34b-4ac2-9423-4935a728a2fc%26entityType%3Dcollection%26workspaceId%3Dc04c7c68-3b97-4c20-9ed4-ec556fccdd29',
+            label: 'Postman Collection',
             position: 'right',
           },
         ],

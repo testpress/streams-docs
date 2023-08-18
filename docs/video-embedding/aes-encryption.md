@@ -62,7 +62,7 @@ The playback_url provided in the API response is the signed URL that you can use
     "video": {
         ....
         ....
-        "playback_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/56761978-503c-4ad9-9eca-dff4c4cc12db/video.m3u8",
+        "playback_url": "https://d384padtbeqfgy.cloudfront.net/transcoded_private/B66mmRm2TPF/video.m3u8?Expires=1692398327&Signature=OXqiVfCVAFrNoMq0hrpJ05YYY0XeyzA1H8kD6lv~~71v5PCdpf-9h1Qe~A0RFYoJuOq22j70juEFVJNjEr-WvVPvCvSRoYbRG6xEx5sr-541G~UkBXrcNXRHpb1988hQdG8NAh2pCV6o7bFOKsk3BBk8t6FRo-ZYs6xl46vFN8qH3FCNMhQLFmWqNpNo1vSPjmSSZlNrAplBkNq7MWxoNPxEFrzBgKusqrFZWLqOoXdzR8f9kb9VKkEQAPZL2tk71D6aN8toxwPV70esr8df78hkmAl3d4lChKZlrbWKd0tzew3RDPYZxicxfD1ZBx0th5PQfCltukkitQ0zPbE3TQ__&Key-Pair-Id=K2XWKDWM065EGO",
     },
 
 }

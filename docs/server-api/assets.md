@@ -19,7 +19,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/videos/
 
 | Name             | Type         | Description |    Required  |
 | -----------      | -----------  | ----------- |   ---------- |
-| enable_drm       | boolean      |  Enable DRM encryption for transcoded videos. TP Streams supports Widevine and Fairplay DRMs           | No |
+| content_protection_type    | string      |  To ensure the security of your video content, you can choose from available protection types: 'drm', 'aes' encryption, or indicate 'disable' for no specific protection. Each option offers varying levels of security for your content.       | No |
 | title            | string      |  Specify a text string or identifier which can be used for filtering or searching the asset.| No |
 | resolutions      | array         | Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma separated string out of the following values: 240p, 360p, 480p, 540p, 720p, and 1080p. Re-sized rendition will retain the input aspect ratio. | Yes |
 | inputs | json | URL or web address of a file that TP streams should download to create a new asset. | Yes |
@@ -36,7 +36,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/videos/
     }
   ],
   "resolutions": ["240p", "360p", "480p", "720p"],
-  "enable_drm": true,
+  "content_protection_type": "drm",
   "folder": "32seYYHeNxE"
 }
 
@@ -61,7 +61,7 @@ For valid requests the API server returns a JSON:
         "resolutions": ["240p", "360p", "480p", "720p"],
         "video_codec": "h264",
         "audio_codec": "aac",
-        "enable_drm": true,
+        "content_protection_type": "drm",
         "tracks": [],
         "inputs": [
             {
@@ -108,7 +108,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/
                 ],
                 "video_codec": "h264",
                 "audio_codec": "aac",
-                "enable_drm": true,
+                "content_protection_type": "drm",
                 "tracks": [],
                 "inputs": [
                     {
@@ -150,7 +150,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
         ],
         "video_codec": "h264",
         "audio_codec": "aac",
-        "enable_drm": true,
+        "content_protection_type": "drm",
         "tracks": [],
         "inputs": [
             {

@@ -60,14 +60,14 @@ struct ContentView: View {
 #### UIKit Integration
 
 1. Instantiate a TPAVPlayer with the relevant assetID and accessToken.
-2. Create an AVPlayerViewController and assign the previously created TPAVPlayer to the player attribute.
-3. Add the AVPlayerViewController.view to the view hierarchy. This will display the video player within the specified playerContainer view.
+2. Create an TPStreamPlayerViewController and assign the previously created TPAVPlayer to the player attribute.
+3. Add the TPStreamPlayerViewController.view to the view hierarchy. This will display the video player within the specified playerContainer view.
 
 ``` swift
 class ViewController: UIViewController {
     @IBOutlet weak var playerContainer: UIView!
 
-    var playerViewController: AVPlayerViewController?
+    var playerViewController: TPStreamPlayerViewController?
     var player: TPAVPlayer?
 
     override func viewDidLoad() {
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
 
     func setupPlayerView(){
         player = TPAVPlayer(assetID: "YOUR_ASSET_ID", accessToken: "YOUR_ACCESS_TOKEN")
-        playerViewController = AVPlayerViewController()
+        playerViewController = TPStreamPlayerViewController()
         playerViewController?.player = player
 
         addChild(playerViewController!)

@@ -69,6 +69,7 @@ For valid requests the API server returns a JSON:
             }
         ],
     },
+    "parent_id": "32seYYHeNxE",
 }
 
 ```
@@ -116,6 +117,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/
                     }
                 ],
             },
+            "parent_id": "32seYYHeNxE",
         }
     ]
 }
@@ -159,7 +161,8 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
         ]
     },
     "id": "56761978-503c-4ad9-9eca-dff4c4cc12db",
-    "live_stream": null
+    "live_stream": null,
+    "parent_id": "32seYYHeNxE",
 }
 
 ```

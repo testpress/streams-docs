@@ -24,14 +24,14 @@ Then reference the library in the dependency section:
 
 ``` groovy
 dependencies {
-    implementation "com.tpstreams.player:player:1.0.13b"
+    implementation "com.tpstreams.player:player:1.0.14b"
 }
 ```
 
 ### Using ProGuard
 If you use ProGuard in your app, you might need to add the following rule to your ProGuard file.
 ``` groovy
--keep class com.tpstream.player.* { *; }
+-keep class com.tpstream.player.** { *; }
 ```
 
 ## Integrating player fragment
@@ -76,7 +76,7 @@ val parameters = TpInitParams.Builder()
     .setAccessToken(accessToken)
     .setOrgCode("organization_id") //  app.tpstreams.com/api/v1/organizations_id/
     .build()
-playerFragment.load(parameters)
+player.load(parameters)
 ```
 
 
@@ -94,7 +94,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
                 .setAccessToken(accessToken)
                 .setOrgCode("your_subdomain")
                 .build()
-            playerFragment.load(parameters)
+            player.load(parameters)
         }
     });
 }

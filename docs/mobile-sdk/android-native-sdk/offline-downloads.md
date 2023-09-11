@@ -60,6 +60,12 @@ tpStreamDownloadManager.resumeDownload(video)
 tpStreamDownloadManager.cancelDownload(video)
 ```
 
+#### Delete All
+
+``` kotlin
+tpStreamDownloadManager.deleteAllDownload()
+```
+
 ## Playing downloaded media
 
 Create offline params and pass them to player activity via intent to play an offline video.

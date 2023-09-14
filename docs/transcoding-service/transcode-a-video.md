@@ -54,6 +54,11 @@ Upon a successful request, you will receive a response like below with informati
 }
 ```
 
+### Get notified on status change
+ We offer webhook integration to keep you informed about the status and progress of your transcoding jobs in real-time. With webhook integration, you can receive notifications as soon as your job status changes, making it easier to track and manage your video transcoding tasks.
+
+To register a webhook for your organization, Please check webhook [documentation](../server-api/webhooks.md).
+
 ### Get Transcoding Job detail
 
 To retrieve the details of a transcoding job, make a GET request to the following API endpoint:

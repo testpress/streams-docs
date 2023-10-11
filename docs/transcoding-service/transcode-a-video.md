@@ -12,7 +12,7 @@ Welcome to the Transcoding as a Service documentation! This guide will help you 
 To transcode a video, you need to make a POST request to the following API endpoint:
 
 ```bash
-https://app.tpstreams.com/<organization_id>/transcoding_jobs/
+https://app.tpstreams.com/api/v1/<organization_id>/transcoding_jobs/
 ```
 Replace <organization_id> with your organization's unique identifier.
 

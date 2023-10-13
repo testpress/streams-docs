@@ -124,7 +124,7 @@ To Start a live stream server you need to send an HTTP POST request to the API E
 
 
 ```bash
-https://app.tpstreams.com/api/v1/<organization_id>/assets/assets/<str:asset_id>/create_server/
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<str:asset_id>/create_server/
 ```
 
 This will start the server for specified live stream

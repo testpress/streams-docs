@@ -4,10 +4,12 @@ sidebar_position: 4
 
 # Live Streams
 
-- A live stream is a real-time video broadcast delivered through a streaming platform.You can create live streams instantly, schedule live streams and start them later and stop live streams allowing users to ingest media content into the TP Streams system for processing and delivery.
+- A live stream is a real-time video broadcast delivered through a streaming platform.You can create live streams  allowing users to ingest media content into the TP Streams system for processing and delivery.
+- With the TP Streams system, you have the ability to create live streams in two distinct ways
+1. [Create a live stream instantly](../server-api/live-stream.md#create-a-live-stream-instantly)
+2. [Schedule live streams and start them later](../server-api/live-stream.md#schedule-a-live-stream-and-start-the-server-later)
 
 ## Create a live stream instantly
-
 To Create a live stream instantly you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
 
 
@@ -62,9 +64,7 @@ To fetch the RTMP URL and stream key, you need to wait for the status to change 
 :::
 
 ## Schedule a live stream and start the server later
-
-## Schedule a live stream
-
+### Schedule a live stream
 To Schedule a live stream you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
 
 
@@ -121,14 +121,19 @@ Live stream is created with the scheduled time for you to start the server later
 
 Above response has the details of the live stream scheduled which can also be obtained by API 
 **/api/v1/<organization_id>/assets/<asset_id>/**
+:::important
 
-## Start the server for the scheduled live stream
+Scheduled live streams will not automatically start at the specified time; they must be manually initiated.
 
+
+:::
+
+### Start the server for the scheduled live stream
 To Start a server for the scheduled live stream you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
 
 
 ```bash
-https://app.tpstreams.com/api/v1/<organization_id>/assets/<str:asset_id>/create_server/
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<str:asset_id>/start_server/
 ```
 
 This will start the server for specified live stream
@@ -145,7 +150,6 @@ To fetch the RTMP URL and stream key, you need to wait for the status to change 
 :::
 
 ## Stop a live stream
-
 To Stop a live stream you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
 
 
@@ -204,9 +208,12 @@ If the value of the parameter "transcode_recorded_video" is set to true, you wil
 
 
 ## WebHook Response
-Whenever the status of live stream changes, response will be sent to the webhook.
+Upon a successful creation of live stream, to notify your application about things that happen asynchronously ,
+[Create a Web Hook](../server-api/webhooks.md).
 
-**Sample webhook response is as follows**
+After successfully registering the webhook, whenever the status of live stream changes, response will be sent to the webhook.
+
+**Sample webhook response for livestream is as follows**
 ```json
 {
     "title": "Data science Live class",

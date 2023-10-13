@@ -62,6 +62,85 @@ To fetch the RTMP URL and stream key, you need to wait for the status to change 
 
 :::
 
+## Schedule a live stream
+
+To Schedule a live stream you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
+
+
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/live_streams/
+```
+
+**Fields**
+
+| Name             | Type         | Description |    Required  |
+| -----------      | -----------  | ----------- |   ---------- |
+| title            | string      |  Specify a text string or identifier which can be used for filtering or searching the live stream.| Yes |
+| start            | string      |  Specify a date string as when the live stream should be scheduled.| Yes |
+
+**Sample request body**
+
+```json 
+{
+  "title": "Data science Live class",
+  "start": "2024-10-05 15:30:00"
+}
+
+```
+
+For valid requests the API server returns a JSON:
+
+```json
+{
+    "title": "Data science Live class",
+    "bytes": null,
+    "type": "livestream",
+    "video": null,
+    "id": "AuC9yX2EtBr",
+    "live_stream": {
+        "rtmp_url": "",
+        "stream_key": null,
+        "status": "Not Started",
+        "hls_url": "https://d28qihy7z761lk.cloudfront.net/live/gnarys/AuC9yX2EtBr/video.m3u8",
+        "start": "2024-10-05 15:30:00",
+        "transcode_recorded_video": true,
+        "enable_drm": false,
+        "chat_embed_url": null,
+        "resolutions": [
+            "240p",
+            "480p",
+            "720p"
+        ]
+    },
+    "parent": null,
+    "parent_id": null
+}
+```
+Live stream is created with the scheduled time for you to start.
+
+## Start a live stream server
+
+To Satrt a live stream server you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
+
+
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/assets/<str:asset_id>/create_server/
+```
+
+This will start the server for specified live stream
+
+To notify your application about things that happen asynchronously [Create a Web Hook](../server-api/webhooks.md).
+
+After successfully registering the webhook, you will receive an updated webhook response.
+
+:::important
+
+To fetch the RTMP URL and stream key, you need to wait for the status to change to "Available." Once the status changes, you will receive the required information via a webhook.
+
+
+:::
+
+
 ## WebHook Response
 Whenever the status of live stream changes, response will be sent to the webhook.
 

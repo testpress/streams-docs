@@ -76,7 +76,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/live_streams/
 | Name             | Type         | Description |    Required  |
 | -----------      | -----------  | ----------- |   ---------- |
 | title            | string      |  Specify a text string or identifier which can be used for filtering or searching the live stream.| Yes |
-| start            | string      |  Specify a date string as when the live stream should be scheduled.| Yes |
+| start            | string      |  Specify the date and time (in the format: "YYYY-MM-DD HH:MM:SS") when the live stream should be scheduled.| Yes |
 
 **Sample request body**
 
@@ -120,7 +120,7 @@ Live stream is created with the scheduled time for you to start.
 
 ## Start a live stream server
 
-To Satrt a live stream server you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
+To Start a live stream server you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
 
 
 ```bash

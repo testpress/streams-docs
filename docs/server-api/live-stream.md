@@ -125,7 +125,8 @@ Above response has the details of the live stream scheduled which can also be ob
 **/api/v1/<organization_id>/assets/<asset_id>/**
 :::important
 
-Scheduled live streams will not automatically start at the specified time; they must be manually initiated.
+- Scheduled live streams will not automatically start at the specified time; they must be manually initiated.
+- RTMP URL and stream key will be available once you start the stream
 
 
 :::
@@ -137,8 +138,38 @@ To Start a server for the scheduled live stream you need to send an HTTP POST re
 ```bash
 https://app.tpstreams.com/api/v1/<organization_id>/assets/<str:asset_id>/start_server/
 ```
+For valid requests the API server returns a JSON:
 
+```json
+{
+    "title": "Data science Live class",
+    "bytes": null,
+    "type": "livestream",
+    "video": null,
+    "id": "8XGEEj6ptnB",
+    "live_stream": {
+        "rtmp_url": "",
+        "stream_key": null,
+        "status": "Not Started",
+        "hls_url": "https://d3cydmgt9q030i.cloudfront.net/live/edee9b/8XGEEj6ptnB/video.m3u8",
+        "start": "2024-10-05 15:30:00",
+        "transcode_recorded_video": true,
+        "enable_drm": false,
+        "chat_embed_url": "https://app.tpstreams.com/live-chat/edee9b/8XGEEj6ptnB/",
+        "resolutions": [
+            "240p",
+            "480p",
+            "720p"
+        ]
+    },
+    "parent": null,
+    "parent_id": null
+}
+```
 This will start the server for specified live stream
+
+Above response has the details of the live stream started which can also be obtained by API 
+**/api/v1/<organization_id>/assets/<asset_id>/**
 
 To notify your application about things that happen asynchronously [Create a Web Hook](../server-api/webhooks.md).
 

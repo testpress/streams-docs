@@ -6,8 +6,8 @@ sidebar_position: 4
 
 - A live stream is a real-time video broadcast delivered through a streaming platform.You can create live streams  allowing users to ingest media content into the TP Streams system for processing and delivery.
 - With the TP Streams system, you have the ability to create live streams in two distinct ways
-    1. [Create a live stream instantly](../server-api/live-stream.md#create-a-live-stream-instantly)
-    2. [Schedule live streams and start them later](../server-api/live-stream.md#schedule-a-live-stream-and-start-the-server-later)
+    - [Create a live stream instantly](../server-api/live-stream.md#create-a-live-stream-instantly)
+    - [Schedule live streams and start them later](../server-api/live-stream.md#schedule-a-live-stream-and-start-the-server-later)
 
 ## Create a live stream instantly
 To Create a live stream instantly you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).

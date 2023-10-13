@@ -119,7 +119,8 @@ For valid requests the API server returns a JSON:
 ```
 Live stream is created with the scheduled time for you to start the server later.
 
-Above response has the details of the live stream scheduled which can also be obtained by API **/api/v1/<organization_id>/assets/<id>/**
+Above response has the details of the live stream scheduled which can also be obtained by API 
+**/api/v1/<organization_id>/assets/<id>/**
 
 ## Start the server for the scheduled live stream
 

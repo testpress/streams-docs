@@ -55,15 +55,16 @@ For valid requests the API server returns a JSON:
     "parent_id": null
 }
 ```
-To notify your application about things that happen asynchronously [Create a Web Hook](../server-api/webhooks.md).
-
-After successfully registering the webhook, you will receive an updated webhook response.
-
 :::important
 
-To fetch the RTMP URL and stream key, you need to wait for the status to change to "Available." Once the status changes, you will receive the required information via a webhook.
+- The live stream server typically takes around 20-30 seconds to start. 
+- Once it's up and running, both the "rtmp_url" and "stream_key" will become accessible. 
+
 
 :::
+To automatically receive rtmp_url and stream key as soon as the server is established,[Create a Web Hook](../server-api/webhooks.md).
+
+After successfully registering the webhook, you will receive an updated webhook response.
 
 ## Schedule a live stream and start the server later
 ### Schedule a live stream
@@ -171,16 +172,16 @@ This will start the server for specified live stream
 Above response has the details of the live stream started which can also be obtained by API 
 **/api/v1/<organization_id>/assets/<asset_id>/**
 
-To notify your application about things that happen asynchronously [Create a Web Hook](../server-api/webhooks.md).
-
-After successfully registering the webhook, you will receive an updated webhook response.
-
 :::important
 
-To fetch the RTMP URL and stream key, you need to wait for the status to change to "Available." Once the status changes, you will receive the required information via a webhook.
+- The live stream server typically takes around 20-30 seconds to start. 
+- Once it's up and running, both the "rtmp_url" and "stream_key" will become accessible. 
 
 
 :::
+To automatically receive rtmp_url and stream key as soon as the server is established,[Create a Web Hook](../server-api/webhooks.md).
+
+After successfully registering the webhook, you will receive an updated webhook response.
 
 ## Stop a live stream
 To Stop a live stream you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).

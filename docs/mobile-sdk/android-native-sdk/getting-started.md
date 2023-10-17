@@ -92,7 +92,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
             val parameters = TpInitParams.Builder()
                 .setVideoId(videoId)
                 .setAccessToken(accessToken)
-                .setOrgCode("your_subdomain")
+                .setOrgCode("organization_id")
                 .build()
             player.load(parameters)
         }

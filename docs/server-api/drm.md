@@ -9,13 +9,8 @@ To play DRM protected videos, your player should request DRM licence from our UR
 This API requires [access_token](../video-embedding/authentication.md) in query param for authentication.
 
 ```bash
-POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_license/?access_token={{access_token}}/
+POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_license/?access_token={{access_token}}
 ```
-
-:::note
-This endpoint should not be directly called from client-side. Your server should called this API and return its response to player.
-
-:::
 
 **Sample code**
 

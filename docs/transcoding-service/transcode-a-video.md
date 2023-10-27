@@ -20,7 +20,7 @@ Replace <organization_id> with your organization's unique identifier.
 ```json
 {
     "input_url": "https://example.com/input-video.mp4",
-    "output_path": "s3://example-bucket/output-path/",
+    "output_path": "s3://example-bucket/path/?access_key=<access_key>&secret_key=<secret_key>",
     "resolutions": ["240p", "480p"]
 }
 ```
@@ -30,7 +30,7 @@ Here's a breakdown of the fields in the payload:
 | Name              |  Description                                                 |  
 | ---------------   | --------------------------------------------------------     | 
 | input_url         | The URL of the input video file you want to transcode        | 
-| output_path       | The S3 bucket path where the transcoded video files will be stored. Make sure to specify a unique path for each transcoding job | 
+| output_path       | The S3 bucket path where the transcoded video files will be stored. Make sure to specify a unique path for each transcoding job.The access_key and secret_key query parameters should have the same values as the access_key and secret key of the bucket.| 
 | resolutions       | An array of resolutions you want to transcode the video into. You can specify multiple resolutions as needed. Available resoltions are 240p, 360p, 480p, 720p and 1080p |
 
 
@@ -48,7 +48,7 @@ Upon a successful request, you will receive a response like below with informati
     "video_duration": null,
     "status": "Queued",
     "input_url": "https://example.com/input-video.mp4",
-    "output_path": "s3://example-bucket/output-path/",
+    "output_path": "s3://example-bucket/path/?access_key=E8WPS6H1A4OYD3ZNVMR&secret_key=N1dYpS2cTk5AeH6jWf8TgBh9Ji0MkL1N2O3P",
     "start_time": null,
     "end_time": null
 }
@@ -81,7 +81,7 @@ Replace <organization_id> with your organization's unique identifier and <job_id
     "video_duration": 120,
     "status": "Completed",
     "input_url": "https://example.com/input-video.mp4",
-    "output_path": "s3://example-bucket/output-path/",
+    "output_path": "s3://example-bucket/path/?access_key=E8WPS6H1A4OYD3ZNVMR&secret_key=N1dYpS2cTk5AeH6jWf8TgBh9Ji0MkL1N2O3P",
     "start_time": "2023-04-20T23:20:06.034924+12:00",
     "end_time": "2023-04-20T23:40:06.034924+12:00"
 }

@@ -17,7 +17,7 @@ You have the flexibility to choose the method that best fits your workflow. Whet
 ```json
 {
     "input_url": "https://example.com/input-video.mp4",
-    "output_path": "s3://example-bucket/video.mp4/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
+    "output_path": "s3://example-bucket/path/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
     "resolutions": ["240p", "480p"]
 }
 ```
@@ -25,10 +25,9 @@ You have the flexibility to choose the method that best fits your workflow. Whet
 **2. Direct S3 Bucket Path:**
 
 ```json
-Copy code
 {
     "input_path": "s3://example-bucket/video.mp4/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
-    "output_path": "s3://example-bucket/video.mp4/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
+    "output_path": "s3://example-bucket/path/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
     "resolutions": ["240p", "480p"]
 }
 ```
@@ -56,7 +55,7 @@ Upon a successful request, you will receive a response like below with informati
     "video_duration": null,
     "status": "Queued",
     "input_url": "https://example.com/input-video.mp4",
-    "output_path": "s3://example-bucket/video.mp4/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
+    "output_path": "s3://example-bucket/path/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
     "start_time": null,
     "end_time": null,
     "error_message" : null,    
@@ -84,7 +83,7 @@ Upon registering a webhook, you will receive a status change along with informat
     "video_duration": null,
     "status": "transcoding",
     "input_url": "https://example.com/input-video.mp4",
-    "output_path": "s3://example-bucket/video.mp4/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
+    "output_path": "s3://example-bucket/path/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
     "start_time": "2023-11-22T12:30:00Z",
     "end_time": null,
     "error_message": null

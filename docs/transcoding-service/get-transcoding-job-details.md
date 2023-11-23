@@ -3,7 +3,7 @@ sidebar_position: 3
 ---
 # Get Transcoding Job detail
 
-To retrieve the details of a transcoding job, make a GET request to the following API endpoint:
+To retrieve the details of a transcoding job, make a GET request to the following API endpoint , with the [authentication Header](../server-api/authentication.md).
 
 ```base
 https://app.tpstreams.com/api/v1/<organization_id>/transcoding_jobs/<job_id>/

@@ -3,7 +3,7 @@ sidebar_position: 2
 ---
 # Trancode a video
 
-To transcode a video, you need to make a POST request to the following API endpoint:
+To transcode a video, you need to make a POST request to the following API endpoint, with the [authentication Header](../server-api/authentication.md).
 
 ```bash
 https://app.tpstreams.com/api/v1/<organization_id>/transcoding_jobs/

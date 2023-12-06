@@ -24,7 +24,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/live_streams/
 | Name             | Type         | Description |    Required  |
 | -----------      | -----------  | ----------- |   ---------- |
 | title            | string      |  Specify a text string or identifier which can be used for filtering or searching the live stream.| Yes |
-| enable_drm       | boolean      | A boolean value to enable or disable DRM for the live stream.| No |
+| enable_drm       | boolean      | A boolean value to enable or disable DRM for live stream recording.| No |
 
 **Sample request body**
 
@@ -83,7 +83,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/live_streams/
 | -----------      | -----------  | ----------- |   ---------- |
 | title            | string      |  Specify a text string or identifier which can be used for filtering or searching the live stream.| Yes |
 | start            | string      |  Specify the date and time (in the format: "YYYY-MM-DD HH:MM:SS") when the live stream should be scheduled.| Yes |
-| enable_drm       | boolean      | A boolean value to enable or disable DRM for the live stream.| No |
+| enable_drm       | boolean      | A boolean value to enable or disable DRM for live stream recording.| No |
 
 **Sample request body**
 

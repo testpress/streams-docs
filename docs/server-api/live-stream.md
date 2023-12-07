@@ -192,7 +192,7 @@ After successfully registering the webhook, you will receive an updated webhook 
 To retrieve a list of live streams in the organization, send an HTTP GET request to the API Endpoint, with the [authentication Header](../server-api/authentication.md). This API supports the listing of both live and scheduled live streams
 
 ```http
-https://app.tpstreams.com/api/v1/assets/live_streams_list/
+https://app.tpstreams.com/api/v1/<organization_id>/assets/live_streams/
 ```
 **Sample webhook response is as follows**
 ```json

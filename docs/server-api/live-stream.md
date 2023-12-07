@@ -313,7 +313,7 @@ If the value of the parameter "transcode_recorded_video" is set to true, you wil
 To delete an individual live stream in the organization, send an HTTP DELETE request to the API Endpoint , with the [authentication Header](../server-api/authentication.md). This API supports the deletion of both live and scheduled live streams. Please note that a live stream must be created before attempting to delete it.
 
 
-
+**Endpoint**
 ```bash
 https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
 ```

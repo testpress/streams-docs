@@ -243,7 +243,17 @@ If the value of the parameter "transcode_recorded_video" is set to true, you wil
     "parent_id": null
 }
 ```
+## Delete Live Stream API
 
+To delete an individual live stream in the organization, send an HTTP DELETE request to the API Endpoint. This API supports the deletion of both live and scheduled live streams. Please note that a live stream must be created before attempting to delete it.
+
+
+**Endpoint**
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
+```
+
+if the streaming live stream or live stream with active server is deleted, it would stop the server
 
 ## WebHook Response
 Upon a successful creation of live stream, to notify your application about things that happen asynchronously ,

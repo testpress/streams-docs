@@ -60,6 +60,12 @@ const config = {
           {
             type: 'docSidebar',
             position: 'left',
+            sidebarId: 'liveStreamApi',
+            label: 'Live Stream APIs',
+          },
+          {
+            type: 'docSidebar',
+            position: 'left',
             sidebarId: 'videoEmbeddingSidebar',
             label: 'Video Embedding',
           },

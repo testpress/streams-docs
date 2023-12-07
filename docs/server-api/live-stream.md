@@ -187,6 +187,71 @@ To automatically receive rtmp_url and stream key as soon as the server is establ
 
 After successfully registering the webhook, you will receive an updated webhook response.
 
+## List Live Streams API
+
+To retrieve a list of live streams in the organization, send an HTTP GET request to the API Endpoint, with the [authentication Header](../server-api/authentication.md). This API supports the listing of both live and scheduled live streams
+
+```http
+https://app.tpstreams.com/api/v1/assets/live_streams_list/
+```
+**Sample webhook response is as follows**
+```json
+{
+    "count": 2,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "title": "Data Science Live Class",
+            "bytes": null,
+            "type": "livestream",
+            "video": null,
+            "id": "8DH94uXQgrA",
+            "live_stream": {
+                "rtmp_url": "rtmp://52.66.213.19/live",
+                "stream_key": "org-89b2cy-live-8DH94uXQgrA-7XkI",
+                "status": "Completed",
+                "hls_url": "https://d3cydmgt9q030i.cloudfront.net/live/89b2cy/8DH94uXQgrA/video.m3u8",
+                "start": "2023-12-07 13:02:16",
+                "transcode_recorded_video": true,
+                "enable_drm": true,
+                "chat_embed_url": null,
+                "resolutions": [
+                    "240p",
+                    "480p",
+                    "720p"
+                ]
+            },
+            "parent": null,
+            "parent_id": null
+        },
+        {
+            "title": "GO LIVE NOW",
+            "bytes": null,
+            "type": "livestream",
+            "video": null,
+            "id": "9QgXR3pPj49",
+            "live_stream": {
+                "rtmp_url": "",
+                "stream_key": null,
+                "status": "Completed",
+                "hls_url": "https://d3cydmgt9q030i.cloudfront.net/live/89b2cy/9QgXR3pPj49/video.m3u8",
+                "start": "2023-12-07 12:34:42",
+                "transcode_recorded_video": true,
+                "enable_drm": true,
+                "chat_embed_url": null,
+                "resolutions": [
+                    "240p",
+                    "480p",
+                    "720p"
+                ]
+            },
+            "parent": null,
+            "parent_id": null
+        }
+    ]
+}
+```
 ## Stop a live stream
 To Stop a live stream you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
 
@@ -245,10 +310,10 @@ If the value of the parameter "transcode_recorded_video" is set to true, you wil
 ```
 ## Delete Live Stream API
 
-To delete an individual live stream in the organization, send an HTTP DELETE request to the API Endpoint. This API supports the deletion of both live and scheduled live streams. Please note that a live stream must be created before attempting to delete it.
+To delete an individual live stream in the organization, send an HTTP DELETE request to the API Endpoint , with the [authentication Header](../server-api/authentication.md). This API supports the deletion of both live and scheduled live streams. Please note that a live stream must be created before attempting to delete it.
 
 
-**Endpoint**
+
 ```bash
 https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
 ```

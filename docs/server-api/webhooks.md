@@ -87,7 +87,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/webhooks/<webhook_id>/
 ```
 
 ## Delete a webhook
-To delete a webhook, you need to send an HTTP PUT request to the API Endpoint, with the [Authentication Header](../server-api/authentication.md).
+To delete a webhook, you need to send an HTTP DELETE request to the API Endpoint, with the [Authentication Header](../server-api/authentication.md).
 
 **Endpoint**
 ```bash

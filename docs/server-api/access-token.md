@@ -3,8 +3,36 @@ sidebar_position: 7
 ---
 
 # Access token
+An access token is essential for secure video playback . 
 
-For Creation API, Please check [here](../video-embedding/authentication.md)
+### Create an Access token
+
+To generate the Access token you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md) and the optional Access token request Body.
+
+```bash
+https://app.tpstreams.com/api/v1/{{org_code}}/assets/{{asset_id}}/access_tokens/
+```
+
+**Optional Fields**
+
+| Name                            | Type         | description |
+| -----------                     | -----------  | ----------- |
+| time_to_live                    | integer      | By default, the Access token validity is set to infinity. You can create shorter-lived URLs by passing the time_to_live parameter. This value is to be set in seconds |
+| expires_after_first_usage       | boolean      | Passing true will make the access token expire immediately after the first usage |
+| annotations                     | json         | JSON contain all the information about the watermark. Please refer to this [doc](../video-embedding/watermarking.md) for details on watermarking. |
+
+For valid requests the API server returns a JSON:
+
+```js
+{
+    "playback_url":"https://app.tpstreams.com/embed/dcek2m/6cKHaeJ44pp/?access_token=1a60b175-c2e8-4a38-814b-323697f52994",
+    "expires_after_first_usage":false,
+    "code":"1a60b175-c2e8-4a38-814b-323697f52994",
+    "status":"Active","valid_until":null,
+    "annotations":[]
+}
+```
+
 
 ### List Access tokens
 

@@ -30,7 +30,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/live_streams/
                 "hls_url": "https://d3cydmgt9q030i.cloudfront.net/live/89b2cy/8DH94uXQgrA/video.m3u8",
                 "start": "2023-12-07 13:02:16",
                 "transcode_recorded_video": true,
-                "enable_drm": true,
+                "enable_drm_for_recording": true,
                 "chat_embed_url": null,
                 "resolutions": [
                     "240p",
@@ -54,7 +54,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/live_streams/
                 "hls_url": "https://d3cydmgt9q030i.cloudfront.net/live/89b2cy/9QgXR3pPj49/video.m3u8",
                 "start": "2023-12-07 12:34:42",
                 "transcode_recorded_video": true,
-                "enable_drm": true,
+                "enable_drm_for_recording": true,
                 "chat_embed_url": null,
                 "resolutions": [
                     "240p",

@@ -19,7 +19,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/live_streams/
 | -----------      | -----------  | ----------- |   ---------- |
 | title            | string      |  Specify a text string or identifier which can be used for filtering or searching the live stream.| Yes |
 | start            | string      |  Specify the date and time (in the format: "YYYY-MM-DD HH:MM:SS") when the live stream should be scheduled.| Yes |
-| enable_drm       | boolean      | A boolean value to enable or disable DRM for live stream recording.| No |
+| enable_drm_for_recording       | boolean      | A boolean value to enable or disable DRM for live stream recording.| No |
 
 **Sample request body**
 
@@ -27,7 +27,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/live_streams/
 {
   "title": "Data science Live class",
   "start": "2024-10-05 15:30:00",
-  "enable_drm": false
+  "enable_drm_for_recording": false
 }
 
 ```
@@ -48,7 +48,7 @@ For valid requests the API server returns a JSON:
         "hls_url": "https://d28qihy7z761lk.cloudfront.net/live/gnarys/AuC9yX2EtBr/video.m3u8",
         "start": "2024-10-05 15:30:00",
         "transcode_recorded_video": true,
-        "enable_drm": false,
+        "enable_drm_for_recording": false,
         "chat_embed_url": null,
         "resolutions": [
             "240p",

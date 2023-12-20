@@ -17,14 +17,14 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/live_streams/
 | Name             | Type         | Description |    Required  |
 | -----------      | -----------  | ----------- |   ---------- |
 | title            | string      |  Specify a text string or identifier which can be used for filtering or searching the live stream.| Yes |
-| enable_drm       | boolean      | A boolean value to enable or disable DRM for live stream recording.| No |
+| enable_drm_for_recording       | boolean      | A boolean value to enable or disable DRM for live stream recording.| No |
 
 **Sample request body**
 
 ```json 
 {
   "title": "Data science Live class",
-  "enable_drm": true
+  "enable_drm_for_recording": true
 }
 
 ```

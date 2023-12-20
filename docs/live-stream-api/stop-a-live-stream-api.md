@@ -38,7 +38,7 @@ If the value of the parameter "transcode_recorded_video" is set to true, you wil
         "resolutions": ["240p", "360p", "480p", "720p"],
         "video_codec": "h264",
         "audio_codec": "aac",
-        "enable_drm": true,
+        "enable_drm_for_recording": true,
         "tracks": [],
         "inputs": [
             {

@@ -27,7 +27,7 @@ For valid requests the API server returns a JSON:
         "hls_url": "https://d3cydmgt9q030i.cloudfront.net/live/edee9b/8XGEEj6ptnB/video.m3u8",
         "start": "2024-10-05 15:30:00",
         "transcode_recorded_video": true,
-        "enable_drm": false,
+        "enable_drm_for_recording": false,
         "chat_embed_url": "https://app.tpstreams.com/live-chat/edee9b/8XGEEj6ptnB/",
         "resolutions": [
             "240p",

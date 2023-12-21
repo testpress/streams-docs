@@ -83,7 +83,7 @@ curl_setopt_array($curl, array(
   CURLOPT_POSTFIELDS =>'{
     "username": "<type_your_emailaddress_here>",
     "password": "<type_your_password_here>",
-    "organizatio_id": "<type_your_organization_id_here>"
+    "organization_id": "<type_your_organization_id_here>"
 }',
   CURLOPT_HTTPHEADER => array(
     'Content-Type: application/json'

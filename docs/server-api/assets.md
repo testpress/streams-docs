@@ -176,7 +176,46 @@ To delete a individual asset in the organization, you need to send an HTTP DELET
 https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
 ```
 
-If the specified asset is a folder, it will remove all its child assets.
+If the specified asset is a folder, it will remove all its child assets. you need to send an HTTP DELETE request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
 
 This will delete the specified asset from your organization
 
+## Move Individual Asset
+To move an asset from one folder to another or to the root directory,  you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md) .
+
+**Endpoint**
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/move/
+```
+
+
+**Fields**
+
+| Name             | Type         | Description |    Required  |
+| -----------      | -----------  | ----------- |   ---------- |
+| parent    | string      |  UUID of the destination  folder	     | No |
+
+
+**Sample request body**
+
+```json 
+{
+    "parent": "7hCCRZtXNmq"
+}
+
+```
+
+**Response**
+
+For valid requests the API server returns a JSON:
+
+```json
+{
+    "detail": "Asset moved successfully."
+}
+```
+
+:::important
+
+To move an asset to the root directory , send an HTTP POST request with an empty request body to the designated API endpoint.
+:::

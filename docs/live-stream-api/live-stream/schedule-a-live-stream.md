@@ -32,34 +32,66 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/live_streams/
 
 ```
 
-For valid requests the API server returns a JSON:
+### Response 
+**HTTP Status Codes:**
 
-```json
-{
-    "title": "Data science Live class",
-    "bytes": null,
-    "type": "livestream",
-    "video": null,
-    "id": "AuC9yX2EtBr",
-    "live_stream": {
-        "rtmp_url": "",
-        "stream_key": null,
-        "status": "Not Started",
-        "hls_url": "https://d28qihy7z761lk.cloudfront.net/live/gnarys/AuC9yX2EtBr/video.m3u8",
-        "start": "2024-10-05 15:30:00",
-        "transcode_recorded_video": true,
-        "enable_drm_for_recording": false,
-        "chat_embed_url": null,
-        "resolutions": [
-            "240p",
-            "480p",
-            "720p"
-        ]
-    },
-    "parent": null,
-    "parent_id": null
-}
-```
+For valid requests the API server returns a JSON
+- **201 Created:**
+ Indicates successful creation of a new video resource
+
+    ```json
+    {
+        "title": "Data science Live class",
+        "bytes": null,
+        "type": "livestream",
+        "video": null,
+        "id": "AuC9yX2EtBr",
+        "live_stream": {
+            "rtmp_url": "",
+            "stream_key": null,
+            "status": "Not Started",
+            "hls_url": "https://d28qihy7z761lk.cloudfront.net/live/gnarys/AuC9yX2EtBr/video.m3u8",
+            "start": "2024-10-05 15:30:00",
+            "transcode_recorded_video": true,
+            "enable_drm_for_recording": false,
+            "chat_embed_url": null,
+            "resolutions": [
+                "240p",
+                "480p",
+                "720p"
+            ]
+        },
+        "parent": null,
+        "parent_id": null
+    }
+    ```
+
+- **401 Unauthorized**
+    Returned when the request lacks valid authentication credentials.
+
+    ```json
+    {
+        "detail": "Invalid token."
+    }
+    ```
+- **404 Not Found**
+
+    The requested resource was not found on this server.
+- ** 400 Bad Request**
+Client error due to invalid or conflicting data.
+Invalid Folder UUID
+
+  Returned when the provided folder UUID is invalid.
+
+  ```json
+  {
+      "parent": [
+          "Invalid folder UUID"
+      ]
+  }
+
+
+
 Live stream is created with the scheduled time for you to start the server later.
 
 Above response has the details of the live stream scheduled which can also be obtained by API 

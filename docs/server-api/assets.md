@@ -42,38 +42,58 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/videos/
 
 ```
 
-For valid requests the API server returns a JSON:
+### Response 
+**HTTP Status Codes:**
 
-```json
-{
-    "id": "9328558d-e0a5-4093-b3b9-8f15ad1550d8", // asset id
-    "title": "Big Buck Bunny Video",
-    "bytes": null,
-    "type": "video",
-    "video": {
-        "progress": 0,
-        "thumbnails": [],
-        "status": "Completed",
-        "playback_url": "https://d7pdowhru2wq4.cloudfront.net/transcoded/9328558d-e0a5-4093-b3b9-8f15ad1550d8/video.m3u8",
-        "dash_url": "https://d7pdowhru2wq4.cloudfront.net/transcoded/9328558d-e0a5-4093-b3b9-8f15ad1550d8/video.mpd",
-        "preview_thumbnail_url": null,
-        "format": "abr",
-        "resolutions": ["240p", "360p", "480p", "720p"],
-        "video_codec": "h264",
-        "audio_codec": "aac",
-        "content_protection_type": "drm",
-        "tracks": [],
-        "inputs": [
-            {
-                "url": "https://static.testpress.in/BigBuckBunny.mp4"
-            }
-        ],
-    },
-    "parent_id": "32seYYHeNxE",
-}
+For valid requests the API server returns a JSON
+- **201 Created:**
+ Indicates successful creation of a new video resource
 
-```
-Above response can also be obtained by asset detail API **/api/v1/<organization_id>/assets/<asset_id>/**
+    ```json
+    {
+        "id": "9328558d-e0a5-4093-b3b9-8f15ad1550d8", // asset id
+        "title": "Big Buck Bunny Video",
+        "bytes": null,
+        "type": "video",
+        "video": {
+            "progress": 0,
+            "thumbnails": [],
+            "status": "Completed",
+            "playback_url": "https://d7pdowhru2wq4.cloudfront.net/transcoded/9328558d-e0a5-4093-b3b9-8f15ad1550d8/video.m3u8",
+            "dash_url": "https://d7pdowhru2wq4.cloudfront.net/transcoded/9328558d-e0a5-4093-b3b9-8f15ad1550d8/video.mpd",
+            "preview_thumbnail_url": null,
+            "format": "abr",
+            "resolutions": ["240p", "360p", "480p", "720p"],
+            "video_codec": "h264",
+            "audio_codec": "aac",
+            "content_protection_type": "drm",
+            "tracks": [],
+            "inputs": [
+                {
+                    "url": "https://static.testpress.in/BigBuckBunny.mp4"
+                }
+            ],
+        },
+        "parent_id": "32seYYHeNxE",
+    }
+
+    ```
+
+- **401 Unauthorized**
+    Returned when the request lacks valid authentication credentials.
+
+    ```json
+    {
+        "detail": "Invalid token."
+    }
+    ```
+- **404 Not Found**
+
+    If the wrong organization ID is provided:
+
+    ```json
+    The requested resource was not found on this server.
+    ```
 
 ## Get all the assets that belong to the organization
 
@@ -85,44 +105,68 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/
 ```
 
 **Response**
-```json
-{
-    "count": 1,
-    "next": null,
-    "previous": null,
-    "results": [
-        {
-            "id": "9328558d-e0a5-4093-b3b9-8f15ad1550d8",
-            "title": "Big Buck Bunny Video",
-            "bytes": null,
-            "type": "video",
-            "video": {
-                "progress": 0,
-                "thumbnails": [],
-                "status": "Completed",
-                "playback_url": "https://d7pdowhru2wq4.cloudfront.net/transcoded/9328558d-e0a5-4093-b3b9-8f15ad1550d8/video.m3u8",
-                "dash_url": "https://d7pdowhru2wq4.cloudfront.net/transcoded/9328558d-e0a5-4093-b3b9-8f15ad1550d8/video.mpd",
-                "preview_thumbnail_url": null,
-                "format": "abr",
-                "resolutions": [
-                    "240p"
-                ],
-                "video_codec": "h264",
-                "audio_codec": "aac",
-                "content_protection_type": "drm",
-                "tracks": [],
-                "inputs": [
-                    {
-                        "url": "https://static.testpress.in/BigBuckBunny.mp4"
-                    }
-                ],
-            },
-            "parent_id": "32seYYHeNxE",
-        }
-    ]
-}
 
-```
+**HTTP Status Codes:**
+
+- **200 OK:**
+  - Request successful. Server processed the request.
+
+    ```json
+    {
+        "count": 1,
+        "next": null,
+        "previous": null,
+        "results": [
+            {
+                "id": "9328558d-e0a5-4093-b3b9-8f15ad1550d8",
+                "title": "Big Buck Bunny Video",
+                "bytes": null,
+                "type": "video",
+                "video": {
+                    "progress": 0,
+                    "thumbnails": [],
+                    "status": "Completed",
+                    "playback_url": "https://d7pdowhru2wq4.cloudfront.net/transcoded/9328558d-e0a5-4093-b3b9-8f15ad1550d8/video.m3u8",
+                    "dash_url": "https://d7pdowhru2wq4.cloudfront.net/transcoded/9328558d-e0a5-4093-b3b9-8f15ad1550d8/video.mpd",
+                    "preview_thumbnail_url": null,
+                    "format": "abr",
+                    "resolutions": [
+                        "240p"
+                    ],
+                    "video_codec": "h264",
+                    "audio_codec": "aac",
+                    "content_protection_type": "drm",
+                    "tracks": [],
+                    "inputs": [
+                        {
+                            "url": "https://static.testpress.in/BigBuckBunny.mp4"
+                        }
+                    ],
+                },
+                "parent_id": "32seYYHeNxE",
+            }
+        ]
+    }
+    ```
+
+- **401 Unauthorized**
+
+    Returned when the request lacks valid authentication credentials.
+
+    ```json
+    {
+        "detail": "Invalid token."
+    }
+
+
+- **404 Not Found**
+
+    If the wrong organization ID is provided:
+
+    ```json
+    The requested resource was not found on this server.
+    ```
+
 ## Get Individual Asset Details
 
 To get a individual asset in the organization, you need to send an HTTP GET request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
@@ -134,38 +178,63 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
 
 
 **Response**
-```json
-{
-    "title": "sample.mp4",
-    "bytes": null,
-    "type": "video",
-    "video": {
-        "progress": 0,
-        "thumbnails": [],
-        "status": "Completed",
-        "playback_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/56761978-503c-4ad9-9eca-dff4c4cc12db/video.m3u8",
-        "dash_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/56761978-503c-4ad9-9eca-dff4c4cc12db/video.mpd",
-        "preview_thumbnail_url": null,
-        "format": "abr",
-        "resolutions": [
-            "240p"
-        ],
-        "video_codec": "h264",
-        "audio_codec": "aac",
-        "content_protection_type": "drm",
-        "tracks": [],
-        "inputs": [
-            {
-                "url": "private/e3e153564cb641b08edb3ae9c85c7211.mp4"
-            }
-        ]
-    },
-    "id": "56761978-503c-4ad9-9eca-dff4c4cc12db",
-    "live_stream": null,
-    "parent_id": "32seYYHeNxE",
-}
+**HTTP Status Codes:**
 
-```
+- **200 OK:**
+  - Request successful. Server processed the request.
+
+    ```json
+    {
+        "title": "sample.mp4",
+        "bytes": null,
+        "type": "video",
+        "video": {
+            "progress": 0,
+            "thumbnails": [],
+            "status": "Completed",
+            "playback_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/56761978-503c-4ad9-9eca-dff4c4cc12db/video.m3u8",
+            "dash_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/56761978-503c-4ad9-9eca-dff4c4cc12db/video.mpd",
+            "preview_thumbnail_url": null,
+            "format": "abr",
+            "resolutions": [
+                "240p"
+            ],
+            "video_codec": "h264",
+            "audio_codec": "aac",
+            "content_protection_type": "drm",
+            "tracks": [],
+            "inputs": [
+                {
+                    "url": "private/e3e153564cb641b08edb3ae9c85c7211.mp4"
+                }
+            ]
+        },
+        "id": "56761978-503c-4ad9-9eca-dff4c4cc12db",
+        "live_stream": null,
+        "parent_id": "32seYYHeNxE",
+    }
+
+- **404 Not Found**
+    
+    If the wrong organization ID is provided:
+    ```json
+    The requested resource was not found on this server.
+    ```
+
+    If the wrong asset ID is provided:
+
+    ```json
+    {
+        "detail": "Not found."
+    }
+- **401 Unauthorized**
+
+    Returned when the request lacks valid authentication credentials.
+
+    ```json
+    {
+        "detail": "Invalid token."
+    }
 
 ## Delete Individual Asset
 

@@ -21,17 +21,56 @@ https://app.tpstreams.com/api/v1/{{org_code}}/assets/{{asset_id}}/access_tokens/
 | expires_after_first_usage       | boolean      | Passing true will make the access token expire immediately after the first usage |
 | annotations                     | json         | JSON contain all the information about the watermark. Please refer to this [doc](../video-embedding/watermarking.md) for details on watermarking. |
 
-For valid requests the API server returns a JSON:
+### Response 
+**HTTP Status Codes:**
 
-```js
-{
-    "playback_url":"https://app.tpstreams.com/embed/dcek2m/6cKHaeJ44pp/?access_token=1a60b175-c2e8-4a38-814b-323697f52994",
-    "expires_after_first_usage":false,
-    "code":"1a60b175-c2e8-4a38-814b-323697f52994",
-    "status":"Active","valid_until":null,
-    "annotations":[]
-}
-```
+
+- **201 Created:**
+ Indicates successful creation of a new video resource
+
+    For valid requests the API server returns a JSON
+
+    ```js
+    {
+        "playback_url":"https://app.tpstreams.com/embed/dcek2m/6cKHaeJ44pp/?access_token=1a60b175-c2e8-4a38-814b-323697f52994",
+        "expires_after_first_usage":false,
+        "code":"1a60b175-c2e8-4a38-814b-323697f52994",
+        "status":"Active","valid_until":null,
+        "annotations":[]
+    }
+    ```
+
+- **401 Unauthorized**
+    Returned when the request lacks valid authentication credentials.
+
+    ```json
+    {
+        "detail": "Invalid token."
+    }
+- **404 Not Found**
+    
+    If the wrong organization ID is provided:
+    ```json
+    The requested resource was not found on this server.
+    ```
+
+    If the wrong asset ID is provided:
+
+    ```json
+    {
+        "detail": "Not found."
+    }
+- **401 Unauthorized**
+
+    Returned when the request lacks valid authentication credentials.
+
+    ```json
+    {
+        "detail": "Invalid token."
+    }
+    ```
+
+
 
 
 ### List Access tokens
@@ -49,13 +88,154 @@ https://app.tpstreams.com/api/v1/{{org_code}}/assets/{{asset_id}}/access_tokens/
 | is_active      | boolean      | 
 
 
+
 **Response**
-```js
-{
-    "count": 3,
-    "next": null,
-    "previous": null,
-    "results": [
+**HTTP Status Codes:**
+
+- **200 OK:**
+  - Request successful. Server processed the request.
+
+    ```js
+    {
+        "count": 3,
+        "next": null,
+        "previous": null,
+        "results": [
+            {
+                "playback_url": "https://app.tpstreams.com/embed/d2ff26b2-f88e-4d6d-a9ce-bb0e3ce858cc/?access_token=e91e2bf4-a3ab-493f-8685-7b88ea943c5a",
+                "expires_after_first_usage": false,
+                "code": "e91e2bf4-a3ab-493f-8685-7b88ea943c5a",
+                "status": "Active",
+                "valid_until": null,
+                "annotations": [
+                    {
+                        "text": "moving text",
+                        "type": "dynamic",
+                        "color": "#FF0000",
+                        "opacity": "0.80",
+                        "size": 15,
+                        "interval": 1000,
+                        "skip": 0,
+                        "x": 16,
+                        "y": 16
+                    },
+                    {
+                        "text": "moving text 2",
+                        "type": "dynamic",
+                        "color": "#FF0000",
+                        "opacity": "0.80",
+                        "size": 15,
+                        "interval": 1000,
+                        "skip": 0,
+                        "x": 16,
+                        "y": 16
+                    }
+                ]
+            },
+            {
+                "playback_url": "https://app.tpstreams.com/embed/d2ff26b2-f88e-4d6d-a9ce-bb0e3ce858cc/?access_token=a33ab940-2fc5-44e8-bb7a-222ee06f023b",
+                "expires_after_first_usage": false,
+                "code": "a33ab940-2fc5-44e8-bb7a-222ee06f023b",
+                "status": "Active",
+                "valid_until": null,
+                "annotations": [
+                    {
+                        "text": "moving text",
+                        "type": "dynamic",
+                        "color": "#FF0000",
+                        "opacity": "0.80",
+                        "size": 15,
+                        "interval": 1000,
+                        "skip": 0,
+                        "x": 16,
+                        "y": 16
+                    },
+                    {
+                        "text": "moving text 2",
+                        "type": "dynamic",
+                        "color": "#FF0000",
+                        "opacity": "0.80",
+                        "size": 15,
+                        "interval": 1000,
+                        "skip": 0,
+                        "x": 16,
+                        "y": 16
+                    }
+                ]
+            },
+            {
+                "playback_url": "https://app.tpstreams.com/embed/d2ff26b2-f88e-4d6d-a9ce-bb0e3ce858cc/?access_token=609fb114-d45d-4b64-9c95-3a2334bec0ad",
+                "expires_after_first_usage": false,
+                "code": "609fb114-d45d-4b64-9c95-3a2334bec0ad",
+                "status": "Active",
+                "valid_until": null,
+                "annotations": [
+                    {
+                        "text": "moving text",
+                        "type": "dynamic",
+                        "color": "#FF0000",
+                        "opacity": "0.80",
+                        "size": 15,
+                        "interval": 1000,
+                        "skip": 0,
+                        "x": 16,
+                        "y": 16
+                    },
+                    {
+                        "text": "moving text 2",
+                        "type": "dynamic",
+                        "color": "#FF0000",
+                        "opacity": "0.80",
+                        "size": 15,
+                        "interval": 1000,
+                        "skip": 0,
+                        "x": 16,
+                        "y": 16
+                    }
+                ]
+            }
+        ]
+    }
+    ```
+    
+- **404 Not Found**
+    
+    If the wrong organization ID is provided:
+    ```json
+    The requested resource was not found on this server.
+    ```
+
+    If the wrong asset ID is provided:
+
+    ```json
+    {
+        "detail": "Not found."
+    }
+- **401 Unauthorized**
+
+    Returned when the request lacks valid authentication credentials.
+
+    ```json
+    {
+        "detail": "Invalid token."
+    }
+
+
+
+### View Access token
+
+Make get request to the below API with your video id and access token code to get the access token details
+
+```bash
+https://app.tpstreams.com/api/v1/{{org_code}}/assets/{{asset_id}}/access_tokens/{access_token_code}/
+```
+
+**HTTP Status Codes:**
+
+- **200 OK:**
+  - Request successful. Server processed the request.
+  
+    ```js
         {
             "playback_url": "https://app.tpstreams.com/embed/d2ff26b2-f88e-4d6d-a9ce-bb0e3ce858cc/?access_token=e91e2bf4-a3ab-493f-8685-7b88ea943c5a",
             "expires_after_first_usage": false,
@@ -73,121 +253,33 @@ https://app.tpstreams.com/api/v1/{{org_code}}/assets/{{asset_id}}/access_tokens/
                     "skip": 0,
                     "x": 16,
                     "y": 16
-                },
-                {
-                    "text": "moving text 2",
-                    "type": "dynamic",
-                    "color": "#FF0000",
-                    "opacity": "0.80",
-                    "size": 15,
-                    "interval": 1000,
-                    "skip": 0,
-                    "x": 16,
-                    "y": 16
-                }
-            ]
-        },
-        {
-            "playback_url": "https://app.tpstreams.com/embed/d2ff26b2-f88e-4d6d-a9ce-bb0e3ce858cc/?access_token=a33ab940-2fc5-44e8-bb7a-222ee06f023b",
-            "expires_after_first_usage": false,
-            "code": "a33ab940-2fc5-44e8-bb7a-222ee06f023b",
-            "status": "Active",
-            "valid_until": null,
-            "annotations": [
-                {
-                    "text": "moving text",
-                    "type": "dynamic",
-                    "color": "#FF0000",
-                    "opacity": "0.80",
-                    "size": 15,
-                    "interval": 1000,
-                    "skip": 0,
-                    "x": 16,
-                    "y": 16
-                },
-                {
-                    "text": "moving text 2",
-                    "type": "dynamic",
-                    "color": "#FF0000",
-                    "opacity": "0.80",
-                    "size": 15,
-                    "interval": 1000,
-                    "skip": 0,
-                    "x": 16,
-                    "y": 16
-                }
-            ]
-        },
-        {
-            "playback_url": "https://app.tpstreams.com/embed/d2ff26b2-f88e-4d6d-a9ce-bb0e3ce858cc/?access_token=609fb114-d45d-4b64-9c95-3a2334bec0ad",
-            "expires_after_first_usage": false,
-            "code": "609fb114-d45d-4b64-9c95-3a2334bec0ad",
-            "status": "Active",
-            "valid_until": null,
-            "annotations": [
-                {
-                    "text": "moving text",
-                    "type": "dynamic",
-                    "color": "#FF0000",
-                    "opacity": "0.80",
-                    "size": 15,
-                    "interval": 1000,
-                    "skip": 0,
-                    "x": 16,
-                    "y": 16
-                },
-                {
-                    "text": "moving text 2",
-                    "type": "dynamic",
-                    "color": "#FF0000",
-                    "opacity": "0.80",
-                    "size": 15,
-                    "interval": 1000,
-                    "skip": 0,
-                    "x": 16,
-                    "y": 16
                 }
             ]
         }
-    ]
-}
-```
+    ```
+    
+- **404 Not Found**
+    
+    If the wrong organization ID is provided:
+    ```json
+    The requested resource was not found on this server.
+    ```
 
+    If the wrong asset ID is provided:
 
-
-
-### View Access token
-
-Make get request to the below API with your video id and access token code to get the access token details
-
-```bash
-https://app.tpstreams.com/api/v1/{{org_code}}/assets/{{asset_id}}/access_tokens/{access_token_code}/
-```
-
-
-**Response**
-```js
+    ```json
     {
-        "playback_url": "https://app.tpstreams.com/embed/d2ff26b2-f88e-4d6d-a9ce-bb0e3ce858cc/?access_token=e91e2bf4-a3ab-493f-8685-7b88ea943c5a",
-        "expires_after_first_usage": false,
-        "code": "e91e2bf4-a3ab-493f-8685-7b88ea943c5a",
-        "status": "Active",
-        "valid_until": null,
-        "annotations": [
-            {
-                "text": "moving text",
-                "type": "dynamic",
-                "color": "#FF0000",
-                "opacity": "0.80",
-                "size": 15,
-                "interval": 1000,
-                "skip": 0,
-                "x": 16,
-                "y": 16
-            }
-        ]
+        "detail": "Not found."
     }
-```
+- **401 Unauthorized**
+
+    Returned when the request lacks valid authentication credentials.
+
+    ```json
+    {
+        "detail": "Invalid token."
+    }
+
 
 
 

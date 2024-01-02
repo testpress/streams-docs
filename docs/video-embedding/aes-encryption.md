@@ -53,21 +53,45 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/?expiry=100
 
 The playback_url provided in the API response is the signed URL that you can use for secure video playback.
 
-**Response**
-```json
-{
-    "title": "sample.mp4",
-    "bytes": null,
-    "type": "video",
-    "video": {
-        ....
-        ....
-        "playback_url": "https://d384padtbeqfgy.cloudfront.net/transcoded_private/B66mmRm2TPF/video.m3u8?Expires=1692398327&Signature=OXqiVfCVAFrNoMq0hrpJ05YYY0XeyzA1H8kD6lv~~71v5PCdpf-9h1Qe~A0RFYoJuOq22j70juEFVJNjEr-WvVPvCvSRoYbRG6xEx5sr-541G~UkBXrcNXRHpb1988hQdG8NAh2pCV6o7bFOKsk3BBk8t6FRo-ZYs6xl46vFN8qH3FCNMhQLFmWqNpNo1vSPjmSSZlNrAplBkNq7MWxoNPxEFrzBgKusqrFZWLqOoXdzR8f9kb9VKkEQAPZL2tk71D6aN8toxwPV70esr8df78hkmAl3d4lChKZlrbWKd0tzew3RDPYZxicxfD1ZBx0th5PQfCltukkitQ0zPbE3TQ__&Key-Pair-Id=K2XWKDWM065EGO",
-    },
 
-}
+### Response 
+**HTTP Status Codes:**
 
-```
+For valid requests the API server returns a JSON
+- **201 Created:**
+ Indicates successful creation of a new video resource
+
+    ```json
+    {
+        "title": "sample.mp4",
+        "bytes": null,
+        "type": "video",
+        "video": {
+            ....
+            ....
+            "playback_url": "https://d384padtbeqfgy.cloudfront.net/transcoded_private/B66mmRm2TPF/video.m3u8?Expires=1692398327&Signature=OXqiVfCVAFrNoMq0hrpJ05YYY0XeyzA1H8kD6lv~~71v5PCdpf-9h1Qe~A0RFYoJuOq22j70juEFVJNjEr-WvVPvCvSRoYbRG6xEx5sr-541G~UkBXrcNXRHpb1988hQdG8NAh2pCV6o7bFOKsk3BBk8t6FRo-ZYs6xl46vFN8qH3FCNMhQLFmWqNpNo1vSPjmSSZlNrAplBkNq7MWxoNPxEFrzBgKusqrFZWLqOoXdzR8f9kb9VKkEQAPZL2tk71D6aN8toxwPV70esr8df78hkmAl3d4lChKZlrbWKd0tzew3RDPYZxicxfD1ZBx0th5PQfCltukkitQ0zPbE3TQ__&Key-Pair-Id=K2XWKDWM065EGO",
+        },
+
+    }
+
+    ```
+
+- **401 Unauthorized**
+
+    Returned when the request lacks valid authentication credentials.
+
+    ```json
+    {
+        "detail": "Invalid token."
+    }
+    ```
+- **404 Not Found**
+     If the wrong organization ID is provided:
+
+    ```json
+    The requested resource was not found on this server.
+    ```
+
 
 
 

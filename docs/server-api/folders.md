@@ -33,10 +33,45 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/folders/
 
 For valid requests the API server returns a JSON:
 
-```json
-{
- "title": "CAT videos",
- "uuid": "46seZZHAnWE", // folder id
-}
 
-```
+
+
+### Response 
+**HTTP Status Codes:**
+
+For valid requests the API server returns a JSON
+- **201 Created:**
+ Indicates successful creation of a new video resource
+    ```json
+    {
+      "title": "CAT videos",
+      "uuid": "46seZZHAnWE", // folder id
+    }
+
+    ```
+
+- **401 Unauthorized**
+    Returned when the request lacks valid authentication credentials.
+
+    ```json
+    {
+        "detail": "Invalid token."
+    }
+    ```
+- **404 Not Found**
+
+  If the wrong organization ID is provided:
+  ```json
+    The requested resource was not found on this server.
+  ```
+- ** 400 Bad Request**
+
+  Returned when the provided folder UUID is invalid.
+
+  ```json
+  {
+      "parent": [
+          "Invalid folder UUID"
+      ]
+  }
+

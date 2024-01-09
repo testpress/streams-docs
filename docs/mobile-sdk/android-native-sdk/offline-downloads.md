@@ -10,11 +10,10 @@ We'll explore the workflow in this document.The [Sample Android App](https://git
 
 Create TpInitParams with .enableDownloadSupport(true) to enable download support.
 
-``` kotlin
+```kotlin
 var parameters = TpInitParams.Builder()
     .setVideoId(videoId)
     .setAccessToken(accessToken)
-    .setOrgCode("organization_id") //  app.tpstreams.com/api/v1/organizations_id/
     .enableDownloadSupport(true)
     .build()
 ```
@@ -23,7 +22,7 @@ var parameters = TpInitParams.Builder()
 
 The following code snippet demonstrates how to instantiate a TpStreamsDownloadManager
 
-``` kotlin
+```kotlin
 val tpStreamDownloadManager : TpStreamDownloadManager = TpStreamDownloadManager(activityContext)
 ```
 
@@ -31,14 +30,14 @@ Using this TpStreamDownloadManager we can get a list of downloaded media and the
 
 #### Get list of downloaded media
 
-``` kotlin
+```kotlin
 val downloads : LiveData<List<Video>?> = tpStreamDownloadManager.getAllDownloads()
 ```
 It will return a list of OfflineVideoInfo in LiveData to monitor the download progress use ViewModel and observe.
 
 #### Delete
 
-``` kotlin
+```kotlin
 tpStreamDownloadManager.deleteDownload(video)
 ```
 
@@ -50,19 +49,19 @@ tpStreamDownloadManager.pauseDownload(video)
 
 #### Resume
 
-``` kotlin
+```kotlin
 tpStreamDownloadManager.resumeDownload(video)
 ```
 
 #### Cancel
 
-``` kotlin
+```kotlin
 tpStreamDownloadManager.cancelDownload(video)
 ```
 
 #### Delete All
 
-``` kotlin
+```kotlin
 tpStreamDownloadManager.deleteAllDownload()
 ```
 
@@ -70,7 +69,7 @@ tpStreamDownloadManager.deleteAllDownload()
 
 Create offline params and pass them to player activity via intent to play an offline video.
 
-``` kotlin
+```kotlin
 val intent = Intent(activityContext,PlayerActivity::class.java)
 intent.putExtra(TP_OFFLINE_PARAMS,TpInitParams.createOfflineParams(video.videoId))
 startActivity(intent)

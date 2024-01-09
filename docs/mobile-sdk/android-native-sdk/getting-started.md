@@ -11,7 +11,7 @@ This SDK enables you to securely stream DRM-protected videos through your Androi
 ## Adding dependency
 - If you have a settings.gradle file in your project root, then you need to add the repositories in the settings.gradle inside dependencyResolutionManagement with the given path below. Else, this will go in build.gradle file in project root.
 
-```
+```groovy
 repositories {
     // other repo, e.g. google() or mavenCentral()
     maven {
@@ -22,22 +22,37 @@ repositories {
 
 Then reference the library in the dependency section:
 
-``` groovy
+```groovy
 dependencies {
-    implementation "com.tpstreams.player:player:1.0.14b"
+    implementation "com.tpstreams.player:player:3.0.13b"
 }
 ```
 
 ### Using ProGuard
 If you use ProGuard in your app, you might need to add the following rule to your ProGuard file.
-``` groovy
+```groovy
 -keep class com.tpstream.player.** { *; }
+```
+
+## Initializing Player SDK
+
+You need to initialize the Player SDK at the top level in the Activity.
+
+```kotlin
+class PlayerActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_player)
+        TPStreamsSDK.initialize(TPStreamsSDK.Provider.TPStreams, "organization_id")  //  app.tpstreams.com/api/v1/organizations_id/
+    }
+}
 ```
 
 ## Integrating player fragment
 Drop a TpStreamPlayerFragment into your activity layout with an id. This is the fastest and easiest way to integrate the player into your application. TpStreamPlayerFragment includes a prebuilt UI for the player with ample features and functionality.
 
-``` xml
+```xml
 <androidx.fragment.app.FragmentContainerView
     android:id="@+id/tpstream_player_fragment"
     android:name="com.tpstream.player.TpStreamPlayerFragment"
@@ -48,7 +63,7 @@ Drop a TpStreamPlayerFragment into your activity layout with an id. This is the 
 ```
 and receive its instance in your activity using findFragmentbyId()
 
-``` kotlin
+```kotlin
 playerFragment = supportFragmentManager.findFragmentById(R.id.tpstream_player_fragment) as TpStreamPlayerFragment
 ```
 
@@ -57,10 +72,9 @@ playerFragment = supportFragmentManager.findFragmentById(R.id.tpstream_player_fr
 
 You can set listener class with onInitializationSuccess method and receive the player in the onInitializationSuccess callback.
 
-```java
+```kotlin
 playerFragment.setOnInitializationListener(object: InitializationListener {
     override fun onInitializationSuccess(player: TpStreamPlayer) {
-        Log.i(TAG, "onInitializationSuccess");
         this.player = player
     }
 })
@@ -70,18 +84,17 @@ Once you have a player, you can start loading media onto it for playback. You'll
 
 A TpInitParams object needs videoId, [accessToken](../../server-api/access-token.md) and orgCode.
 
-``` java
+```kotlin
 val parameters = TpInitParams.Builder()
     .setVideoId(videoId)
     .setAccessToken(accessToken)
-    .setOrgCode("organization_id") //  app.tpstreams.com/api/v1/organizations_id/
     .build()
 player.load(parameters)
 ```
 
 
 Final code will look like this
-```java
+```kotlin
 override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_player)
@@ -92,12 +105,27 @@ override fun onCreate(savedInstanceState: Bundle?) {
             val parameters = TpInitParams.Builder()
                 .setVideoId(videoId)
                 .setAccessToken(accessToken)
-                .setOrgCode("organization_id")
                 .build()
             player.load(parameters)
         }
     });
 }
+```
+
+## Initializing Player Even Listener
+
+Set up a listener to handle player even.
+
+```kotlin
+player.setListener(object : TPStreamPlayerListener {
+    override fun onPlaybackStateChanged(playbackState: Int) {
+        Log.d(TAG, "onPlaybackStateChanged: $playbackState")
+    }
+
+    override fun onPlayerError(playbackError: PlaybackError) {
+        Log.d(TAG, "onPlayerError: $playbackError")
+    }
+})
 ```
 
 Call this below method to enable auto fullscreen on rotate

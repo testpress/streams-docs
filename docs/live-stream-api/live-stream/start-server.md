@@ -11,34 +11,62 @@ To Start a server for the scheduled live stream you need to send an HTTP POST re
 ```bash
 https://app.tpstreams.com/api/v1/<organization_id>/assets/<str:asset_id>/start_server/
 ```
-For valid requests the API server returns a JSON:
 
-```json
-{
-    "title": "Data science Live class",
-    "bytes": null,
-    "type": "livestream",
-    "video": null,
-    "id": "8XGEEj6ptnB",
-    "live_stream": {
-        "rtmp_url": "",
-        "stream_key": null,
-        "status": "Not Started",
-        "hls_url": "https://d3cydmgt9q030i.cloudfront.net/live/edee9b/8XGEEj6ptnB/video.m3u8",
-        "start": "2024-10-05 15:30:00",
-        "transcode_recorded_video": true,
-        "enable_drm_for_recording": false,
-        "chat_embed_url": "https://app.tpstreams.com/live-chat/edee9b/8XGEEj6ptnB/",
-        "resolutions": [
-            "240p",
-            "480p",
-            "720p"
-        ]
-    },
-    "parent": null,
-    "parent_id": null
-}
-```
+**Response**
+**HTTP Status Codes:**
+
+For valid requests the API server returns a JSON:
+- **200 OK :**
+     Request successful. Server processed the request.
+
+    ```json
+    {
+        "title": "Data science Live class",
+        "bytes": null,
+        "type": "livestream",
+        "video": null,
+        "id": "8XGEEj6ptnB",
+        "live_stream": {
+            "rtmp_url": "",
+            "stream_key": null,
+            "status": "Not Started",
+            "hls_url": "https://d3cydmgt9q030i.cloudfront.net/live/edee9b/8XGEEj6ptnB/video.m3u8",
+            "start": "2024-10-05 15:30:00",
+            "transcode_recorded_video": true,
+            "enable_drm_for_recording": false,
+            "chat_embed_url": "https://app.tpstreams.com/live-chat/edee9b/8XGEEj6ptnB/",
+            "resolutions": [
+                "240p",
+                "480p",
+                "720p"
+            ]
+        },
+        "parent": null,
+        "parent_id": null
+    }
+    ```
+
+- **404 Not Found :**
+    
+    If the wrong organization ID is provided:
+    ```json
+    The requested resource was not found on this server.
+    ```
+
+    If the wrong asset ID is provided:
+
+    ```json
+    {
+        "detail": "Not found."
+    }
+- **401 Unauthorized :**
+    Returned when the request lacks valid authentication credentials.
+
+    ```json
+    {
+        "detail": "Invalid token."
+    }
+
 This will start the server for specified live stream
 
 Above response has the details of the live stream started which can also be obtained by API 

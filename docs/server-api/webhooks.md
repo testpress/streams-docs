@@ -35,15 +35,36 @@ https://app.tpstreams.com/api/v1/<organization_id>/webhooks/
 
 ```
 
-For valid requests the API server returns a JSON:
+### Response 
+**HTTP Status Codes:**
 
-```json
-{
-    "url": "https://sample.beeceptor.com",
-    "secret_token": "abcdef",
-    "id": "c4cf9c5f-0b60-4e5c-9db9-81321ffe31d5"
-}
-```
+For valid requests the API server returns a JSON
+- **201 Created:**
+ Indicates successful creation of a new video resource
+
+    ```json
+    {
+        "url": "https://sample.beeceptor.com",
+        "secret_token": "abcdef",
+        "id": "c4cf9c5f-0b60-4e5c-9db9-81321ffe31d5"
+    }
+    ```
+
+
+- **401 Unauthorized**
+    Returned when the request lacks valid authentication credentials.
+
+    ```json
+    {
+        "detail": "Invalid token."
+    }
+    ```
+- **404 Not Found :**
+     If the wrong organization ID is provided:
+
+    ```json
+    The requested resource was not found on this server.
+    ```
 
 ## List all webhooks
 To get all the webhooks, you need to send an HTTP GET request to the API Endpoint, with the [Authentication Header](../server-api/authentication.md).
@@ -54,21 +75,41 @@ https://app.tpstreams.com/api/v1/<organization_id>/webhooks/
 ```
 
 **Response**
-```json
-{
-    "count": 1,
-    "next": null,
-    "previous": null,
-    "results": [
-        {
-            "url": "https://sample.beeceptor.com",
-            "secret_token": "abcdef",
-            "id": "c4cf9c5f-0b60-4e5c-9db9-81321ffe31d5"
-        }
-    ]
-}
-```
 
+**HTTP Status Codes:**
+
+- **200 OK:**
+   Request successful. Server processed the request.
+
+    ```json
+    {
+        "count": 1,
+        "next": null,
+        "previous": null,
+        "results": [
+            {
+                "url": "https://sample.beeceptor.com",
+                "secret_token": "abcdef",
+                "id": "c4cf9c5f-0b60-4e5c-9db9-81321ffe31d5"
+            }
+        ]
+    }
+    ```
+
+- **401 Unauthorized**
+    Returned when the request lacks valid authentication credentials.
+
+    ```json
+    {
+        "detail": "Invalid token."
+    }
+    ```
+- **404 Not Found :**
+    If the wrong organization ID is provided:
+
+    ```json
+    The requested resource was not found on this server.
+    ```
 ## Update a webhook
 To update a webhook, you need to send an HTTP PUT request to the API Endpoint, with the [Authentication Header](../server-api/authentication.md).
 
@@ -77,14 +118,40 @@ To update a webhook, you need to send an HTTP PUT request to the API Endpoint, w
 https://app.tpstreams.com/api/v1/<organization_id>/webhooks/<webhook_id>/
 ```
 
-**Response**
-```json
-{
-    "url": "https://sample1.beeceptor.com",
-    "secret_token": "abcdef",
-    "id": "c4cf9c5f-0b60-4e5c-9db9-81321ffe31d5"
-}
-```
+
+**HTTP Status Codes:**
+
+- **200 OK:**
+   Request successful. Server processed the request.
+
+    ```json
+    {
+        "url": "https://sample1.beeceptor.com",
+        "secret_token": "abcdef",
+        "id": "c4cf9c5f-0b60-4e5c-9db9-81321ffe31d5"
+    }
+    ```
+    
+- **404 Not Found :**
+
+    If the wrong organization ID is provided:
+    ```json
+    The requested resource was not found on this server.
+    ```
+
+    If the wrong webhook ID is provided:
+
+    ```json
+    {
+        "detail": "Not found."
+    }
+- **401 Unauthorized :**
+    Returned when the request lacks valid authentication credentials.
+
+    ```json
+    {
+        "detail": "Invalid token."
+    }
 
 ## Delete a webhook
 To delete a webhook, you need to send an HTTP DELETE request to the API Endpoint, with the [Authentication Header](../server-api/authentication.md).

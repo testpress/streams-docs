@@ -79,22 +79,33 @@ IRestResponse response = client.Execute(request);
 
 ### Response 
 
-```json
 
-{
-    "count": 2,
-    "next": null,
-    "previous": null,
-    "results": [
+**HTTP Status Codes:**
+
+- **200 OK:**
+   Request successful. Server processed the request.
+
+    ```json
         {
-            "name": "Testpress",
-            "uuid": "6dnpyx"
-        },
-        {
-            "name": "Streams",
-            "uuid": "7coqzy"
+            "count": 2,
+            "next": null,
+            "previous": null,
+            "results": [
+                {
+                    "name": "Testpress",
+                    "uuid": "6dnpyx"
+                },
+                {
+                    "name": "Streams",
+                    "uuid": "7coqzy"
+                }
+            ]
         }
-    ]
-}
-```
+    ```
 
+- **401 Unauthorized:**
+   Request lacks valid authentication. Client needs proper credentials.
+
+    ```json
+    {"detail":"Invalid token."}
+    ```

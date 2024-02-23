@@ -87,42 +87,84 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/
 **Response**
 ```json
 {
-    "count": 1,
-    "next": null,
+    "count": 2,
+    "next": "https://app.tpstreams.com/api/v1/dcek2m/assets/?limit=50&offset=50",
     "previous": null,
     "results": [
         {
-            "id": "9328558d-e0a5-4093-b3b9-8f15ad1550d8",
             "title": "Big Buck Bunny Video",
-            "bytes": null,
+            "bytes": 450881324,
             "type": "video",
             "video": {
                 "progress": 0,
-                "thumbnails": [],
+                "thumbnails": [
+                    "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_4.png",
+                    "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_6.png",
+                    "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_5.png",
+                    "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_2.png",
+                    "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_1.png",
+                    "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_3.png"
+                ],
                 "status": "Completed",
-                "playback_url": "https://d7pdowhru2wq4.cloudfront.net/transcoded/9328558d-e0a5-4093-b3b9-8f15ad1550d8/video.m3u8",
-                "dash_url": "https://d7pdowhru2wq4.cloudfront.net/transcoded/9328558d-e0a5-4093-b3b9-8f15ad1550d8/video.mpd",
+                "playback_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/video.m3u8",
+                "dash_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/video.mpd",
                 "preview_thumbnail_url": null,
+                "cover_thumbnail_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_4.png",
                 "format": "abr",
                 "resolutions": [
-                    "240p"
+                    "240p",
+                    "360p",
+                    "480p",
+                    "720p"
                 ],
                 "video_codec": "h264",
                 "audio_codec": "aac",
-                "content_protection_type": "drm",
+                "enable_drm": true,
                 "tracks": [],
                 "inputs": [
                     {
-                        "url": "https://static.testpress.in/BigBuckBunny.mp4"
+                        "url": "private/yXrprYum2TS.mp4"
                     }
                 ],
+                "transmux_only": null,
+                "duration": 597,
+                "content_protection_type": "drm"
             },
-            "parent_id": "32seYYHeNxE",
+            "id": "yXrprYum2TS",
+            "live_stream": null,
+            "parent": null,
+            "parent_id": null
+        },
+        {
+            "title": "Data science Live class",
+            "bytes": null,
+            "type": "livestream",
+            "video": null,
+            "id": "AAbxGpp8DUm",
+            "live_stream": {
+                "rtmp_url": "rtmp://13.235.45.255/live",
+                "stream_key": "org-dcek2m-live-AAbxGpp8DUm-H4xB",
+                "status": "Not Started",
+                "hls_url": "https://d28qihy7z761lk.cloudfront.net/live/dcek2m/AAbxGpp8DUm/video.m3u8",
+                "start": "2023-12-06 16:37:56",
+                "transcode_recorded_video": true,
+                "enable_drm_for_recording": true,
+                "chat_embed_url": "https://app.tpstreams.com/live-chat/dcek2m/AAbxGpp8DUm/",
+                "resolutions": [
+                    "240p",
+                    "480p",
+                    "720p"
+                ],
+                "enable_drm": true
+            },
+            "parent": null,
+            "parent_id": null
         }
     ]
 }
 
 ```
+
 ## Get Individual Asset Details
 
 To get a individual asset in the organization, you need to send an HTTP GET request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
@@ -136,33 +178,49 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
 **Response**
 ```json
 {
-    "title": "sample.mp4",
-    "bytes": null,
+    "title": "Big Buck Bunny Video",
+    "bytes": 450881324,
     "type": "video",
     "video": {
         "progress": 0,
-        "thumbnails": [],
+        "thumbnails": [
+            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_4.png",
+            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_6.png",
+            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_5.png",
+            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_2.png",
+            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_1.png",
+            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_3.png"
+        ],
         "status": "Completed",
-        "playback_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/56761978-503c-4ad9-9eca-dff4c4cc12db/video.m3u8",
-        "dash_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/56761978-503c-4ad9-9eca-dff4c4cc12db/video.mpd",
+        "playback_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/video.m3u8",
+        "dash_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/video.mpd",
         "preview_thumbnail_url": null,
+        "cover_thumbnail_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_4.png",
         "format": "abr",
         "resolutions": [
-            "240p"
+            "240p",
+            "360p",
+            "480p",
+            "720p"
         ],
         "video_codec": "h264",
         "audio_codec": "aac",
-        "content_protection_type": "drm",
+        "enable_drm": true,
         "tracks": [],
         "inputs": [
             {
-                "url": "private/e3e153564cb641b08edb3ae9c85c7211.mp4"
+                "url": "private/yXrprYum2TS.mp4"
             }
-        ]
+        ],
+        "transmux_only": null,
+        "duration": 597,
+        "content_protection_type": "drm"
     },
-    "id": "56761978-503c-4ad9-9eca-dff4c4cc12db",
+    "id": "yXrprYum2TS",
     "live_stream": null,
-    "parent_id": "32seYYHeNxE",
+    "parent": null,
+    "parent_id": null,
+    "download_url": "https://d28qihy7z761lk.cloudfront.net/private/yXrprYum2TS.mp4?response-content-disposition=attachment%3B+filename%3DBig+Buck+Bunny+Video.mp4&Expires=1708718514&Signature=wzuk7MhZsjKE9MwG0yaM1cMMFurc3ZIhCmrR0~fx2vgSwVd1d0B68GG~KwE6upj8XJMn~5zrBcadlf8TWeFuRyoRbIw6vipEDbWYLdPQhLwZcHp7mwz7ERNpikvBZJUO7KB5Z~h6BSGvcDBnVVc9pNZ8W2Zz95Ix28dnNhr~J9fqEgHtd0KaOqmX~LVjbHq56u6NiYrm4SZm3hmnWsfuaShWVJzkEBGrgnx8EnYtYe4JkHEBSvnskJvQPuCz82gwlK4vxNSdJ~0g08xkcwkJQG1mLqi39gbumkalS-8jp-pAKoyHMpXsHO6m9FKpwHHjnHp2wwPlSOykUPk1dcrt8Q__&Key-Pair-Id=K2XWKDWM065EGO"
 }
 
 ```

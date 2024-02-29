@@ -278,9 +278,12 @@ For valid requests the API server returns a JSON:
 To move an asset to the root directory , send an HTTP POST request with an empty request body to the designated API endpoint.
 :::
 
-## Generating Subtitles for Assets
+## Generating Subtitles for Existing Assets
 
 To Generate Subtitle for individual asset in the organization, you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
+
+
+
 
 **Endpoint**
 ```bash
@@ -341,3 +344,7 @@ For valid requests the API server returns a JSON:
     "parent_id": "BmN3MXSq5z6"
 }
 ```
+:::important
+
+The cost of generating subtitles is **$0.071 per minute of video**.
+:::

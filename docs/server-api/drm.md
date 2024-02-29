@@ -12,89 +12,42 @@ This API requires [access_token](../video-embedding/authentication.md) in query 
 POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_license/?access_token={{access_token}}
 ```
 
-**Sample code**
+### Usage:
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-   <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link
-         href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.11.7/video-js.min.css"
-         rel="stylesheet"
-         />
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.11.7/video.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-eme@3.8.0/dist/videojs-contrib-eme.js"></script>
-      <title>Test VideJS DRM</title>
-   </head>
-   <body>
-      <div style="margin: 50px auto; max-width: 400px">
-         <video id="my-video" class="video-js"></video>
-      </div>
-      <script>
-         const license_url = "" // replace with your endpoint which returns DRM license response
-         var player = videojs(
-           "my-video",
-           {
-             controls: true,
-             fluid: true,
-             html5: {
-               vhs: {
-                 overrideNative: true,
-               },
-             },
-           },
-           function () {
-             var player = this;
-             player.eme();
-             player.src({
-               src: "https://d7pdowhru2wq4.cloudfront.net/transcoded/8b9b948e-192d-4474-b909-5ac5c27918eb/video.mpd",
-               type: "application/dash+xml",
-               keySystems: {
-                 "com.widevine.alpha": {
-                   getLicense: (emeOptions, keyMessage, callback) => {
-                     let headers = {};
-                     let body = undefined;
-         
-                       headers["Content-type"] = "application/octet-stream";
-                       body = keyMessage;
-         
-                     videojs.xhr(
-                       {
-                         url: license_url,
-                         method: "POST",
-                         body: body,
-                         responseType: "arraybuffer",
-                         headers: headers,
-                       },
-                       (err, response, responseBody) => {
-                         if (err) {
-                           callback(err);
-                           return;
-                         }
-         
-                         if (
-                           response.statusCode >= 400 &&
-                           response.statusCode <= 599
-                         ) {
-                           // Pass an empty object as the error to use the default code 5 error message
-                           callback({});
-                           return;
-                         }
-         
-                         callback(null, responseBody);
-                       }
-                     );
-                   },
-                 },
-               },
-             });
-           }
-         );
-      </script>
-   </body>
-</html>
+You can use this endpoint across web, Android and iOS players to retrieve the DRM license, passing the key message provided by the player in the payload. 
 
+Please check this [repository](https://github.com/harinath01/videojs-sample) for videojs sample code.
+
+
+
+### Customize Widevine License:
+
+Customizing the Widevine license is entirely optional. If you choose not to customize it, simply pass the keyMessage provided by the player to the DRM license API in "application/octet-stream" format.
+
+If you prefer to tailor the Widevine license to your specific needs, include the desired configuration in the payload along with the player key message when making a request to the DRM License API.
+
+**Sample Payload:**
+
+```json
+{
+    "player_payload": btoa(keyMessage),
+    "widevine": {
+        "content_key_specs": [
+            {'track_type': 'SD', 'security_level': 1, 'required_output_protection': {'hdcp': 'HDCP_V1'}},
+            {'track_type': 'HD', 'security_level': 1, 'required_output_protection': {'hdcp': 'HDCP_V1'}},
+            {'track_type': 'UHD1', 'security_level': 1, 'required_output_protection': {'hdcp': 'HDCP_V1'}},
+            {'track_type': 'UHD2', 'security_level': 1, 'required_output_protection': {'hdcp': 'HDCP_V1'}},
+            {'track_type': 'AUDIO', 'security_level': 1, 'required_output_protection': {'hdcp': 'HDCP_V1'}}
+        ]
+    }
+}
 ```
+
+**Breakdown:**
+ - We encode the player license key message into base64 as JSON cannot include byte data directly.
+ - The license specification is passed in the license_specs field. Inside this field, we specify content_key_specs, where we define the output protection details such as HDCP enforcement and Widevine security level for each track. For more details on available HDCP enforcement and Widevine security levels, please refer to the documentation [here](https://static.testpress.in/static/docs/Widevine_Integration.pdf).
+  
+
+## Security Considerations:
+
+The recommendation is to invoke the DRM license endpoint on the server, rather than on the client. This precaution is taken because passing the License configuration and calling it from the client could expose configurations to users. 

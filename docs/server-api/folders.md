@@ -48,6 +48,7 @@ To get all folders in the organization, you need to send an HTTP GET request to 
 https://app.tpstreams.com/api/v1/<organization_id>/assets/folders/
 ```
 
+
 For valid requests the API server returns a JSON:
 
 ```json

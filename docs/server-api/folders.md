@@ -40,3 +40,34 @@ For valid requests the API server returns a JSON:
 }
 
 ```
+
+## Get all the Folders that belong to the organization 
+To get all folders in the organization, you need to send an HTTP GET request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
+
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/folders/
+```
+
+For valid requests the API server returns a JSON:
+
+```json
+{
+    "count": 3,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "title": "Aes files",
+            "uuid": "6bBcXxu5cAM"
+        },
+        {
+            "title": "Drm videos",
+            "uuid": "BmN3MXSq5z6"
+        },
+        {
+            "title": "AES encrypted Videos",
+            "uuid": "nD8K9nJ3Bsm"
+        },
+    ]
+}
+```

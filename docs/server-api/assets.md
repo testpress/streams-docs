@@ -277,3 +277,67 @@ For valid requests the API server returns a JSON:
 
 To move an asset to the root directory , send an HTTP POST request with an empty request body to the designated API endpoint.
 :::
+
+## Generating Subtitles for Assets
+
+To Generate Subtitle for individual asset in the organization, you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
+
+**Endpoint**
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/generate_subtitle/
+```
+
+
+**Response**
+
+For valid requests the API server returns a JSON:
+
+```json
+{
+    "title": "Big Buck Bunny Video",
+    "bytes": 26990804,
+    "type": "video",
+    "video": {
+        "progress": 0,
+        "thumbnails": [
+            "https://d28qihy7z761lk.cloudfront.net/transcoded/7cFHfFSfjna/thumbnails/thumbnail_4.png",
+            "https://d28qihy7z761lk.cloudfront.net/transcoded/7cFHfFSfjna/thumbnails/thumbnail_5.png",
+            "https://d28qihy7z761lk.cloudfront.net/transcoded/7cFHfFSfjna/thumbnails/thumbnail_2.png",
+            "https://d28qihy7z761lk.cloudfront.net/transcoded/7cFHfFSfjna/thumbnails/thumbnail_1.png",
+            "https://d28qihy7z761lk.cloudfront.net/transcoded/7cFHfFSfjna/thumbnails/thumbnail_3.png"
+        ],
+        "status": "Completed",
+        "playback_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/7cFHfFSfjna/video.m3u8",
+        "dash_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/7cFHfFSfjna/video.mpd",
+        "preview_thumbnail_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/7cFHfFSfjna/thumbnails/thumbnail_4.png",
+        "cover_thumbnail_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/7cFHfFSfjna/thumbnails/thumbnail_4.png",
+        "format": "abr",
+        "resolutions": [
+            "240p",
+            "360p",
+            "480p",
+            "720p"
+        ],
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "enable_drm": true,
+        "tracks": [],
+        "inputs": [
+            {
+                "url": "private/677155207a6847b5b5a8d70cfaf4a8a1.mp4"
+            }
+        ],
+        "transmux_only": null,
+        "duration": 19,
+        "content_protection_type": "drm",
+        "generate_subtitle": false
+    },
+    "id": "7cFHfFSfjna",
+    "live_stream": null,
+    "parent": {
+        "title": "Drm videos",
+        "uuid": "BmN3MXSq5z6"
+    },
+    "parent_id": "BmN3MXSq5z6"
+}
+```

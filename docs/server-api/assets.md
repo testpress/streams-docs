@@ -24,6 +24,8 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/videos/
 | resolutions      | array         | Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma separated string out of the following values: 240p, 360p, 480p, 540p, 720p, and 1080p. Re-sized rendition will retain the input aspect ratio. | Yes |
 | inputs | json | URL or web address of a file that TP streams should download to create a new asset. | Yes |
 | folder | string | The UUID of the folder, if you want to upload the video into that specific folder | No |
+| generate_subtitle | boolean | Specifies whether subtitles should be generated for the video. The cost of subtitle generation is $0.071 per minute of video.| No|
+
 
 **Sample request body**
 
@@ -37,7 +39,8 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/videos/
   ],
   "resolutions": ["240p", "360p", "480p", "720p"],
   "content_protection_type": "drm",
-  "folder": "32seYYHeNxE"
+  "folder": "C7ySKrj7mP4",
+  "generate_subtitle": true
 }
 
 ```
@@ -46,30 +49,45 @@ For valid requests the API server returns a JSON:
 
 ```json
 {
-    "id": "9328558d-e0a5-4093-b3b9-8f15ad1550d8", // asset id
     "title": "Big Buck Bunny Video",
     "bytes": null,
     "type": "video",
     "video": {
         "progress": 0,
-        "thumbnails": [],
-        "status": "Completed",
-        "playback_url": "https://d7pdowhru2wq4.cloudfront.net/transcoded/9328558d-e0a5-4093-b3b9-8f15ad1550d8/video.m3u8",
-        "dash_url": "https://d7pdowhru2wq4.cloudfront.net/transcoded/9328558d-e0a5-4093-b3b9-8f15ad1550d8/video.mpd",
+        "thumbnails": null,
+        "status": "Not Started",
+        "playback_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/85sFhr3cZcz/video.m3u8",
+        "dash_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/85sFhr3cZcz/video.mpd",
         "preview_thumbnail_url": null,
+        "cover_thumbnail_url": null,
         "format": "abr",
-        "resolutions": ["240p", "360p", "480p", "720p"],
+        "resolutions": [
+            "240p",
+            "360p",
+            "480p",
+            "720p"
+        ],
         "video_codec": "h264",
         "audio_codec": "aac",
-        "content_protection_type": "drm",
+        "enable_drm": true,
         "tracks": [],
         "inputs": [
             {
                 "url": "https://static.testpress.in/BigBuckBunny.mp4"
             }
         ],
+        "transmux_only": null,
+        "duration": null,
+        "content_protection_type": "drm",
+        "generate_subtitle": true
     },
-    "parent_id": "32seYYHeNxE",
+    "id": "85sFhr3cZcz",
+    "live_stream": null,
+    "parent": {
+        "title": "Api Folder test",
+        "uuid": "C7ySKrj7mP4"
+    },
+    "parent_id": "C7ySKrj7mP4"
 }
 
 ```

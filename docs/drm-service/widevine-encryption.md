@@ -7,7 +7,7 @@ sidebar_position: 3
 Shaka Packager is used for encrypting content and offers seamless integration with Widevine, making it a popular choice for ensuring secure delivery through the Widevine DRM technology. [Shaka Packager](https://github.com/shaka-project/shaka-packager)
 
 
-## Command for Shaka Packager:
+## Shaka Packager Command :
 To encrypt your content, you can utilize Shaka Packager by running the following command 
 :
 

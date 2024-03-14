@@ -7,8 +7,35 @@ sidebar_position: 4
 # Fairplay Encryption
 This section provides an introduction to Fairplay Encryption, explaining its purpose as a DRM (Digital Rights Management) technology used to secure content delivery on Apple platforms.
 
+## Shaka Packager Command :
+To encrypt your content, you can utilize Shaka Packager by running the following command :
 
-## Obtain FairPlay Encryption Key API:
+To obtain  the FairPlay Encryption Key, IV, and URI, please check this [Fairplay Encrption Keys](#obtain-fairplay-encryption-keys)
+
+```bash
+
+packager \
+  in=https://static.testpress.in/BigBuckBunny.mp4,stream=audio,output=audio.mp4 \
+  in=https://static.testpress.in/BigBuckBunny.mp4,stream=video,output=h264_360p.mp4 \
+  --keys "label=:key_id=<content_id>:key=<AES_SIGNING_KEY>:iv=<AES_SIGNING_IV>" \
+  --protection_scheme cbcs \
+  --protection_systems Fairplay \
+  --hls_key_uri <HLS_URI> \
+  --clear_lead 0 \
+  --hls_master_playlist_output video.m3u8
+
+```
+
+**Fields**
+
+| Name              | Type         | Description                                                  | Required  |
+| ---------------   | ------------ | --------------------------------------------------------     | --------- |
+| content_id        | string       | The unique identifier for the content (Should be a random UUID generated you. This UUID will be used for getting licenses for that video.)                        | Yes       |
+| AES_SIGNING_KEY  | string       | The AES key used for Fairplay encryption                     | Yes       |
+| AES_SIGNING_IV       | string       | The initialization vector (IV) for Fairplay encryption       | Yes       |
+| HLS_URI          | Link       | URL for encrypted content using FairPlay on Apple devicesendpoint                       | Yes       |
+
+## Obtain FairPlay Encryption Keys:
 
 This API allows users to obtain a FairPlay encryption key. It provides the necessary functionality to acquire the encryption key for ensuring secure content delivery on Apple's platforms.
 
@@ -82,35 +109,7 @@ Response
 
 ```bash
 {
-    'request': b'eyJjb250ZW50X2lkIjoiY2Y2YzMwZGQ1MGMxNDkyZTgyMzQ0ZWEzZTEzOWRhMWQifQ==', 
-
-    'signature': 'JzwEMcwgf4Tp1b6o5x0HbM08o7PuXA6XnwTmWeHF0g4='
+    'request': 'eyJjb250ZW50X2lkIjoiY2Y2YzMwZGQ1MGMxNDkyZTgyMzQ0ZWEzZTEzOWRhMWQifQ==', 
+     'signature': 'JzwEMcwgf4Tp1b6o5x0HbM08o7PuXA6XnwTmWeHF0g4='
 }
 ```
-
-## Command for Shaka Packager:
-To encrypt your content, you can utilize Shaka Packager by running the following command :
-
-
-```bash
-
-packager \
-  in=https://static.testpress.in/BigBuckBunny.mp4,stream=audio,output=audio.mp4 \
-  in=https://static.testpress.in/BigBuckBunny.mp4,stream=video,output=h264_360p.mp4 \
-  --keys "label=:key_id=<content_id>:key=<AES_SIGNING_KEY>:iv=<AES_SIGNING_IV>" \
-  --protection_scheme cbcs \
-  --protection_systems Fairplay \
-  --hls_key_uri <HLS_URI> \
-  --clear_lead 0 \
-  --hls_master_playlist_output video.m3u8
-
-```
-
-**Fields**
-
-| Name              | Type         | Description                                                  | Required  |
-| ---------------   | ------------ | --------------------------------------------------------     | --------- |
-| content_id        | string       | The unique identifier for the content (Should be a random UUID generated you. This UUID will be used for getting licenses for that video.)                        | Yes       |
-| AES_SIGNING_KEY  | string       | The AES key used for Fairplay encryption                     | Yes       |
-| AES_SIGNING_IV       | string       | The initialization vector (IV) for Fairplay encryption       | Yes       |
-| HLS_URI          | Link       | URL for encrypted content using FairPlay on Apple devicesendpoint                       | Yes       |

@@ -74,7 +74,7 @@ from Cryptodome.Cipher import AES
 from Cryptodome.Util.Padding import pad
 
 def generate_signature(data, key, iv):
-    hash = hashlib.sha1(base64.b64encode(data.encode())).digest()
+    hash = hashlib.sha1(data.encode()).digest()
     cipher = AES.new(
         binascii.unhexlify(key),
         AES.MODE_CBC,

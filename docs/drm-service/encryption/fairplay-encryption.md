@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 2
 ---
 
 
@@ -17,7 +17,7 @@ To obtain  the FairPlay Encryption Key, IV, and URI, please check this [Fairplay
 packager \
   in=https://static.testpress.in/BigBuckBunny.mp4,stream=audio,output=audio.mp4 \
   in=https://static.testpress.in/BigBuckBunny.mp4,stream=video,output=h264_360p.mp4 \
-  --keys "label=:key_id=<content_id>:key=<AES_SIGNING_KEY>:iv=<AES_SIGNING_IV>" \
+  --keys "label=:key_id=<content_id>:key=<key>:iv=<IV>" \
   --protection_scheme cbcs \
   --protection_systems Fairplay \
   --hls_key_uri <HLS_URI> \
@@ -31,9 +31,9 @@ packager \
 | Name              | Type         | Description                                                  | Required  |
 | ---------------   | ------------ | --------------------------------------------------------     | --------- |
 | content_id        | string       | The unique identifier for the content (Should be a random UUID generated you. This UUID will be used for getting licenses for that video.)                        | Yes       |
-| AES_SIGNING_KEY  | string       | The AES key used for Fairplay encryption                     | Yes       |
-| AES_SIGNING_IV       | string       | The initialization vector (IV) for Fairplay encryption       | Yes       |
-| HLS_URI          | Link       | URL for encrypted content using FairPlay on Apple devicesendpoint                       | Yes       |
+| key  | string       | The key used for Fairplay encryption	. Check [Fairplay Encrption Keys](#obtain-fairplay-encryption-keys) for how to obtain this key.                   | Yes       |
+| IV       | string       | The initialization vector (IV) for Fairplay encryption	. Check [Fairplay Encrption Keys](#obtain-fairplay-encryption-keys) for how to obtain this IV.      | Yes       |
+| HLS_URI          | Link       | HLS_URI for encrypted content using FairPlay on Apple devicesendpoint Check [Fairplay Encrption Keys](#obtain-fairplay-encryption-keys) for how to obtain this HLS_URI.                      | Yes       |
 
 ## Obtain FairPlay Encryption Keys:
 
@@ -53,6 +53,7 @@ POST: https://app.tpstreams.com/api/v1/{{org_code}}/fairplay_key/
 
 
 To obtain the request body please check this [Generating Request Body](#generating-request-body)
+
 
 sample request body:
 ```

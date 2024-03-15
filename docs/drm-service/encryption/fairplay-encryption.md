@@ -31,9 +31,9 @@ packager \
 | Name              | Type         | Description                                                  | Required  |
 | ---------------   | ------------ | --------------------------------------------------------     | --------- |
 | content_id        | string       | The unique identifier for the content (Should be a random UUID generated you. This UUID will be used for getting licenses for that video.)                        | Yes       |
-| key  | string       | Secret code used to unlock FairPlay encrypted content on Apple devices. Check [Fairplay Encrption Keys](#obtain-fairplay-encryption-keys) for how to obtain this key.                   | Yes       |
+| key  | string       | The key used for Fairplay encryption	. Check [Fairplay Encrption Keys](#obtain-fairplay-encryption-keys) for how to obtain this key.                   | Yes       |
 | IV       | string       | The initialization vector (IV) for Fairplay encryption	. Check [Fairplay Encrption Keys](#obtain-fairplay-encryption-keys) for how to obtain this IV.      | Yes       |
-| HLS_URI          | Link       | URL for encrypted content using FairPlay on Apple devicesendpoint Check [Fairplay Encrption Keys](#obtain-fairplay-encryption-keys) for how to obtain this HLS_URI.                      | Yes       |
+| HLS_URI          | Link       | HLS_URI for encrypted content using FairPlay on Apple devicesendpoint Check [Fairplay Encrption Keys](#obtain-fairplay-encryption-keys) for how to obtain this HLS_URI.                      | Yes       |
 
 ## Obtain FairPlay Encryption Keys:
 

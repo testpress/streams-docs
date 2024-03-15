@@ -53,7 +53,7 @@ def generate_content_data(content_id):
     "drm_type": "widevine/fairplay"
   }
   data = json.dumps(data, separators=(',', ':'))
-  encoded_content_data = base64.urlsafe_b64encode(data.encode())
+  return base64.urlsafe_b64encode(data.encode())
 # The result will be eyJjb250ZW50X2lkIjoiY2Y2YzMwZGQ1MGMxNDkyZTgyMzQ0ZWEzZTEzOWRhMWQifQ==
 ```
 

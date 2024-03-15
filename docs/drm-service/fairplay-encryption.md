@@ -43,6 +43,15 @@ This API allows users to obtain a FairPlay encryption key. It provides the neces
 ```bash
 POST: https://app.tpstreams.com/api/v1/{{org_code}}/fairplay_key/
 ```
+
+**Fields**
+
+| Name              | Type         | Description                                                  | Required  |
+| ---------------   | ------------ | --------------------------------------------------------     | --------- |
+| org_code        | string       | The organization code for API endpoint  | Yes       |
+| request body | string       | You need to include the request body, which contains both request and signature data. You can refer below for instructions on how to generate it                     | Yes       |
+
+
 To obtain the request body please check this [Generating Request Body](#generating-request-body)
 
 sample request body:

@@ -40,3 +40,6 @@ To encrypt your content, you can utilize Shaka Packager by running the following
 WIDEWINE_AES_KEY , WIDEWINE_IV  and org_code will be provided by us.
 
 :::
+
+Check out this repository for encrypting a video with a Widevine license
+ [DRM Video Processing](https://github.com/testpress/drm-video-processing/) 

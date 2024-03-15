@@ -123,3 +123,5 @@ Response
      'signature': 'JzwEMcwgf4Tp1b6o5x0HbM08o7PuXA6XnwTmWeHF0g4='
 }
 ```
+Check out this repository for encrypting a video with a FairPlay license  [DRM Video Processing](https://github.com/testpress/drm-video-processing/) 
+ 

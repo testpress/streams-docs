@@ -109,3 +109,4 @@ AES_SIGNING_KEY , AES_SIGNING_IV  and org_code will be provided by us.
 :::
 
 
+Check out this repository for decrypting the video by obtaining the license [DRM Video Processing](https://github.com/testpress/drm-video-processing/) 

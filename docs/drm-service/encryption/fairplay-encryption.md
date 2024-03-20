@@ -17,6 +17,7 @@ To obtain  the FairPlay Encryption Key, IV, and URI, please check this [Fairplay
 packager \
   in=https://static.testpress.in/BigBuckBunny.mp4,stream=audio,output=audio.mp4 \
   in=https://static.testpress.in/BigBuckBunny.mp4,stream=video,output=h264_360p.mp4 \
+  --enable_raw_key_encryption \
   --keys "label=:key_id=<content_id>:key=<key>:iv=<IV>" \
   --protection_scheme cbcs \
   --protection_systems Fairplay \

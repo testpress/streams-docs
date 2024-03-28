@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 3
 ---
 
 
@@ -16,6 +16,7 @@ POST: https://app.tpstreams.com/api/v1/<org_code>/drm_license/?data=<encoded_dat
 
 You can obtain the Encoded data by performing the following steps in Python:
 
+### Generate Encoded Data
 
 ```python
 import base64
@@ -107,6 +108,7 @@ signature = generate_signature(data, key, iv)
 AES_SIGNING_KEY , AES_SIGNING_IV  and org_code will be provided by us.
 
 :::
-
+To specify desired Widevine license specifications during the license request.Please check this 
+[Widevine Configuration](./widevine-configuration)
 
 Check out this repository for decrypting the video by obtaining the license [DRM Video Processing](https://github.com/testpress/drm-video-processing/) 

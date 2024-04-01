@@ -277,3 +277,48 @@ For valid requests the API server returns a JSON:
 
 To move an asset to the root directory , send an HTTP POST request with an empty request body to the designated API endpoint.
 :::
+
+## Upload Subtitles to an Asset
+To upload subtitles to an asset , you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md) .
+
+**Endpoint**
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/upload_subtitle/
+```
+
+**Fields**
+
+
+
+| Name             | Type         | Description |    Required  |
+| -----------      | -----------  | ----------- |   ---------- |
+| subtitle    | .vtt file      |  File Containing Subtitles	     | Yes |
+| name    | string      |  Name of the subtitles	     | No |
+| language    | string      |   Language code of the subtitles      | No |
+Send the subtitle file using form-data in the request body.
+
+To know language code please check [Language-codes](../language-codes) 	
+
+**Sample Postman request body  (Form-data only) **
+
+
+
+ ![OBS settings](/img/upload_subtitle_req_body.png)
+
+
+
+
+**Response**
+
+For valid requests the API server returns a JSON:
+
+
+```json
+{
+    "detail": "Subtitle uploaded successfully"
+}
+```
+
+:::important
+For subtitle upload, use form-data in the request body. Select your .vtt file with the "subtitle" key .
+:::

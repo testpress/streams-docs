@@ -288,28 +288,30 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/upload_subt
 
 **Fields**
 
+
+
 | Name             | Type         | Description |    Required  |
 | -----------      | -----------  | ----------- |   ---------- |
 | subtitle    | .vtt file      |  File Containing Subtitles	     | Yes |
 | name    | string      |  Name of the subtitles	     | No |
-| language    | string      |   Language of the subtitles	     | No |
+| language    | string      |   Language code of the subtitles      | No |
+Send the subtitle file using form-data in the request body.
+
+To know language code please check [Language-codes](../language-codes) 	
+
+**Sample Postman request body  (Form-data only) **
 
 
-**Sample request body  (Form-data only) **
 
-Send the subtitle file using form-data in the request body. Here's the key-value pair:
+ ![OBS settings](/img/upload_subtitle_req_body.png)
 
 
-| Key      | Value          |
-|----------|----------------|
-| subtitle | [Your file to upload] |  
-| language | 'en' |  
-| name |  'en_sub' |  
 
 
 **Response**
 
 For valid requests the API server returns a JSON:
+
 
 ```json
 {

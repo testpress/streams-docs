@@ -166,8 +166,19 @@
 | Tsonga                    | ts    |
 | Tswana                    | tn    |
 | Turkish                   | tr    |
-| Turkmen                   |
-
-.hidden {
-display: none !important;
-}
+| Twi                       | tw    |
+| Uighur, Uyghur            | ug    |
+| Ukrainian                 | uk    |
+| Urdu                      | ur    |
+| Uzbek                     | uz    |
+| Venda                     | ve    |
+| Vietnamese                | vi    |
+| Volapük                   | vo    |
+| Walloon                   | wa    |
+| Welsh                     | cy    |
+| Wolof                     | wo    |
+| Xhosa                     | xh    |
+| Yiddish                   | yi    |
+| Yoruba                    | yo    |
+| Zhuang, Chuang            | za    |
+| Zulu                      | zu    |

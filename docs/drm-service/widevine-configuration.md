@@ -18,7 +18,8 @@ POST: https://app.tpstreams.com/api/v1/<org_code>/drm_license/?data=<encoded_dat
 | player_payload | string | Player license key message encoded into base64 String. | Yes      |
 | widevine       | json   | See the Widevine table below for available fields.     | No       |
 
-  
+To learn more about [Widevine parameter](/docs/drm-service/widevine-specs)
+
 **Widevine**
 
 +---------------------------------------------------+------------------------------------------------------+

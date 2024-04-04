@@ -25,7 +25,7 @@ The Usage API provides various options to filter data using query parameters:
 | time_frame  | Filter by timeframe     | String ("daily" or "monthly") |
 | start       | Start date              | Date (YYYY-MM-DD) |
 | end         | End date                | Date (YYYY-MM-DD) |
-| ordering    | Order results           | String          |
+| ordering    | Order results           | "date" (asc) or "-date" (desc) |
 
 **Response**
 ```json

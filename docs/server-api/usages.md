@@ -1,9 +1,9 @@
 ---
-sidebar_position: 3
+sidebar_position: 8
 ---
 
 # Usages
-The Usage API helps you get your organization's bandwidth usage's.
+The Usage API helps you get your organization usage's.
 
 ## Get Your Organization's Usage
 To retrieve your organization's data usage, send an HTTP GET request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
@@ -30,7 +30,7 @@ The Usage API provides various options to filter data using query parameters:
 **Response**
 ```json
 {
-    "count": 2,
+    "count": 3,
     "next": null,
     "previous": null,
     "results": [

@@ -6,24 +6,23 @@ Screen capture prevention is essential for protecting digital content from unaut
 
 ### 1. In Apps:
    - **Android Apps:**
-     - By using specific tools called DRM SDKs (like Widevine or Fairkey), developers can stop users from recording screens within their Android apps.
+     - We can prevent the screen capture in andriod app using our [Andriod SDK](../category/android-native-sdk) 
    - **iOS Apps and Safari:**
-     - For iPhones and iPads, Fairplay DRM can be set up to prevent screen recording in apps and Safari. It's slightly different for Widevine-protected content on iOS.
+     - Screen capture can be prevented in Native Flutter or Native App with our [IOS SDK](../category/ios-native-sdk)
 
-### 2. On Browsers:
+### 2. Mobile Browsers:
    - **Android Browsers:**
-     - Chrome on some Android phones may have features to block screen recording for certain content. However, this isn't guaranteed
-    
-    
+     - Some Android browsers (like Chrome) can block screen recording, but it depends on your browsers.
+   - **IOS Safari:** 
+     - Fairplay DRM can prevent screen capture in Safari. 
 
 ### 3. Desktop Browsers:
    - **Mac Desktop/Laptop:**
-     - Screen capture can only be prevented in Safari with [Fairplay DRM ](./encryption/fairplay-encryption.md). However, screen capture cannot be prevented in other main browsers like Chrome, Firefox.
+     - Screen capture prevention in Safari possible with Fairplay DRM.
    - **Windows, Linux:**
-     - Unfortunately, there's no way to completely block screen recording on desktop browsers like Chrome or Firefox .
+     -  There's no way to completely block screen recording on desktop browsers like Chrome or Firefox because they only support Level 3 (L3) of Widevine DRM.  to know more about you can find [here](./widevine-specs.md)
 ## Extra Protection:
+   - **Adding Watermarks:**
 
-### Adding Watermarks:
-
-Even if someone manages to record the screen, we can put a watermark, like a small logo, on the video. This makes it less useful if they try to share it.
-you can find more information about [here](../video-embedding/watermarking.md)  
+      - We offer watermarks to mark your content as protected.
+      you can find more information about [here](../video-embedding/watermarking.md)  

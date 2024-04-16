@@ -16,6 +16,68 @@ Screen capture prevention is essential for protecting digital content from unaut
      - Screen capture prevention in Safari possible with Fairplay DRM.
    - **Windows, Linux, Mobiles:**
      -  There's no way to completely block screen recording on desktop browsers like Chrome or Firefox because they only support Level 3 (L3) of Widevine DRM.  to know more about you can find [here](./widevine-specs.md)
+
+
+## Default DRM Policies
+This table helps you choose the right security level for Digital Rights Management (DRM) on your videos.
+
+| Security Level                 | Widevine minimum security level | FairPlay minimum security level | Digital output                |
+|--------------------------------|--------------------------------|---------------------------------|--------------------------------|
+| Highest                        | L1 (HW_SECURE_ALL)             | N/A                             | Requires HDCP v2 or later     |
+| High                           | L1 (HW_SECURE_ALL)             | N/A                             | Requires HDCP v1 or later     |
+| Medium                         | L3 (SW_SECURE_CRYPTO)          | N/A                             | Requires HDCP v1 or later     |
+| Low                            | L3 (SW_SECURE_CRYPTO)          | N/A                             | Does not require HDCP         |
+
+
+## Supported browsers 
+This table helps you understand which combinations of web browsers and security levels are supported for DRM. It covers both desktop and mobile browsers. 
+### Desktop
+
+| Desktop HTML5 Browsers       | Highest                          | High                             | Medium                           | Low                              |
+|------------------------------|----------------------------------|----------------------------------|----------------------------------|----------------------------------|
+| Chrome                       | --                                | --                               | --                               | ✅                               |
+| Edge                        | --                                | --                               | --                               | ✅                               |
+| Firefox                      | --                                | --                               | --                               | ✅                               |
+| Safari                       | --                                | --                               | --                               | ✅                               |
+
+### Mobile
+| Mobile                       | Highest                          | High                             | Medium                           | Low                              |
+|------------------------------|----------------------------------|----------------------------------|----------------------------------|----------------------------------|
+| Android sdk       | ✅                                | ✅                               | ✅                               | ✅                               |
+| Chrome (Android)            | --                                | --                               | ✅                               | ✅                               |
+| iOS (native)       | ✅                                | ✅                               | ✅                               | ✅                               |
+| Safari                       | ✅                                | ✅                               | ✅                               | --                               |
+
+## Screen Record blocking
+This guide explains how DRM (Digital Rights Management) prevents recording videos on different devices.
+
+### Desktop
+
+| Desktop HTML5 Browsers       | Highest                          | High                             | Medium                           | Low                              |
+|------------------------------|----------------------------------|----------------------------------|----------------------------------|----------------------------------|
+| Chrome                       | N/A                              | N/A                              | ✓                                | ✓                                |
+| Edge (MacOS)                 | N/A                              | N/A                              | ---                              | ---                              |
+| Edge (Windows)               | N/A                              | N/A                              | ✓                                | ✓                                |
+| Firefox                      | N/A                              | N/A                              | ---                              | ---                              |
+| Opera                        | N/A                              | N/A                              | ✓                                | ✓                                |
+| Safari                       | ✓                                | ✓                                | ✓                                | ✓                                |
+
+### Mobile
+
+| Mobile Native                | Highest                          | High                             | Medium                           | Low                              |
+|------------------------------|----------------------------------|----------------------------------|----------------------------------|----------------------------------|
+| Android                      | N/A                              | N/A                              | N/A                              | ---                              |
+| iOS                            | ✓                                | ✓                                | ✓                                | ✓                                |
+
+| Browser                      | Highest                          | High                             | Medium                           | Low                              |
+|------------------------------|----------------------------------|----------------------------------|----------------------------------|----------------------------------|
+| Chrome (iOS)                 | ✓                                | ✓                                | ✓                                | ✓                                |
+| Edge (Android)               | N/A                              | N/A                              | N/A                              | ---                              |
+| Edge (iOS)                   | ✓                                | ✓                                | ✓                                | ✓                                |
+| Firefox (Android)            | N/A                              | N/A                              | N/A                              | ---                              |
+| Firefox (iOS)                | ✓                                | ✓                                | ✓                                | ✓                                |
+
+
 ## Extra Protection:
    - **Adding Watermarks:**
 

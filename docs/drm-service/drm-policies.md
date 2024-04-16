@@ -1,6 +1,5 @@
 #  DRM Policies
-This guide explains Digital Rights Management (DRM) policies and how they prevent screen recording of your videos. 
-
+This guide explains Digital Rights Management (DRM) policies
 ## Default DRM Policies
 This table helps you choose the right security level for Digital Rights Management (DRM) on your videos.
 
@@ -32,19 +31,23 @@ This table helps you understand which combinations of web browsers and security 
 | Safari                       | ✅                                | ✅                               | ✅                               | ✅                               |
 
 ## Screen Record blocking
-This guide explains how DRM (Digital Rights Management) prevents recording videos on different devices.However, this behavior is not guaranteed for all web browsers at all times. Blocking is dependent on the Content Decryption Module (CDM) used in the browser and may vary with browser updates and versions
-
+This guide explains how DRM (Digital Rights Management) prevents recording videos on different devices. DRM's effectiveness in blocking video recording isn't guaranteed, as it relies on your browser's Content Decryption Module (CDM), which can change with different versions
 
 ### Desktop
 
 | Desktop HTML5 Browsers       | Highest                          | High                             | Medium                           | Low                              |
 |------------------------------|----------------------------------|----------------------------------|----------------------------------|----------------------------------|
-| Chrome                       | N/A                              | N/A                              | N/A                                | ✓                                |
+| Chrome                       | N/A                              | N/A                              | N/A                                | --                                |
 | Edge (MacOS)                 | N/A                              | N/A                              | ---                              | ---                              |
-| Edge (Windows)               | N/A                              | N/A                              | N/A                                | ✓                                |
+| Edge (Windows)               | N/A                              | N/A                              | N/A                                | --                                |
 | Firefox                      | N/A                              | N/A                              | ---                              | ---                              |
 | Safari                       | ✓                                | ✓                                | ✓                                | ✓                                |
 
+:::important
+
+**Note**: Desktop browsers support only L3, So you will need to specify security_level=1 .
+
+:::
 ### Mobile
 
 | Mobile Native                | Highest                          | High                             | Medium                           | Low                              |

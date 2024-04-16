@@ -1,22 +1,5 @@
-# Screen Capture Prevention Overview
-
-Screen capture prevention is essential for protecting digital content from unauthorized copying. Here's a simple guide to understand how screen capture prevention works across different devices:
-
-## Preventing Screen Capture:
-
-### 1. In Apps:
-   - **Android Apps:**
-     - We can prevent the screen capture in andriod app using our [Andriod SDK](../category/android-native-sdk) 
-   - **iOS Apps and Safari:**
-     - Screen capture can be prevented in Native Flutter or Native App with our [IOS SDK](../category/ios-native-sdk)
-
-
-### 2. Browsers:
-   - **Mac Desktop/Laptop/Iphone:**
-     - Screen capture prevention in Safari possible with Fairplay DRM.
-   - **Windows, Linux, Mobiles:**
-     -  There's no way to completely block screen recording on desktop browsers like Chrome or Firefox because they only support Level 3 (L3) of Widevine DRM.  to know more about you can find [here](./widevine-specs.md)
-
+#  DRM Policies
+This guide explains Digital Rights Management (DRM) policies and how they prevent screen recording of your videos. 
 
 ## Default DRM Policies
 This table helps you choose the right security level for Digital Rights Management (DRM) on your videos.
@@ -38,28 +21,28 @@ This table helps you understand which combinations of web browsers and security 
 | Chrome                       | --                                | --                               | --                               | ✅                               |
 | Edge                        | --                                | --                               | --                               | ✅                               |
 | Firefox                      | --                                | --                               | --                               | ✅                               |
-| Safari                       | --                                | --                               | --                               | ✅                               |
+| Safari                         | ✅                                | ✅                               | ✅                               | ✅                               |
 
 ### Mobile
 | Mobile                       | Highest                          | High                             | Medium                           | Low                              |
 |------------------------------|----------------------------------|----------------------------------|----------------------------------|----------------------------------|
 | Android sdk       | ✅                                | ✅                               | ✅                               | ✅                               |
-| Chrome (Android)            | --                                | --                               | ✅                               | ✅                               |
+| Chrome (Android)            | --                                | --                               | --                               | ✅                               |
 | iOS (native)       | ✅                                | ✅                               | ✅                               | ✅                               |
-| Safari                       | ✅                                | ✅                               | ✅                               | --                               |
+| Safari                       | ✅                                | ✅                               | ✅                               | ✅                               |
 
 ## Screen Record blocking
-This guide explains how DRM (Digital Rights Management) prevents recording videos on different devices.
+This guide explains how DRM (Digital Rights Management) prevents recording videos on different devices.However, this behavior is not guaranteed for all web browsers at all times. Blocking is dependent on the Content Decryption Module (CDM) used in the browser and may vary with browser updates and versions
+
 
 ### Desktop
 
 | Desktop HTML5 Browsers       | Highest                          | High                             | Medium                           | Low                              |
 |------------------------------|----------------------------------|----------------------------------|----------------------------------|----------------------------------|
-| Chrome                       | N/A                              | N/A                              | ✓                                | ✓                                |
+| Chrome                       | N/A                              | N/A                              | N/A                                | ✓                                |
 | Edge (MacOS)                 | N/A                              | N/A                              | ---                              | ---                              |
-| Edge (Windows)               | N/A                              | N/A                              | ✓                                | ✓                                |
+| Edge (Windows)               | N/A                              | N/A                              | N/A                                | ✓                                |
 | Firefox                      | N/A                              | N/A                              | ---                              | ---                              |
-| Opera                        | N/A                              | N/A                              | ✓                                | ✓                                |
 | Safari                       | ✓                                | ✓                                | ✓                                | ✓                                |
 
 ### Mobile
@@ -76,7 +59,23 @@ This guide explains how DRM (Digital Rights Management) prevents recording video
 | Edge (iOS)                   | ✓                                | ✓                                | ✓                                | ✓                                |
 | Firefox (Android)            | N/A                              | N/A                              | N/A                              | ---                              |
 | Firefox (iOS)                | ✓                                | ✓                                | ✓                                | ✓                                |
+| Safari (iOS)                | ✓                                | ✓                                | ✓                                | ✓                                |
 
+
+## Preventing Screen Capture:
+
+### 1. In Apps:
+   - **Android Apps:**
+     - We can prevent the screen capture in andriod app using our [Andriod SDK](../category/android-native-sdk) 
+   - **iOS Apps and Safari:**
+     - Screen capture can be prevented in Native Flutter or Native App with our [IOS SDK](../category/ios-native-sdk)
+
+
+### 2. Browsers:
+   - **Mac Desktop/Laptop/Iphone:**
+     - Screen capture prevention in Safari possible with Fairplay DRM.
+   - **Windows, Linux, Mobiles:**
+     -  There's no way to completely block screen recording on desktop browsers like Chrome or Firefox because they only support Level 3 (L3) of Widevine DRM.  to know more about you can find [here](./widevine-specs.md)
 
 ## Extra Protection:
    - **Adding Watermarks:**

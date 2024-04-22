@@ -33,7 +33,7 @@ This table helps you understand which combinations of web browsers and security 
 ## Screen Record blocking
 This guide explains how DRM (Digital Rights Management) prevents recording videos on different devices. DRM's effectiveness in blocking video recording isn't guaranteed, as it relies on your browser's Content Decryption Module (CDM), which can change with different versions
 
-### Desktop
+### Desktop Browsers
 
 | Desktop HTML5 Browsers       | Highest                          | High                             | Medium                           | Low                              |
 |------------------------------|----------------------------------|----------------------------------|----------------------------------|----------------------------------|
@@ -48,12 +48,14 @@ This guide explains how DRM (Digital Rights Management) prevents recording video
 **Note**: For screen sharing prevention in Widevine, the device must have HDCP capability in hardware, and recording apps must adhere to HDCP regulations. Apps like Zoom and Google Meet don't allow recording of HDCP content. Capturing HDCP content this way could breach copyright laws.
 
 :::
-### Mobile
+### Mobile Apps
 
 | Mobile Native                | Highest                          | High                             | Medium                           | Low                              |
 |------------------------------|----------------------------------|----------------------------------|----------------------------------|----------------------------------|
-| Android                      | N/A                              | N/A                              | N/A                              | ---                              |
+| Android                      | ✓                              | ✓                              | ✓                              | ✓                             |
 | iOS                            | ✓                                | ✓                                | ✓                                | ✓                                |
+
+### Mobile Browsers
 
 | Browser                      | Highest                          | High                             | Medium                           | Low                              |
 |------------------------------|----------------------------------|----------------------------------|----------------------------------|----------------------------------|

@@ -18,13 +18,15 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/live_streams/
 | -----------      | -----------  | ----------- |   ---------- |
 | title            | string      |  Specify a text string or identifier which can be used for filtering or searching the live stream.| Yes |
 | enable_drm_for_recording       | boolean      | A boolean value to enable or disable DRM for live stream recording.| No |
+| latency       | string      | Selects the desired latency for the live stream (Options: Low Latency, Normal Latency).| No |
 
 **Sample request body**
 
 ```json 
 {
   "title": "Data science Live class",
-  "enable_drm_for_recording": true
+  "enable_drm_for_recording": true,
+  "latency": "Low Latency"
 }
 
 ```
@@ -37,16 +39,26 @@ For valid requests the API server returns a JSON:
     "bytes": null,
     "type": "livestream",
     "video": null,
-    "id": "4PtERT9d9uK",
+    "id": "5h6EpZQC6sh",
     "live_stream": {
         "rtmp_url": "",
         "stream_key": null,
         "status": "Not Started",
-        "hls_url": "https://d28qihy7z761lk.cloudfront.net/live/4xu8ay/4PtERT9d9uK/video.m3u8",
-        "start": null,
+        "hls_url": "https://d28qihy7z761lk.cloudfront.net/live/gcdem4/5h6EpZQC6sh/video.m3u8",
+        "start": "2024-04-23 16:56:48",
         "transcode_recorded_video": true,
-        "chat_embed_url": null
+        "enable_drm_for_recording": true,
+        "chat_embed_url": null,
+        "resolutions": [
+            "240p",
+            "480p",
+            "720p"
+        ],
+        "enable_drm": true,
+        "enable_llhls": false,
+        "latency": "Low Latency"
     },
+    "parent": null,
     "parent_id": null
 }
 ```

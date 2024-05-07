@@ -322,3 +322,46 @@ For valid requests the API server returns a JSON:
 :::important
 For subtitle upload, use form-data in the request body. Select your .vtt file with the "subtitle" key .
 :::
+
+## Upload Thumbnail to an Asset
+To upload Thumbnail to an asset , you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md) .
+
+**Endpoint**
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/upload_thumbnail/
+```
+
+**Fields**
+
+
+
+| Name             | Type         | Description |    Required  |
+| -----------      | -----------  | ----------- |   ---------- |
+| thumbnail    | .png, .jpeg, .jpg image      | Thumbnail image	     | Yes |
+
+
+Send the thumbnail Image using form-data in the request body.
+
+
+**Sample Postman request body  (Form-data only) **
+
+
+
+ ![OBS settings](/img/upload_thumbnail_req_body.png)
+
+
+
+**Response**
+
+For valid requests the API server returns a JSON:
+
+
+```json
+{
+    "detail": "Thumbnail uploaded successfully"
+}
+```
+
+:::important
+For Thumbnail upload, use form-data in the request body. select an image file in .png, .jpeg, or .jpg format that is less than 2 MB in size .
+:::

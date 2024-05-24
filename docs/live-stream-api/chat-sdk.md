@@ -11,9 +11,8 @@ This SDK enables you to integrate live chat to your website
 - Inside the `<head>` section, add a new line with this code:
 
 ```html
-<link rel="stylesheet" href="https://s3.eu-central-1.wasabisys.com/static.tpstreams.com/static/css/live_chat.css">
-
-<script src="https://s3.eu-central-1.wasabisys.com/static.tpstreams.com/static/js/live_chat.umd.cjs"></script>
+  <link rel="stylesheet" href="https://d1con8hw7bbdh5.cloudfront.net/static/css/live_chat_v1.css">
+  <script src="https://d1con8hw7bbdh5.cloudfront.net/static/js/live_chat_v1.umd.cjs"></script>
 ```
 ## Create a Container Element
 
@@ -61,8 +60,8 @@ Below is a sample HTML code demonstrating how to integrate the live chat widget 
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://s3.eu-central-1.wasabisys.com/static.tpstreams.com/static/css/live_chat.css">
-    <script src="https://s3.eu-central-1.wasabisys.com/static.tpstreams.com/static/js/live_chat.umd.cjs"></script>
+    <link rel="stylesheet" href="https://d1con8hw7bbdh5.cloudfront.net/static/css/live_chat_v1.css">
+    <script src="https://d1con8hw7bbdh5.cloudfront.net/static/js/live_chat_v1.umd.cjs"></script>
   </head>
   <body>
     <div id="app"></div>

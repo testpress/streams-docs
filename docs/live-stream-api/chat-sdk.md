@@ -68,7 +68,7 @@ Below is a sample HTML code demonstrating how to integrate the live chat widget 
     <div id="app"></div>
     <script>
       const config = {
-        username : "Chiranjeevi",
+        username : "Test User",
         roomId: "12adc5d5-46c5-416b-a11a-d4b513ac421f",
         title: "Test"
       }

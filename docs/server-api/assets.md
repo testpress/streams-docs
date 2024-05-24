@@ -91,7 +91,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/
     "next": "https://app.tpstreams.com/api/v1/dcek2m/assets/?limit=50&offset=50",
     "previous": null,
     "results": [
-        {
+                {
             "title": "Big Buck Bunny Video",
             "bytes": 450881324,
             "type": "video",
@@ -120,20 +120,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/
                 "video_codec": "h264",
                 "audio_codec": "aac",
                 "enable_drm": true,
-                "tracks": [
-                            {
-                            "id": 4094,
-                            "type": "Preview Thumbnail",
-                            "preview_thumbnail": {
-                                "url": "https://d28qihy7z761lk.cloudfront.net/transcoded/996NXydJQDU/sprite/sprite_image.png",
-                                "interval": 2,
-                                "width": 160,
-                                "height": 90,
-                                "rows": 10,
-                                "columns": 10
-                            }
-                             }
-                        ],
+                "tracks": [],
                 "inputs": [
                     {
                         "url": "private/yXrprYum2TS.mp4"
@@ -141,7 +128,8 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/
                 ],
                 "transmux_only": null,
                 "duration": 597,
-                "content_protection_type": "drm"
+                "content_protection_type": "drm",
+                "generate_subtitle": false
             },
             "id": "yXrprYum2TS",
             "live_stream": null,
@@ -163,16 +151,19 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/
                 "transcode_recorded_video": true,
                 "enable_drm_for_recording": true,
                 "chat_embed_url": "https://app.tpstreams.com/live-chat/dcek2m/AAbxGpp8DUm/",
+                "chat_room_id": "52fc408c-6a87-45f3-a659-af9c298c8926",
                 "resolutions": [
                     "240p",
                     "480p",
                     "720p"
                 ],
-                "enable_drm": true
+                "enable_drm": true,
+                "enable_llhls": false,
+                "latency": "Normal Latency"
             },
             "parent": null,
             "parent_id": null
-        }
+        },
     ]
 }
 
@@ -191,64 +182,34 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
 **Response**
 ```json
 {
-    "title": "Big Buck Bunny Video",
-    "bytes": 450881324,
-    "type": "video",
-    "video": {
-        "progress": 0,
-        "thumbnails": [
-            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_4.png",
-            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_6.png",
-            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_5.png",
-            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_2.png",
-            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_1.png",
-            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_3.png"
-        ],
-        "status": "Completed",
-        "playback_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/video.m3u8",
-        "dash_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/video.mpd",
-        "preview_thumbnail_url": null,
-        "cover_thumbnail_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_4.png",
-        "format": "abr",
+    "title": "Data science Live class",
+    "bytes": null,
+    "type": "livestream",
+    "video": null,
+    "id": "AAbxGpp8DUm",
+    "live_stream": {
+        "rtmp_url": "rtmp://13.235.45.255/live",
+        "stream_key": "org-dcek2m-live-AAbxGpp8DUm-H4xB",
+        "status": "Not Started",
+        "hls_url": "https://d28qihy7z761lk.cloudfront.net/live/dcek2m/AAbxGpp8DUm/video.m3u8",
+        "start": "2023-12-06 16:37:56",
+        "transcode_recorded_video": true,
+        "enable_drm_for_recording": true,
+        "chat_embed_url": "https://app.tpstreams.com/live-chat/dcek2m/AAbxGpp8DUm/",
+        "chat_room_id": "52fc408c-6a87-45f3-a659-af9c298c8926",
         "resolutions": [
             "240p",
-            "360p",
             "480p",
             "720p"
         ],
-        "video_codec": "h264",
-        "audio_codec": "aac",
         "enable_drm": true,
-        "tracks": [
-                {
-                "id": 4094,
-                "type": "Preview Thumbnail",
-                "preview_thumbnail": {
-                    "url": "https://d28qihy7z761lk.cloudfront.net/transcoded/996NXydJQDU/sprite/sprite_image.png",
-                    "interval": 2,
-                    "width": 160,
-                    "height": 90,
-                    "rows": 10,
-                    "columns": 10
-                }
-                    }
-            ],
-        "inputs": [
-            {
-                "url": "private/yXrprYum2TS.mp4"
-            }
-        ],
-        "transmux_only": null,
-        "duration": 597,
-        "content_protection_type": "drm"
+        "enable_llhls": false,
+        "latency": "Normal Latency"
     },
-    "id": "yXrprYum2TS",
-    "live_stream": null,
     "parent": null,
     "parent_id": null,
-    "download_url": "https://d28qihy7z761lk.cloudfront.net/private/yXrprYum2TS.mp4?response-content-disposition=attachment%3B+filename%3DBig+Buck+Bunny+Video.mp4&Expires=1708718514&Signature=wzuk7MhZsjKE9MwG0yaM1cMMFurc3ZIhCmrR0~fx2vgSwVd1d0B68GG~KwE6upj8XJMn~5zrBcadlf8TWeFuRyoRbIw6vipEDbWYLdPQhLwZcHp7mwz7ERNpikvBZJUO7KB5Z~h6BSGvcDBnVVc9pNZ8W2Zz95Ix28dnNhr~J9fqEgHtd0KaOqmX~LVjbHq56u6NiYrm4SZm3hmnWsfuaShWVJzkEBGrgnx8EnYtYe4JkHEBSvnskJvQPuCz82gwlK4vxNSdJ~0g08xkcwkJQG1mLqi39gbumkalS-8jp-pAKoyHMpXsHO6m9FKpwHHjnHp2wwPlSOykUPk1dcrt8Q__&Key-Pair-Id=K2XWKDWM065EGO"
+    "download_url": null
 }
-
 ```
 
 ## Delete Individual Asset

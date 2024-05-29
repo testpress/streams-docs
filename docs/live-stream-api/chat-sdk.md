@@ -46,7 +46,7 @@ Within the `<body>` section of your HTML, add a `<div>` element with a unique ID
 
 
 :::important
-**Note:** You can obtain the `roomId` after creating a live stream. It will be available on the live stream detail page or through [Asset Detail API](../server-api/assets#get-individual-asset-details).
+**Note:** You can obtain the `roomId` after creating a live stream. It will be available on the live stream detail page or through the API.
 
 :::
 

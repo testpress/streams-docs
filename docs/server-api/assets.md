@@ -163,15 +163,19 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/
                 "transcode_recorded_video": true,
                 "enable_drm_for_recording": true,
                 "chat_embed_url": "https://app.tpstreams.com/live-chat/dcek2m/AAbxGpp8DUm/",
+                "chat_room_id": "52fc408c-6a87-45f3-a659-af9c298c8926",
                 "resolutions": [
                     "240p",
                     "480p",
                     "720p"
                 ],
-                "enable_drm": true
+                "enable_drm": true,
+                "enable_llhls": false,
+                "latency": "Normal Latency"
             },
             "parent": null,
-            "parent_id": null
+            "parent_id": null,
+            "download_url": null
         }
     ]
 }
@@ -192,23 +196,23 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
 ```json
 {
     "title": "Big Buck Bunny Video",
-    "bytes": 450881324,
-    "type": "video",
+    "bytes": 68380099,
+    "type": "livestream",
     "video": {
         "progress": 0,
         "thumbnails": [
-            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_4.png",
-            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_6.png",
-            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_5.png",
-            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_2.png",
-            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_1.png",
-            "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_3.png"
+            "https://d28qihy7z761lk.cloudfront.net/transcoded/BQjtYcFgGkh/thumbnails/thumbnail_4.png",
+            "https://d28qihy7z761lk.cloudfront.net/transcoded/BQjtYcFgGkh/thumbnails/thumbnail_6.png",
+            "https://d28qihy7z761lk.cloudfront.net/transcoded/BQjtYcFgGkh/thumbnails/thumbnail_5.png",
+            "https://d28qihy7z761lk.cloudfront.net/transcoded/BQjtYcFgGkh/thumbnails/thumbnail_2.png",
+            "https://d28qihy7z761lk.cloudfront.net/transcoded/BQjtYcFgGkh/thumbnails/thumbnail_1.png",
+            "https://d28qihy7z761lk.cloudfront.net/transcoded/BQjtYcFgGkh/thumbnails/thumbnail_3.png"
         ],
         "status": "Completed",
-        "playback_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/video.m3u8",
-        "dash_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/video.mpd",
-        "preview_thumbnail_url": null,
-        "cover_thumbnail_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_4.png",
+        "playback_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/BQjtYcFgGkh/video.m3u8",
+        "dash_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/BQjtYcFgGkh/video.mpd",
+        "preview_thumbnail_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/BQjtYcFgGkh/thumbnails/thumbnail_4.png",
+        "cover_thumbnail_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/BQjtYcFgGkh/thumbnails/thumbnail_4.png",
         "format": "abr",
         "resolutions": [
             "240p",
@@ -220,33 +224,61 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
         "audio_codec": "aac",
         "enable_drm": true,
         "tracks": [
-                {
-                "id": 4094,
+            {
+                "id": 7483,
                 "type": "Preview Thumbnail",
+                "name": "",
+                "url": "https://d28qihy7z761lk.cloudfront.net/None",
+                "bytes": null,
+                "language": "en",
+                "width": null,
+                "height": null,
+                "duration": null,
+                "is_active": true,
+                "subtitle_type": "Uploaded",
                 "preview_thumbnail": {
-                    "url": "https://d28qihy7z761lk.cloudfront.net/transcoded/996NXydJQDU/sprite/sprite_image.png",
-                    "interval": 2,
+                    "url": "https://d28qihy7z761lk.cloudfront.net/transcoded/BQjtYcFgGkh/sprite/sprite_image.png",
+                    "interval": 1,
                     "width": 160,
                     "height": 90,
-                    "rows": 10,
-                    "columns": 10
+                    "rows": 13,
+                    "columns": 13
                 }
-                    }
-            ],
+            }
+        ],
         "inputs": [
             {
-                "url": "private/yXrprYum2TS.mp4"
+                "url": "private/BQjtYcFgGkh/video.mp4"
             }
         ],
         "transmux_only": null,
-        "duration": 597,
-        "content_protection_type": "drm"
+        "duration": 167,
+        "content_protection_type": "drm",
+        "generate_subtitle": false
     },
-    "id": "yXrprYum2TS",
-    "live_stream": null,
+    "id": "BQjtYcFgGkh",
+    "live_stream": {
+        "rtmp_url": "rtmp://65.2.122.216/live",
+        "stream_key": "org-dcek2m-live-BQjtYcFgGkh-vtX2",
+        "status": "Completed",
+        "hls_url": "https://d28qihy7z761lk.cloudfront.net/live/dcek2m/BQjtYcFgGkh/video.m3u8",
+        "start": "2024-05-28 11:30:19",
+        "transcode_recorded_video": true,
+        "enable_drm_for_recording": true,
+        "chat_embed_url": "https://app.tpstreams.com/live-chat/dcek2m/BQjtYcFgGkh/",
+        "chat_room_id": "b1b717e4-6e88-4360-9b59-55036e6b6b61",
+        "resolutions": [
+            "240p",
+            "480p",
+            "720p"
+        ],
+        "enable_drm": false,
+        "enable_llhls": false,
+        "latency": "Low Latency"
+    },
     "parent": null,
     "parent_id": null,
-    "download_url": "https://d28qihy7z761lk.cloudfront.net/private/yXrprYum2TS.mp4?response-content-disposition=attachment%3B+filename%3DBig+Buck+Bunny+Video.mp4&Expires=1708718514&Signature=wzuk7MhZsjKE9MwG0yaM1cMMFurc3ZIhCmrR0~fx2vgSwVd1d0B68GG~KwE6upj8XJMn~5zrBcadlf8TWeFuRyoRbIw6vipEDbWYLdPQhLwZcHp7mwz7ERNpikvBZJUO7KB5Z~h6BSGvcDBnVVc9pNZ8W2Zz95Ix28dnNhr~J9fqEgHtd0KaOqmX~LVjbHq56u6NiYrm4SZm3hmnWsfuaShWVJzkEBGrgnx8EnYtYe4JkHEBSvnskJvQPuCz82gwlK4vxNSdJ~0g08xkcwkJQG1mLqi39gbumkalS-8jp-pAKoyHMpXsHO6m9FKpwHHjnHp2wwPlSOykUPk1dcrt8Q__&Key-Pair-Id=K2XWKDWM065EGO"
+    "download_url": "https://d28qihy7z761lk.cloudfront.net/private/BQjtYcFgGkh/video.mp4?response-content-disposition=attachment%3B+filename%3Dtesting+one+02.mp4&Expires=1717076519&Signature=Jhzao52IKAtlilHGEHNyk~vs3twuCHNUW9dP5pZKZgjYydhsKUh3X1Dh3Hgd3m4jWjyhwISQa1X-xtpbBLBt1o1eSt4N-lOhSNH1Y9C~8vWXF2lZ8uALJWavvbTLj-kvjBhAYgme4IRoqUb9FA7wL4jBjCj3nd30sc4NlpQQP7yVZ51Rpr2s7oWxSid2UUAjhdlJOabRyt8m5yIIExUg-xg~FixFQqaqJ8WGliSieajPdA8ErShNgLIsQthT9D99TOCPnADEzmFRSQyU9zdD7wgqSxbPjtw~Eo8ah6Lk-aNENrXM1hjybfi4Vc9C4RmKCDx27erNZQLf6pf5chenfg__&Key-Pair-Id=K2XWKDWM065EGO"
 }
 
 ```

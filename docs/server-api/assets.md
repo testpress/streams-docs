@@ -278,7 +278,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
     },
     "parent": null,
     "parent_id": null,
-    "download_url": "https://d28qihy7z761lk.cloudfront.net/private/BQjtYcFgGkh/video.mp4?response-content-disposition=attachment%3B+filename%3Dtesting+one+02.mp4&Expires=1717076519&Signature=Jhzao52IKAtlilHGEHNyk~vs3twuCHNUW9dP5pZKZgjYydhsKUh3X1Dh3Hgd3m4jWjyhwISQa1X-xtpbBLBt1o1eSt4N-lOhSNH1Y9C~8vWXF2lZ8uALJWavvbTLj-kvjBhAYgme4IRoqUb9FA7wL4jBjCj3nd30sc4NlpQQP7yVZ51Rpr2s7oWxSid2UUAjhdlJOabRyt8m5yIIExUg-xg~FixFQqaqJ8WGliSieajPdA8ErShNgLIsQthT9D99TOCPnADEzmFRSQyU9zdD7wgqSxbPjtw~Eo8ah6Lk-aNENrXM1hjybfi4Vc9C4RmKCDx27erNZQLf6pf5chenfg__&Key-Pair-Id=K2XWKDWM065EGO"
+    "download_url": "https://d28qihy7z761lk.cloudfront.net/private/yXrprYum2TS.mp4?response-content-disposition=attachment%3B+filename%3DBig+Buck+Bunny+Video.mp4&Expires=1708718514&Signature=wzuk7MhZsjKE9MwG0yaM1cMMFurc3ZIhCmrR0~fx2vgSwVd1d0B68GG~KwE6upj8XJMn~5zrBcadlf8TWeFuRyoRbIw6vipEDbWYLdPQhLwZcHp7mwz7ERNpikvBZJUO7KB5Z~h6BSGvcDBnVVc9pNZ8W2Zz95Ix28dnNhr~J9fqEgHtd0KaOqmX~LVjbHq56u6NiYrm4SZm3hmnWsfuaShWVJzkEBGrgnx8EnYtYe4JkHEBSvnskJvQPuCz82gwlK4vxNSdJ~0g08xkcwkJQG1mLqi39gbumkalS-8jp-pAKoyHMpXsHO6m9FKpwHHjnHp2wwPlSOykUPk1dcrt8Q__&Key-Pair-Id=K2XWKDWM065EGO"
 }
 
 ```

@@ -68,7 +68,7 @@ Below is a sample HTML code demonstrating how to integrate the live chat widget 
     <script>
       const config = {
         username : "Test User",
-        roomId: "12adc5d5-46c5-416b-a11a-d4b513ac421f",
+        roomId: "93b76b94-c9a5-42df-a0af-c196cff1103c",
         title: "Test"
       }
       new TPStreamsChat.load(document.querySelector("#app"), config)

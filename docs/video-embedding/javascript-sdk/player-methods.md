@@ -118,7 +118,7 @@ This method gets the playback rate of a player on a scale from 0.5 to 2, where 0
 
 **Function**
 ```js
-getPlaybackRate()
+getCurrentPlaybackRate()
 ```
 
 **Returns**
@@ -128,7 +128,7 @@ Promise <number>
 
 **Example**
 ```js
-player.getPlaybackRate().then(function(playbackRate) {
+player.getCurrentPlaybackRate().then(function(playbackRate) {
   // `playbackRate` indicates the numeric value of the current playback rate
 });
 ```

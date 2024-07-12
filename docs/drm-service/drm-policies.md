@@ -37,17 +37,13 @@ This guide explains how DRM (Digital Rights Management) prevents recording video
 
 | Desktop HTML5 Browsers       | Highest                          | High                             | Medium                           | Low                              |
 |------------------------------|----------------------------------|----------------------------------|----------------------------------|----------------------------------|
-| Chrome                       | N/A                              | N/A                              | N/A                                | ✓                                |
+| Chrome                       | N/A                              | N/A                              | N/A                                | N/A                               |
 | Edge (MacOS)                 | N/A                              | N/A                              | ---                              | ---                              |
 | Edge (Windows)               | N/A                              | N/A                              | N/A                                | --                                |
 | Firefox                      | N/A                              | N/A                              | ---                              | ---                              |
 | Safari                       | ✓                                | ✓                                | ✓                                | ✓                                |
 
-:::important
 
-**Note**: For screen sharing prevention in Widevine, the device must have HDCP capability in hardware, and recording apps must adhere to HDCP regulations. Apps like Zoom and Google Meet don't allow recording of HDCP content. Capturing HDCP content this way could breach copyright laws.
-
-:::
 ### Mobile Apps
 
 | Mobile Native                | Highest                          | High                             | Medium                           | Low                              |

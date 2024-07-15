@@ -26,37 +26,46 @@ The following code snippet demonstrates how to instantiate a TpStreamsDownloadMa
 val tpStreamDownloadManager : TpStreamDownloadManager = TpStreamDownloadManager(activityContext)
 ```
 
-Using this TpStreamDownloadManager we can get a list of downloaded media and the following media operations to delete, pause, resume, and cancel.
+Using this TpStreamDownloadManager we can get a list of downloaded media and the following media operations to start, delete, pause, resume, and cancel.
 
 #### Get list of downloaded media
 
 ```kotlin
-val downloads : LiveData<List<Video>?> = tpStreamDownloadManager.getAllDownloads()
+val downloads : LiveData<List<Asset>?> = tpStreamDownloadManager.getAllDownloads()
 ```
-It will return a list of OfflineVideoInfo in LiveData to monitor the download progress use ViewModel and observe.
+It will return a list of Asset in LiveData to monitor the download progress use ViewModel and observe.
+
+#### Start
+
+```kotlin
+// Start download Using TpInitParams
+tpStreamDownloadManager.startDownload(fragmentActivity, params)
+// Start download Using TpStreamPlayer
+tpStreamDownloadManager.startDownload(fragmentActivity, player)
+```
 
 #### Delete
 
 ```kotlin
-tpStreamDownloadManager.deleteDownload(video)
+tpStreamDownloadManager.deleteDownload(asset)
 ```
 
 #### Pause
 
 ``` kotlin
-tpStreamDownloadManager.pauseDownload(video)
+tpStreamDownloadManager.pauseDownload(asset)
 ```
 
 #### Resume
 
 ```kotlin
-tpStreamDownloadManager.resumeDownload(video)
+tpStreamDownloadManager.resumeDownload(asset)
 ```
 
 #### Cancel
 
 ```kotlin
-tpStreamDownloadManager.cancelDownload(video)
+tpStreamDownloadManager.cancelDownload(asset)
 ```
 
 #### Delete All

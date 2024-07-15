@@ -24,7 +24,7 @@ Then reference the library in the dependency section:
 
 ```groovy
 dependencies {
-    implementation "com.tpstreams.player:player:3.0.20"
+    implementation "com.tpstreams.player:player:3.0.21"
 }
 ```
 
@@ -85,11 +85,15 @@ Once you have a player, you can start loading media onto it for playback. You'll
 A TpInitParams object needs videoId, [accessToken](../../server-api/access-token.md) and orgCode.
 
 ```kotlin
-val parameters = TpInitParams.Builder()
-    .setVideoId(videoId)
-    .setAccessToken(accessToken)
-    .build()
-player.load(parameters)
+try {
+    val parameters = TpInitParams.Builder()
+        .setVideoId(videoId) // mandatory
+        .setAccessToken(accessToken) // mandatory
+        .build()
+    player.load(parameters)
+} catch (exception: IllegalArgumentException){
+    // videoId and accessToken must not be null or empty
+}
 ```
 
 

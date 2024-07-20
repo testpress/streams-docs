@@ -24,7 +24,7 @@ Then reference the library in the dependency section:
 
 ```groovy
 dependencies {
-    implementation "com.tpstreams.player:player:3.0.21"
+    implementation "com.tpstreams.player:player:3.0.22"
 }
 ```
 
@@ -124,6 +124,12 @@ Set up a listener to handle player even.
 player.setListener(object : TPStreamPlayerListener {
     override fun onPlaybackStateChanged(playbackState: Int) {
         Log.d(TAG, "onPlaybackStateChanged: $playbackState")
+    }
+
+    override fun onAccessTokenExpired(videoId: String, callback: (String) -> Unit) {
+        // Provide the new access token.
+        val newAccessToken = "5c49285b-0557-4cef-b214-66034d0b77c3"
+        callback(newAccessToken)
     }
 
     override fun onPlayerError(playbackError: PlaybackError) {

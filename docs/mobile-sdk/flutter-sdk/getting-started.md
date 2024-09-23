@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 ---
 
 # Getting Started
@@ -35,5 +35,28 @@ TPStreamPlayer(assetId: 'ASSET_ID', accessToken: 'ACCESS_TOKEN')
 Replace `ASSET_ID` and `ACCESS_TOKEN` with the actual assetId and accessToken of the video you wish to play.
 After executing your Flutter application, the TPStreams player will display the video specified by the provided assetId and accessToken.
 
+
+### Control Video Playback
+
+To control the video playback (e.g., play, pause, seek), you need to get a reference to the TPStreamsPlayerController. This controller is passed via the onPlayerCreated callback when the player widget is initialized.
+
+```dart
+TPStreamPlayer(
+  assetId: 'ASSET_ID',
+  accessToken: 'ACCESS_TOKEN',
+  onPlayerCreated: _onPlayerCreated,
+)
+
+void _onPlayerCreated(TPStreamsPlayerController controller) {
+  // Store the controller for later use
+  this.controller = controller;
+}
+
+```
+
+Once you have the controller, you can use it to interact with the player, such as controlling playback, fetching the current position, or listening to events.
+
+- To control playback or fetch video details, refer to the [Player Methods documentation](./player-methods).
+- To listen to player state changes and events, refer to the [Player Events documentation](./player-events).
 
 For a practical implementation and usage of tpstreams_player_sdk, refer to our [Sample Flutter App](https://github.com/testpress/sample_flutter_app).

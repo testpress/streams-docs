@@ -508,3 +508,26 @@ player.applyWatermark(annotations).then(function() {
   // The watermark is applied
 })
 ```
+
+
+### Enable resume video playback
+
+Assigning a unique ID to a user automatically enables the resume video playback feature across all devices. The user's progress will be saved periodically, ensuring playback resumes from the last saved point when they return.
+
+**Function**
+```js
+setPlayerUserId()
+```
+
+**Returns**
+```bash
+Promise <void>
+```
+
+**Example**
+
+``` bash
+player.loaded().then(()=>{
+  player.setPlayerUserId("shantanu@testpress.in")
+}); 
+```

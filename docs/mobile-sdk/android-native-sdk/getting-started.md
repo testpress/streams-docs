@@ -137,9 +137,3 @@ player.setListener(object : TPStreamPlayerListener {
     }
 })
 ```
-
-Call this below method to enable auto fullscreen on rotate
-
-```bash
-  playerFragment.enableAutoFullScreenOnRotate()
-```

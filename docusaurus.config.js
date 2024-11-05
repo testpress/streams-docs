@@ -75,6 +75,12 @@ const config = {
           {
             type: 'docSidebar',
             position: 'left',
+            sidebarId: 'uploaderSidebar',
+            label: 'Embedded Uploader',
+          },
+          {
+            type: 'docSidebar',
+            position: 'left',
             sidebarId: 'mobileSdk',
             label: 'Mobile SDK',
           },

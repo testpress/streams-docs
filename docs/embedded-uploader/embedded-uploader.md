@@ -77,3 +77,26 @@ The following code will display the TPStreams uploader UI on your webpage, allow
 In TPStreams settings, you can restrict the allowed domains that can embed this uploader. Set the allowed domain(s) to ensure only specified sites can use your uploader. If no domain is specified, all domains are permitted by default.
 
  ![Domain Restriction](./img/uploader_allowed_domains.png)
+
+
+## Uploader Events
+You can listen for events in the uploader by attaching a callback using .on()
+
+### fileUploaded
+This event fires when a video is successfully uploaded to TpStreams.
+
+
+```html
+<script>
+  const uploader = document.querySelector('tpstreams-uploader');
+  uploader.authToken = '33ee07f2a51be363cc94daa460faf46b7d5ea29463aaad28ba948aa042bf871f';
+  uploader.initialize();
+
+  uploader.on('fileUploaded', (file) => {
+    const fileName = file.name;
+    const assetId = file.assetId;
+    console.log("Filename", fileName)
+    console.log("Asset ID", assetId)
+  });
+</script>
+```

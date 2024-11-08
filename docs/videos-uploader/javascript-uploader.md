@@ -134,7 +134,7 @@ Listen to this event to track video upload progress.
 ```
 
 
-### uploadProgress
+### uploadSuccess
 This event is fired when a video is successfully uploaded to TpStreams.
 
 ```html

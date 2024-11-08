@@ -76,7 +76,7 @@ const config = {
             type: 'docSidebar',
             position: 'left',
             sidebarId: 'uploaderSidebar',
-            label: 'Embedded Uploader',
+            label: 'Videos Uploader',
           },
           {
             type: 'docSidebar',

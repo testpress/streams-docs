@@ -39,6 +39,7 @@ Make sure to replace the organization id with your own TPStreams organization ID
 
 ### Step 4: Select files and start upload
 After you've created a file input on your webpage, you can pass those files to the uploader instance.
+You can pass an optional folder id argument to `upload` method if you'd like to upload the videos to a specific folder.
 
 ```html
 <script>
@@ -46,7 +47,7 @@ After you've created a file input on your webpage, you can pass those files to t
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
     uploader.selectFiles([file]);
-    uploader.upload();
+    uploader.upload(folderId="rPHYq8X5f9d");
   });
 </script>
 ```

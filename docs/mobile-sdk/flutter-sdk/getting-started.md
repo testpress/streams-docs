@@ -23,6 +23,20 @@ TPStreamsSDK.initialize(orgCode: "YOUR_ORG_CODE");
 
 Make sure to replace "YOUR_ORG_CODE" with your actual organization code. This code snippet should be placed at the entry point of your application (usually in the main function) to ensure proper initialization of the TPStreamsSDK.
 
+### Android Setup
+
+In the Android directory, extend the FlutterFragmentActivity class in your MainActivity file.
+
+To do this, make the change in the following directory:
+android/app/src/main/kotlin/com/project_name/MainActivity.kt
+
+``` kotlin
+import io.flutter.embedding.android.FlutterFragmentActivity
+
+class MainActivity: FlutterFragmentActivity(){
+    
+}
+```
 
 ### Play a Video 
 

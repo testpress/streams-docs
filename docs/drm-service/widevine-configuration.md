@@ -174,7 +174,7 @@ signature = generate_signature(data, key, iv)
 
 AES_SIGNING_KEY , AES_SIGNING_IV  and org_code will be provided by us.
 
-
+You can retrieve the organization code and DRM keys by making a GET request to the API. [Organization](../server-api/organizations.md)
 
 
 **Security Considerations:**

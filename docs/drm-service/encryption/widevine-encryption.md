@@ -41,5 +41,7 @@ WIDEWINE_AES_KEY , WIDEWINE_IV  and org_code will be provided by us.
 
 :::
 
+You can retrieve the organization code and DRM keys by making a GET request to the API. [Organization](../server-api/organizations.md)
+
 Check out this repository for encrypting a video with a Widevine license
  [DRM Video Processing](https://github.com/testpress/drm-video-processing/) 

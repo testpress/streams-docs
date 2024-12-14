@@ -88,11 +88,15 @@ IRestResponse response = client.Execute(request);
     "results": [
         {
             "name": "Testpress",
-            "uuid": "6dnpyx"
+            "uuid": "6dnpyx",
+            "drm_aes_signing_iv": "52B545d56c6G8da12dee470fb656413c",
+            "drm_aes_signing_key": "4569d18e02b9e8ebf5ef145693454e729e0b95e6bb8a345db88cfe15d7904785"
         },
         {
             "name": "Streams",
-            "uuid": "7coqzy"
+            "uuid": "7coqzy",
+            "drm_aes_signing_iv": "90a541d5cc608da12dee470fb654413c",
+            "drm_aes_signing_key": "1239d18e02b9e8ebf5ef131a9f564e729e0b95e6bb8a78ddb88cfe15d7904723"
         }
     ]
 }

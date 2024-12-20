@@ -24,7 +24,7 @@ Then reference the library in the dependency section:
 
 ```groovy
 dependencies {
-    implementation "com.tpstreams.player:player:3.1.1"
+    implementation "com.tpstreams.player:player:3.1.2"
 }
 ```
 

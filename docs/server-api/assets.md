@@ -199,6 +199,24 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
 ```
 
 
+**Fields**
+
+
+| Name   | Type   | Description                                                                 | Required |
+|--------|--------|-----------------------------------------------------------------------------|----------|
+| expiry | string | The duration (in seconds) for the playback URL to remain valid. For non-encrypted videos, the URL is valid for a lifetime by default. For AES-encrypted videos, defaults to 120 seconds if not specified. | No       |
+
+
+**Sample request body**
+
+```json 
+{
+    "expiry": 300
+}
+```
+
+
+
 **Response**
 ```json
 {
@@ -216,7 +234,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
             "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_3.png"
         ],
         "status": "Completed",
-        "playback_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/video.m3u8",
+        "playback_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/video.m3u8Expires=1736006095&Signature=jDr8etkNBN0NWajFNNpiqwQxSyDzW497cz~tAodGK~49deNHWya4pvCy2sRyteyJPU455uDkE3we8MvXOkVenx4m8SR6IB-BsdIFJ0ZraQnMOQqVdsTBn8wBHgXERL28AF71Vkn5yH0-eDWUttzP2jc4o42WO~6SMd1YKjmKdqgyxU9K1TZBXr3tAXPdEJQlzipoRp6j7W~3QgAOz-zcOBRACoXj9P0Xi4yOjMaKSTrvGx~BvF4SBMAbQPGV2i-P-21-tpVCrPl921FRWlbLArt~IMbrfqAZJUXOWGB3NTpSUAMvM8HnQs7JCrySVwQaWGsLhgZk7x-6Ls2olKNb3Q__&Key-Pair-Id=K2XWKDWM065EGO",
         "dash_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/video.mpd",
         "preview_thumbnail_url": null,
         "cover_thumbnail_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/thumbnails/thumbnail_4.png",

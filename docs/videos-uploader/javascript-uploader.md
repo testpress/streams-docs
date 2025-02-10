@@ -72,7 +72,7 @@ The following code will display the video upload progress and asset ID on your w
     <script>
       const authToken = '5ffc7dee2bc70ab18dbf0a9cf592ad9e63c148362cdf595e008bec1';
       const orgId = "abcdef";
-      const uploaderConfig = {generateSubtitle: true, contentProtectionType: "aes"};
+      const uploaderConfig = {generateSubtitle: false, contentProtectionType: "aes"};
       const uploader = new TpStreamsUploaderSDK(authToken, orgId, uploaderConfig);
 
       uploader.on('uploadProgress', (data) => {

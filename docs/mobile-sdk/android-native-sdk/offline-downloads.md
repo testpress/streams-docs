@@ -15,7 +15,7 @@ var parameters = TpInitParams.Builder()
     .setVideoId(videoId)
     .setAccessToken(accessToken)
     .enableDownloadSupport(true)
-    .setOfflineLicenseExpireTime(60 * 60 * 25 * 15) //15 Days
+    .setOfflineLicenseExpireTime(60 * 60 * 24 * 15) //15 Days
     .build()
 ```
 

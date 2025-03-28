@@ -8,12 +8,17 @@ Player parameters are query parameters that you can append to the `playback_url`
 
 The following query parameters can be added to the `playback_url` to control the player's settings:
 
-| Parameter       | Data type | Values          | Description                                                            |
-|-----------------|-----------|-----------------|------------------------------------------------------------------------|
-| `background`    | String    | `'1'` or `'0'`  | Enables or disables background mode. `'1'` enables it, `'0'` disables it. |
-| `muted`         | String    | `'1'` or `'0'`  | Mutes or unmutes the player. `'1'` mutes the player, `'0'` unmutes it.  |
-| `autoplay`      | String    | `'1'` or `'0'`  | Controls autoplay. `'1'` enables autoplay, `'0'` disables it.           |
-| `loop`          | String    | `'1'` or `'0'`  | Enables or disables loop mode. `'1'` enables looping, `'0'` disables it. |
+
+
+| Parameter       | Data Type | Values                        | Description                                                                 |
+|---------------|-----------|--------------------------------|-----------------------------------------------------------------------------|
+| `background`  | String    | `'1'` or `'0'`               | Enables or disables background mode. `'1'` enables it, `'0'` disables it.  |
+| `muted`       | String    | `'1'` or `'0'`               | Mutes or unmutes the player. `'1'` mutes the player, `'0'` unmutes it.      |
+| `autoplay`    | String    | `'1'` or `'0'`               | Controls autoplay. `'1'` enables autoplay, `'0'` disables it.               |
+| `loop`        | String    | `'1'` or `'0'`               | Enables or disables loop mode. `'1'` enables looping, `'0'` disables it.    |
+| `playRates`   | String    | Comma-separated values (e.g., `"0.5,1,2,3"`) | Sets available playback speed options. Minimum value: `0.5`, Maximum value: `4`. |
+
+
 
 ### Usage
 
@@ -22,7 +27,7 @@ These parameters are appended to the `playback_url` in the format `key=value`. M
 #### Example Usage
 
 ```bash
-https://app.tpstreams.com/embed/dcek2m/BxDe5ZYDyD6/?access_token=72186a33-107a-49b6-b275-a853c907be33&muted=1&autoplay=1&loop=1
+https://app.tpstreams.com/embed/dcek2m/BxDe5ZYDyD6/?access_token=72186a33-107a-49b6-b275-a853c907be33&muted=1&autoplay=1&loop=1&playRates=0.5,1,2,3
 ```
 
 

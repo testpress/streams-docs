@@ -531,3 +531,26 @@ player.loaded().then(()=>{
   player.setPlayerUserId("shantanu@testpress.in")
 }); 
 ```
+
+### Get the watched duration of a video  
+
+This method retrieves the total watched duration of a video, measured in seconds.  
+
+#### **Function**  
+```js
+getWatchedTime()
+```
+
+#### **Returns**  
+```bash
+Promise <number>
+```
+
+#### **Example**  
+```js
+player.getWatchedTime().then(function(duration) {
+  console.log(duration, "user watched duration");
+});
+```
+
+This will log the total duration the user has watched the video.

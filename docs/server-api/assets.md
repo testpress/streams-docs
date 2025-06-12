@@ -414,3 +414,92 @@ For valid requests the API server returns a JSON:
 :::important
 For Thumbnail upload, use form-data in the request body. select an image file in .png, .jpeg, or .jpg format that is less than 2 MB in size .
 :::
+
+## Trim Video Asset
+
+To trim a video asset, send an HTTP POST request to the API endpoint with either start_time or end_time (or both) in the request body along with the [authentication Header](../server-api/authentication.md).
+
+**Endpoint**
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/trim/
+```
+
+**Fields**
+
+| Name             | Type         | Description |    Required  |
+| -----------      | -----------  | ----------- |   ---------- |
+| start_time    | number      |  Start time of the trimmed video (in seconds)	     | No* |
+| end_time    | number      |  End time of the trimmed video (in seconds)	     | No* |
+
+*At least one of start_time or end_time is required.
+
+**Sample Request Body**
+
+```json
+{
+    "start_time": 0,
+    "end_time": 30
+}
+```
+
+**Response**
+
+For valid requests, the API server returns a JSON:
+
+```json
+{
+    "message": "Video trim job started successfully",
+    "trim_job_id": 58,
+    "status": "Pending"
+}
+```
+
+## Check Trim Job Status
+
+To check the status of an ongoing or completed trim job, send an HTTP GET request to the status endpoint with the [authentication Header](../server-api/authentication.md).
+
+**Endpoint**
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/trim/status/
+```
+
+**Response**
+
+For valid requests, the API server returns a JSON:
+
+```json
+{
+    "id": 58,
+    "start_time": 0,
+    "end_time": 30,
+    "status": 1,
+    "status_display": "Pending",
+    "background_task_id": "abe9d132-ca1b-4cb2-a145-b3c19f7cda85",
+    "created": "2025-06-12T19:41:48.001170+05:30",
+    "modified": "2025-06-12T19:41:48.071262+05:30"
+}
+```
+
+## Revert Trimmed Video
+
+To revert a previously trimmed video back to its original state, send an HTTP POST request to the API endpoint along with the [authentication Header](../server-api/authentication.md). This will initiate a background task to restore the full-length video.
+
+**Endpoint**
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/trim/revert/
+```
+
+**Request Body**
+
+No request body is required for this endpoint.
+
+**Response**
+
+For valid requests, the API server returns a JSON:
+
+```json
+{
+    "message": "Video revert job started successfully",
+    "task_id": "b84b229e-19fb-45c2-be36-dc942a809e87"
+}
+```

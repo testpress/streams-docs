@@ -326,6 +326,66 @@ For valid requests the API server returns a JSON:
 To move an asset to the root directory , send an HTTP POST request with an empty request body to the designated API endpoint.
 :::
 
+## Generate Subtitle for an Asset
+
+To generate subtitles for a video asset, you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
+
+**Endpoint**
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/generate_subtitle/
+```
+
+**Description**
+
+This endpoint triggers automatic subtitle generation for a video asset using speech-to-text technology. The system will generate English subtitles automatically and save them as a WebVTT (.vtt) file.
+
+**Request Body**
+
+No request body is required for this endpoint.
+
+**Response**
+
+For valid requests the API server returns the complete asset data in JSON format with status code 201:
+
+```json
+{
+    "id": "9328558d-e0a5-4093-b3b9-8f15ad1550d8",
+    "title": "Big Buck Bunny Video",
+    "bytes": 450881324,
+    "type": "video",
+    "video": {
+        "progress": 0,
+        "thumbnails": [],
+        "status": "Completed",
+        "playback_url": "https://d7pdowhru2wq4.cloudfront.net/transcoded/9328558d-e0a5-4093-b3b9-8f15ad1550d8/video.m3u8",
+        "dash_url": "https://d7pdowhru2wq4.cloudfront.net/transcoded/9328558d-e0a5-4093-b3b9-8f15ad1550d8/video.mpd",
+        "preview_thumbnail_url": null,
+        "format": "abr",
+        "resolutions": ["240p", "360p", "480p", "720p"],
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "content_protection_type": "drm",
+        "tracks": [],
+        "inputs": [
+            {
+                "url": "https://static.testpress.in/BigBuckBunny.mp4"
+            }
+        ],
+    },
+    "parent_id": "32seYYHeNxE"
+}
+```
+**Pricing**
+
+Auto-generated English subtitles cost $0.071 per minute of video content.
+
+:::important
+- Subtitle generation is an asynchronous process that may take several minutes
+- Only one auto-generated subtitle track per video is allowed
+- The video must be in "Completed" status for subtitle generation
+- Email notifications are sent upon completion or failure
+:::
+
 ## Upload Subtitles to an Asset
 To upload subtitles to an asset , you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md) .
 

@@ -393,7 +393,6 @@ Auto-generated English subtitles cost $0.071 per minute of video content.
 :::important
 - Subtitle generation is an asynchronous process that may take several minutes
 - Only one auto-generated subtitle track per video is allowed
-- The video must be in "Completed" status for subtitle generation
 - Email notifications are sent upon completion or failure
 :::
 

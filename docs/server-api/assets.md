@@ -24,6 +24,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/videos/
 | resolutions      | array         | Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma separated string out of the following values: 240p, 360p, 480p, 540p, 720p, and 1080p. Re-sized rendition will retain the input aspect ratio. | Yes |
 | inputs | json | URL or web address of a file that TP streams should download to create a new asset. | Yes |
 | folder | string | The UUID of the folder, if you want to upload the video into that specific folder | No |
+| generate_subtitle | boolean | Enable automatic generation of subtitles for the video after upload. Defaults to false if not specified. | No |
 
 **Sample request body**
 
@@ -37,7 +38,8 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/videos/
   ],
   "resolutions": ["240p", "360p", "480p", "720p"],
   "content_protection_type": "drm",
-  "folder": "32seYYHeNxE"
+  "folder": "32seYYHeNxE",
+  "generate_subtitle": true
 }
 
 ```
@@ -324,6 +326,76 @@ For valid requests the API server returns a JSON:
 :::important
 
 To move an asset to the root directory , send an HTTP POST request with an empty request body to the designated API endpoint.
+:::
+
+## Generate Subtitle for an Asset
+
+To generate subtitles for a video asset, you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
+
+**Endpoint**
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/generate_subtitle/
+```
+
+**Description**
+
+This endpoint triggers automatic subtitle generation for a video asset using speech-to-text technology. The system will generate English subtitles automatically and save them as a WebVTT (.vtt) file.
+
+**Request Body**
+
+No request body is required for this endpoint.
+
+**Response**
+
+For valid requests the API server returns the complete asset data in JSON format with status code 201:
+
+```json
+{
+    "title": "Big Buck Bunny Video",
+    "bytes": 26990804,
+    "type": "video",
+    "video": {
+        "progress": 0,
+        "thumbnails": [
+        ],
+        "status": "Completed",
+        "playback_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/7cFHfFSfjna/video.m3u8",
+        "dash_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/7cFHfFSfjna/video.mpd",
+        "preview_thumbnail_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/7cFHfFSfjna/thumbnails/thumbnail_4.png",
+        "cover_thumbnail_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/7cFHfFSfjna/thumbnails/thumbnail_4.png",
+        "format": "abr",
+        "resolutions": [
+            "240p",
+            "360p",
+            "480p",
+            "720p"
+        ],
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "enable_drm": true,
+        "tracks": [],
+        "inputs": [
+            {
+                "url": "private/677155207a6847b5b5a8d70cfaf4a8a1.mp4"
+            }
+        ],
+        "transmux_only": null,
+        "duration": 19,
+        "content_protection_type": "drm",
+    },
+    "id": "7cFHfFSfjna",
+    "live_stream": null,
+    "parent_id": "BmN3MXSq5z6"
+}
+```
+**Pricing**
+
+Auto-generated English subtitles cost $0.071 per minute of video content.
+
+:::important
+- Subtitle generation is an asynchronous process that may take several minutes
+- Only one auto-generated subtitle track per video is allowed
+- Email notifications are sent upon completion or failure
 :::
 
 ## Upload Subtitles to an Asset

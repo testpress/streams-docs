@@ -349,30 +349,41 @@ For valid requests the API server returns the complete asset data in JSON format
 
 ```json
 {
-    "id": "9328558d-e0a5-4093-b3b9-8f15ad1550d8",
     "title": "Big Buck Bunny Video",
-    "bytes": 450881324,
+    "bytes": 26990804,
     "type": "video",
     "video": {
         "progress": 0,
-        "thumbnails": [],
+        "thumbnails": [
+        ],
         "status": "Completed",
-        "playback_url": "https://d7pdowhru2wq4.cloudfront.net/transcoded/9328558d-e0a5-4093-b3b9-8f15ad1550d8/video.m3u8",
-        "dash_url": "https://d7pdowhru2wq4.cloudfront.net/transcoded/9328558d-e0a5-4093-b3b9-8f15ad1550d8/video.mpd",
-        "preview_thumbnail_url": null,
+        "playback_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/7cFHfFSfjna/video.m3u8",
+        "dash_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/7cFHfFSfjna/video.mpd",
+        "preview_thumbnail_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/7cFHfFSfjna/thumbnails/thumbnail_4.png",
+        "cover_thumbnail_url": "https://d28qihy7z761lk.cloudfront.net/transcoded/7cFHfFSfjna/thumbnails/thumbnail_4.png",
         "format": "abr",
-        "resolutions": ["240p", "360p", "480p", "720p"],
+        "resolutions": [
+            "240p",
+            "360p",
+            "480p",
+            "720p"
+        ],
         "video_codec": "h264",
         "audio_codec": "aac",
-        "content_protection_type": "drm",
+        "enable_drm": true,
         "tracks": [],
         "inputs": [
             {
-                "url": "https://static.testpress.in/BigBuckBunny.mp4"
+                "url": "private/677155207a6847b5b5a8d70cfaf4a8a1.mp4"
             }
         ],
+        "transmux_only": null,
+        "duration": 19,
+        "content_protection_type": "drm",
     },
-    "parent_id": "32seYYHeNxE"
+    "id": "7cFHfFSfjna",
+    "live_stream": null,
+    "parent_id": "BmN3MXSq5z6"
 }
 ```
 **Pricing**

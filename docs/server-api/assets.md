@@ -24,6 +24,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/videos/
 | resolutions      | array         | Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma separated string out of the following values: 240p, 360p, 480p, 540p, 720p, and 1080p. Re-sized rendition will retain the input aspect ratio. | Yes |
 | inputs | json | URL or web address of a file that TP streams should download to create a new asset. | Yes |
 | folder | string | The UUID of the folder, if you want to upload the video into that specific folder | No |
+| generate_subtitle | boolean | Enable automatic generation of subtitles for the video after upload. Defaults to false if not specified. | No |
 
 **Sample request body**
 
@@ -37,7 +38,8 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/videos/
   ],
   "resolutions": ["240p", "360p", "480p", "720p"],
   "content_protection_type": "drm",
-  "folder": "32seYYHeNxE"
+  "folder": "32seYYHeNxE",
+  "generate_subtitle": true
 }
 
 ```

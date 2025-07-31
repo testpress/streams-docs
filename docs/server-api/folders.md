@@ -48,6 +48,12 @@ To get all folders in the organization, you need to send an HTTP GET request to 
 https://app.tpstreams.com/api/v1/<organization_id>/assets/folders/
 ```
 
+You can get all folders that match your search query using the `q` parameter:
+
+```bash
+GET https://app.tpstreams.com/api/v1/<organization_id>/assets/folders/?q=test
+```
+
 For valid requests the API server returns a JSON:
 
 ```json
@@ -57,15 +63,15 @@ For valid requests the API server returns a JSON:
     "previous": null,
     "results": [
         {
-            "title": "Aes files",
+            "title": "Testing videos",
             "uuid": "6bBcXxu5cAM"
         },
         {
-            "title": "Drm videos",
+            "title": "OnBorading test",
             "uuid": "BmN3MXSq5z6"
         },
         {
-            "title": "AES encrypted Videos",
+            "title": "test",
             "uuid": "nD8K9nJ3Bsm"
         },
     ]

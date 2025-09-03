@@ -26,6 +26,16 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/videos/
 | folder | string | The UUID of the folder, if you want to upload the video into that specific folder | No |
 | generate_subtitle | boolean | Enable automatic generation of subtitles for the video after upload. Defaults to false if not specified. | No |
 
+**Pricing**
+
+Auto-generated English subtitles cost $0.071 per minute of video content.
+
+:::important
+- Subtitle generation is an asynchronous process that may take several minutes
+- Only one auto-generated subtitle track per video is allowed
+- Email notifications are sent upon completion or failure
+:::
+
 **Sample request body**
 
 ```json 

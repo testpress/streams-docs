@@ -30,7 +30,7 @@ The listener will trigger updates to the following properties of the TPStreamsPl
 - **position:** The current playback position.
 - **duration:** The total duration of the video.
 - **isBuffering:** Indicates if the player is currently buffering.
-- **isFullScreen:** true if the video is in fullscreen mode, false if not in fullscreen mode.
+- **isFullScreen:** true if the video is in fullscreen mode.
 - **isEnded:** true if the video has played to the end.
 - **error:** Provides error information if an error occurs during playback.
 

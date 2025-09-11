@@ -16,6 +16,7 @@ _controller?.addListener(() {
   setState(() {
     // Access the current player state through _controller!.value
     bool isPlaying = _controller!.value.isPlaying;
+    bool isFullScreen = _controller!.value.isFullScreen;
     Duration position = _controller!.value.position;
     Duration duration = _controller!.value.duration;
   });
@@ -29,6 +30,7 @@ The listener will trigger updates to the following properties of the TPStreamsPl
 - **position:** The current playback position.
 - **duration:** The total duration of the video.
 - **isBuffering:** Indicates if the player is currently buffering.
+- **isFullScreen:** true if the video is in fullscreen mode.
 - **isEnded:** true if the video has played to the end.
 - **error:** Provides error information if an error occurs during playback.
 

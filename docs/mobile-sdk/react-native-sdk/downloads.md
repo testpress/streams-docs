@@ -35,10 +35,8 @@ The library provides real-time download progress updates for optimal performance
 
 ### Progress Listener Types
 
-```jsx
-type DownloadProgressChange = DownloadItem;
-
-type DownloadProgressListener = (downloads: DownloadProgressChange[]) => void;
+```typescript
+type DownloadProgressListener = (downloads: DownloadItem[]) => void;
 
 type DownloadStateChangeListener = (downloadItem: DownloadItem, error: DownloadError | null) => void;
 

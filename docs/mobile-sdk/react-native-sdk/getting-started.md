@@ -26,7 +26,7 @@ TPStreams.initialize('YOUR_ORGANIZATION_ID');
 
 Then add the player component to your app:
 
-```js
+```jsx
 import { TPStreamsPlayerView } from "react-native-tpstreams";
 
 <TPStreamsPlayerView 

@@ -30,7 +30,7 @@ Events are the specific, immediate actions (like starting or stopping) that chan
 
 | **Event Type** | **Meaning** |
 | :--- | :--- |
-| **`CREATED`** | The initial event, triggered when a live stream is created. This event signals that a server instance is being spun up to handle the broadcast. |
+| **`CREATED`** | The initial event, triggered when a live stream is created. This event signals that a server instance is being spun up to handle the broadcast. This corresponds to the **`NOT_STARTED`** status. |
 | **`ON_PUBLISH`** | The event that indicates a successful connection from the broadcasting software (OBS). The stream is now live. This corresponds to the **`STREAMING`** status. |
 | **`ON_PUBLISH_DONE`** | The event that indicates a temporary disconnection from the broadcasting software. This could be due to a user stopping the stream, a network interruption, or another issue. The server is still running for a short time, giving you a chance to reconnect. This corresponds to the **`DISCONNECTED`** status. |
 | **`STOPPED`** | The final event, triggered when a live stream is permanently ended. The server has been terminated, and the stream cannot be resumed. This corresponds to the **`STOPPED`** status. |

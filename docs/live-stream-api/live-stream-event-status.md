@@ -74,7 +74,7 @@ Sample API response
     -   **Status:** `NOT_STARTED`
     -   **Event:** `CREATED`
 
-2. The broadcaster starts streaming from their OBC.
+2. The broadcaster starts streaming from their broadcasting software (e.g., OBS).
     -   **Action:** The live stream is now active and viewable.
     -   **Status:** `STREAMING`
     -   **Event:** `ON_PUBLISH`

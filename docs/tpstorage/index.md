@@ -25,16 +25,6 @@ TPStorage provides:
 
 Follow the **[Getting Started](getting-started)** guide to set up TPStorage with Python and boto3.
 
-## Access Details
-
-| Setting | Value |
-|----|----|
-| **Endpoint URL** | `https://storage1.tpstreams.com` |
-| **Access Key** | `<provided-to-you>` |
-| **Secret Key** | `<provided-to-you>` |
-| **Compatibility** | S3 API (boto3, AWS SDKs, rclone, etc.) |
-| **Region** | `us-east-1` (placeholder, not used by TPStorage) |
-
 ## Getting Help
 
 If you need assistance with TPStorage integration, please refer to the detailed examples in our documentation or contact our support team.

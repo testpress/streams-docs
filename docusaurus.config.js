@@ -96,6 +96,12 @@ const config = {
             sidebarId: 'transcodingSidebar',
             label: 'Transcoding Service',
           },
+          {
+            type: 'docSidebar',
+            position: 'left',
+            sidebarId: 'tpstorageSidebar',
+            label: 'TPStorage',
+          },
 
           {
             href: 'https://app.getpostman.com/run-collection/18601519-52c5b04b-8b6c-457f-a38d-e015ee8752dd?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D18601519-52c5b04b-8b6c-457f-a38d-e015ee8752dd%26entityType%3Dcollection%26workspaceId%3Dc04c7c68-3b97-4c20-9ed4-ec556fccdd29',

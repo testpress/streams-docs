@@ -30,14 +30,18 @@ tpstorage = boto3.client(
     region_name='us-east-1',                        # Required by boto3, ignored by TPStorage
     config=boto3.session.Config(signature_version='s3v4')
 )
+```
 
-# Example: List all buckets
+## Basic Operations
+
+### Listing Buckets
+
+```python
+# List all buckets
 response = tpstorage.list_buckets()
 for bucket in response.get('Buckets', []):
     print(bucket['Name'])
 ```
-
-## Basic Operations
 
 ### Uploading a File
 

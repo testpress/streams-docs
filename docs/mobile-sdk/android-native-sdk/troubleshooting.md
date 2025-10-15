@@ -8,7 +8,7 @@ This guide helps you resolve common issues when using the TPStream Android Playe
 
 ## 5xxx Series Error Codes
 
-### 5001 - Invalid Assets ID
+### 5001 - Invalid Asset ID
 **Root Cause:**
 - Video asset not found or invalid ID
 - Video not part of the initialized Organization ID
@@ -93,7 +93,7 @@ This guide helps you resolve common issues when using the TPStream Android Playe
 - Verify codec settings and parameters
 - Test on different devices
 
-### 4004 - IO Unspecified Error
+### 4004 - I/O Unspecified Error
 **Root Cause:**
 - Unspecified I/O errors during playback
 - Live stream disconnection issues

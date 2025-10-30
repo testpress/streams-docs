@@ -51,12 +51,12 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/chapters/
     {
       "id": 6427,
       "title": "Intro",
-      "start_time": "0:00:02"
+      "start_time": "00:00:02"
     },
     {
       "id": 6428,
       "title": "Overview",
-      "start_time": "0:01:30"
+      "start_time": "00:01:30"
     }
   ]
 }
@@ -85,12 +85,12 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/chapters/
     {
       "id": 6427,
       "title": "Intro",
-      "start_time": "0:00:02"
+      "start_time": "00:00:02"
     },
     {
       "id": 6428,
       "title": "Overview",
-      "start_time": "0:01:30"
+      "start_time": "00:01:30"
     }
   ]
 }

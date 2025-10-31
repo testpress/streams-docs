@@ -13,11 +13,11 @@ You need authentication token to access Streams data and resources through the A
 
 **Best Practices for Auth Token Management**
 
-* **Prioritize Reuse:** Before creating a new token, **consider reusing an existing valid token** to fulfill your requirement.
-* **Minimize Generation:** Generating an excessive number of tokens adds unnecessary overhead, which can **impact the performance** of all APIs using authentication services.
-* **Generate Only When Necessary:** Reserve new token creation only for situations where the current token has genuinely **expired or become invalid**.
+* **Reuse Existing Tokens:** Before generating a new token, check if you have an existing, valid token that can be reused.
+* **Minimize New Token Generation:** Creating an excessive number of tokens adds unnecessary overhead and can negatively impact the performance of authentication services.
+* **Generate Only When Necessary:** Create a new token only when an existing one has expired or is invalid.
 
-Adhering to these practices **helps ensure optimal system efficiency and speed** for all authenticated services.
+Following these practices ensures optimal system performance and reliability for all services.
 
 ---
 

@@ -87,6 +87,294 @@ For valid requests the API server returns a JSON:
 ```
 Above response can also be obtained by asset detail API **/api/v1/<organization_id>/assets/<asset_id>/**
 
+---
+
+## Bulk Upload Videos
+
+Upload multiple videos in a single request by sending an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
+
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/videos/bulk/
+```
+
+Each video object must follow the same structure as described in [Upload a Video](#upload-an-video).
+
+**Sample Request Body**
+
+An array of video objects, for example:
+
+```json
+[
+  {
+    "title": "Big Buck Bunny Video 1",
+    "inputs": [
+      { "url": "https://static.testpress.in/BigBuckBunny.mp4" }
+    ],
+    "resolutions": ["360p", "720p"],
+    "content_protection_type": "aes",
+    "generate_subtitle": false
+  },
+  {
+    "title": "Big Buck Bunny Video 2",
+    "inputs": [
+      { "url": "https://static.testpress.in/BigBuckBunny.mp4" }
+    ],
+    "resolutions": ["480p", "1080p"],
+    "content_protection_type": "drm",
+    "generate_subtitle": true
+  }
+]
+```
+
+---
+
+:::important
+* You can upload up to **50 videos** in a single request.
+* Each video must be **unique**.
+* If any duplicates are detected or if validation fails for any item:
+  * The API returns a **400 Bad Request** error.
+  * **No videos are created**
+* Successful requests return all created video assets in the same order as submitted.
+:::
+
+---
+
+**Understanding Video Uniqueness**
+
+The bulk upload API checks for duplicate videos within your request to prevent accidental re-uploads. A video is considered a duplicate if **both** the **title** and the **input URL** match another video in the same request.
+
+**Examples:**
+
+| Scenario | Video 1 | Video 2 | Allowed? | Reason |
+|----------|---------|---------|----------|--------|
+| **Different videos** | Title: `"Introduction"` <br /> URL: `video1.mp4` | Title: `"Module"` <br /> URL: `video2.mp4` |  **Yes** | Both title and URL are different |
+| **Same title, different URL** | Title: `"Lecture"` <br /> URL: `video1.mp4` | Title: `"Lecture"` <br /> URL: `video2.mp4` |  **Yes** | URLs are different (different source files) |
+| **Different title, same URL** | Title: `"Version 1"` <br /> URL: `video.mp4` | Title: `"Version 2"` <br /> URL: `video.mp4` |  **Yes** | Titles are different (e.g., different versions) |
+| **Exact duplicate** | Title: `"Tutorial"` <br /> URL: `video.mp4` | Title: `"Tutorial"` <br /> URL: `video.mp4` |  **No** | Both title and URL match exactly |
+
+
+**Pricing**
+
+Auto-generated English subtitles cost $0.071 per minute of video content.
+
+:::important
+- Subtitle generation is an asynchronous process that may take several minutes
+- Only one auto-generated subtitle track per video is allowed
+- Email notifications are sent upon completion or failure
+:::
+
+For valid requests the API server returns a JSON Response:
+
+```json
+[
+    {
+        "title": "Big Buck Bunny Video 1",
+        "bytes": null,
+        "type": "video",
+        "video": {
+            "progress": 0,
+            "thumbnails": null,
+            "status": "Not Started",
+            "playback_url": "https://dlbdnoa93s0gw.cloudfront.net/transcoded/ATnJxKqcrHY/video.m3u8",
+            "dash_url": "https://dlbdnoa93s0gw.cloudfront.net/transcoded/ATnJxKqcrHY/video.mpd",
+            "preview_thumbnail_url": null,
+            "cover_thumbnail_url": null,
+            "format": "abr",
+            "resolutions": [
+                "240p",
+                "360p",
+                "480p",
+                "720p"
+            ],
+            "video_codec": "h264",
+            "audio_codec": "aac",
+            "enable_drm": true,
+            "inputs": [
+                {
+                    "url": "https://static.testpress.in/BigBuckBunny.mp4"
+                }
+            ],
+            "transmux_only": null,
+            "duration": null,
+            "content_protection_type": "drm",
+            "generate_subtitle": false,
+            "video_codecs": [
+                "h264"
+            ],
+            "output_urls": {
+                "h264": {
+                    "hls_url": "https://dlbdnoa93s0gw.cloudfront.net/transcoded/ATnJxKqcrHY/video.m3u8",
+                    "dash_url": "https://dlbdnoa93s0gw.cloudfront.net/transcoded/ATnJxKqcrHY/video.mpd"
+                }
+            }
+        },
+        "id": "ATnJxKqcrHY",
+        "live_stream": null,
+        "parent": {
+            "title": "API test",
+            "uuid": "78ADBZx9s8r"
+        },
+        "parent_id": "78ADBZx9s8r"
+    },
+    {
+        "title": "Big Buck Bunny Video 2",
+        "bytes": null,
+        "type": "video",
+        "video": {
+            "progress": 0,
+            "thumbnails": null,
+            "status": "Not Started",
+            "playback_url": "https://dlbdnoa93s0gw.cloudfront.net/transcoded/6RbRTBCzjkK/video.m3u8",
+            "dash_url": "https://dlbdnoa93s0gw.cloudfront.net/transcoded/6RbRTBCzjkK/video.mpd",
+            "preview_thumbnail_url": null,
+            "cover_thumbnail_url": null,
+            "format": "abr",
+            "resolutions": [
+                "240p",
+                "360p",
+                "480p",
+                "720p"
+            ],
+            "video_codec": "h264",
+            "audio_codec": "aac",
+            "enable_drm": true,
+            "inputs": [
+                {
+                    "url": "https://static.testpress.in/BigBuckBunny.mp4"
+                }
+            ],
+            "transmux_only": null,
+            "duration": null,
+            "content_protection_type": "drm",
+            "generate_subtitle": false,
+            "video_codecs": [
+                "h264"
+            ],
+            "output_urls": {
+                "h264": {
+                    "hls_url": "https://dlbdnoa93s0gw.cloudfront.net/transcoded/6RbRTBCzjkK/video.m3u8",
+                    "dash_url": "https://dlbdnoa93s0gw.cloudfront.net/transcoded/6RbRTBCzjkK/video.mpd"
+                }
+            }
+        },
+        "id": "6RbRTBCzjkK",
+        "live_stream": null,
+        "parent": {
+            "title": "API test",
+            "uuid": "78ADBZx9s8r"
+        },
+        "parent_id": "78ADBZx9s8r"
+    }
+]
+```
+
+- Video processing time varies based on video duration, file size, and selected resolutions
+- Use the [Get Individual Asset Details](#get-individual-asset-details) endpoint to monitor each video:
+
+```bash
+GET https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
+```
+---
+
+**Trouble Shooting**
+
+#### 1. Invalid Request Body Format
+
+```json
+{
+    "detail": "Request body must be a list of objects."
+}
+```
+
+**Cause:** Request body is not an array.
+
+**Fix:** Ensure your request body is a JSON array of video objects.
+
+---
+
+#### 2. Exceeds Upload Limit
+
+```json
+{
+    "detail": "The maximum number of assets you can upload in a single request is 50. You submitted 75."
+}
+```
+
+**Cause:** Request contains more than 50 videos.
+
+**Fix:** Split your videos into multiple requests, each containing 50 or fewer videos.
+
+---
+
+#### 3. Duplicate Videos in Request
+
+```json
+{
+    "detail": "Duplicate video asset found in the request body.",
+    "duplicate_key": "('Big Buck Bunny Video', 'https://static.testpress.in/BigBuckBunny.mp4')",
+    "first_occurrence_index": 0,
+    "current_occurrence_index": 3,
+    "message": "Item at index 3 is a duplicate of the item at index 0. Bulk requests must contain only unique video assets.",
+    "item_index": 3
+}
+```
+
+**Cause:** Multiple videos in the request have the same title and input URL combination.
+
+**Fix:** Ensure each video has a unique combination of `title` and `inputs[0].url`. Either change the title or use a different source URL.
+
+---
+
+#### 4. Validation Error in Video Object
+
+```json
+{
+    "resolutions": [
+        "This field is required."
+    ],
+    "inputs": [
+        "This field is required."
+    ],
+    "item_index": 2
+}
+```
+
+**Cause:** One or more videos are missing required fields or contain invalid values.
+
+**Fix:** Check the video at the specified `item_index` (zero-based) and ensure all required fields are present and valid. Refer to [Upload a Video](#upload-an-video) for field requirements.
+
+---
+
+#### 5. Malformed Input Data
+
+```json
+{
+    "error_type": "IndexError",
+    "item_index": 1
+}
+```
+
+**Cause:** The video object at the specified index has malformed or missing `inputs` array.
+
+**Fix:** Ensure each video object has an `inputs` array with at least one object containing a `url` field:
+
+```json
+{
+    "inputs": [
+        { "url": "https://example.com/video.mp4" }
+    ]
+}
+```
+
+---
+
+**Best Practices**
+
+1. **Optimize request batch sizes**
+   - While 50 videos is the maximum, smaller batches (10-20 videos) are more manageable
+
+---
+
 ## Get all the assets that belong to the organization
 
 To get all assets in the organization, you need to send an HTTP GET request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).

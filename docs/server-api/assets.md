@@ -276,7 +276,7 @@ GET https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
 ```
 ---
 
-**Trouble Shooting**
+**Troubleshooting**
 
 #### 1. Invalid Request Body Format
 

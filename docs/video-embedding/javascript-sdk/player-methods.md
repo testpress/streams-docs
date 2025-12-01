@@ -554,3 +554,71 @@ player.getWatchedTime().then(function(duration) {
 ```
 
 This will log the total duration the user has watched the video.
+
+### Set custom error messages
+
+This method allows you to customize error messages for specific error types. If a custom message is not provided for an error type, the system's default error message will be used.
+
+**Function**
+```js
+setCustomErrorMessage(errorMessages)
+```
+
+**Parameters**
+
+| Parameter      | Data type | Required? | Description |
+| ---------      | --------- | --------- | ----------- |
+| errorMessages  | Object    | Yes       | An object containing custom error messages for specific error types. |
+
+**Supported Error Types**
+
+| Error Type                | Description |
+| ------------------------- | ----------- |
+| BrowserNotSupported       | Error when the browser is not supported. |
+| DRMKeySystemUnsupported   | Error when the DRM key system is not supported. |
+| NetworkNotAvailable       | Error when the network is not available. |
+| DefaultPlaybackError      | Default error message for general playback errors. |
+
+**Returns**
+```bash
+Promise <void>
+```
+
+**Example**
+
+```js
+player.setCustomErrorMessage({
+  'BrowserNotSupported': 'Browser Not supported error',
+  'DRMKeySystemUnsupported': 'This is custom DRM Error.',
+  'NetworkNotAvailable': 'This is custom Network Error',
+  'DefaultPlaybackError': 'An error occurred'
+}).then(function() {
+  // Custom error messages are set
+});
+```
+
+:::info
+Only the four error types listed above can be customized. If you don't provide a custom message for a specific error type, the system's default error message will be used.
+:::
+
+### Clear custom error messages
+
+This method clears all previously set custom error messages. After calling this method, the player will use the system's default error messages for all error types.
+
+**Function**
+```js
+clearCustomErrorMessage()
+```
+
+**Returns**
+```bash
+Promise <void>
+```
+
+**Example**
+
+```js
+player.clearCustomErrorMessage().then(function() {
+  // Custom error messages are cleared, system defaults will be used
+});
+```

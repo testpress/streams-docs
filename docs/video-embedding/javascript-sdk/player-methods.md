@@ -588,10 +588,10 @@ Promise <void>
 
 ```js
 player.setCustomErrorMessage({
-  'BrowserNotSupported': 'Browser Not supported error',
-  'DRMKeySystemUnsupported': 'This is custom DRM Error.',
-  'NetworkNotAvailable': 'This is custom Network Error',
-  'DefaultPlaybackError': 'An error occurred'
+  'BrowserNotSupported': 'This browser is not supported.',
+  'DRMKeySystemUnsupported': 'A DRM-related error has occurred',
+  'NetworkNotAvailable': 'A network error occurred. Please check your internet connection.',
+  'DefaultPlaybackError': 'An unknown playback error occurred.'
 }).then(function() {
   // Custom error messages are set
 });

@@ -11,6 +11,16 @@ You need authentication token to access Streams data and resources through the A
 
 ## Generate authentication token
 
+**Best Practices for Auth Token Management**
+
+* **Reuse Existing Tokens:** Before generating a new token, check if you have an existing, valid token that can be reused.
+* **Minimize New Token Generation:** Creating an excessive number of tokens adds unnecessary overhead and can negatively impact the performance of authentication services.
+* **Generate Only When Necessary:** Create a new token only when an existing one has expired or is invalid.
+
+Following these practices ensures optimal system performance and reliability for all services.
+
+---
+
 Make Post request to the below link with the credentials to generate an authentication token.
 
 

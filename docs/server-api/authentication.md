@@ -21,6 +21,10 @@ Following these practices ensures optimal system performance and reliability for
 
 ---
 
+:::important
+A **maximum of 20 authentication tokens** can be created per organization.
+:::
+
 Make Post request to the below link with the credentials to generate an authentication token.
 
 

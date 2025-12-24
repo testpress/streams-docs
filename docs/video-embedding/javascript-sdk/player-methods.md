@@ -622,3 +622,81 @@ player.clearCustomErrorMessage().then(function() {
   // Custom error messages are cleared, system defaults will be used
 });
 ```
+
+### Request Fullscreen
+
+This method requests the player to enter native fullscreen mode.
+If the browser allows it, the video will expand to fullscreen.
+**Function** 
+```js
+requestFullscreen()
+```
+
+**Returns** 
+```bash
+Promise<void>
+```
+
+**Example**
+```js
+player.requestFullscreen();
+```
+
+### Exit Fullscreen
+
+This method requests the player to exit native fullscreen mode.
+If the player is currently in fullscreen, it will return to its embedded state.
+
+**Function** 
+```js
+exitFullscreen()
+```
+
+**Returns** 
+```bash
+Promise<void>
+```
+
+**Example**
+```js
+player.exitFullscreen();
+```
+
+### Enable Fullscreen Toggle Visibility
+This method shows the fullscreen toggle button in the player’s control bar.
+After calling this method, users will be able to enter or exit fullscreen using the player UI.
+
+**Function** 
+```js
+enableFullscreen()
+```
+
+**Returns** 
+```bash
+Promise<void>
+```
+
+**Example**
+```js
+player.enableFullscreen();
+```
+
+### Disable Fullscreen Toggle Visibility
+
+This method hides the fullscreen toggle button from the player’s control bar.
+After calling this method, fullscreen can still be controlled programmatically, but not via the player UI.
+
+**Function** 
+```js
+disableFullscreen()
+```
+
+**Returns** 
+```bash
+Promise<void>
+```
+
+**Example**
+```js
+player.disableFullscreen();
+```

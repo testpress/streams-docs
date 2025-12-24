@@ -673,12 +673,12 @@ enableFullscreen()
 
 **Returns** 
 ```bash
-void
+Promise<void>
 ```
 
 **Example**
 ```js
-enableFullscreen();
+player.enableFullscreen();
 ```
 
 ### Disable Fullscreen Toggle Visibility
@@ -693,10 +693,10 @@ disableFullscreen()
 
 **Returns** 
 ```bash
-void
+Promise<void>
 ```
 
 **Example**
 ```js
-disableFullscreen();
+player.disableFullscreen();
 ```

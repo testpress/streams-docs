@@ -94,7 +94,7 @@ Above response can also be obtained by asset detail API **/api/v1/<organization_
 Upload multiple videos in a single request by sending an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
 
 ```bash
-https://app.tpstreams.com/api/v1/<organization_id>/assets/videos/bulk/
+https://app.tpstreams.com/api/v1/<organization_id>/assets/videos/bulk-create/
 ```
 
 Each video object must follow the same structure as described in [Upload a Video](#upload-an-video).

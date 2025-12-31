@@ -43,8 +43,9 @@ import { TPStreamsPlayerView } from "react-native-tpstreams";
 - `startAt`: (Optional) Position in seconds where playback should start. Default is 0.
 - `shouldAutoPlay`: (Optional) Whether the video should start playing automatically. Default is true.
 - `showDefaultCaptions`: (Optional) Whether to show default captions if available. Default is false.
+- `startInFullscreen`: (Optional) Whether to start the player in fullscreen mode. Default is false.
 - `enableDownload`: (Optional) Whether to enable download functionality for the video. When set to true, the player will show a download button. Default is false.
 - `offlineLicenseExpireTime`: (Optional) The expiration time for offline licenses in seconds. If not provided, defaults to 15 days (1,296,000 seconds).
 - `downloadMetadata`: (Optional) Custom metadata to attach to downloads. Accepts an object with string key-value pairs. This metadata is stored with the download and can be retrieved later. Default is undefined.
 
-For a practical implementation and usage of react-native-tpstreams, refer to our [Sample React Native App](https://github.com/testpress/sample_RN_App).
+For a practical implementation and usage of react-native-tpstreams, refer to our [Sample React Native App](https://github.com/testpress/sample-rn-player-app).

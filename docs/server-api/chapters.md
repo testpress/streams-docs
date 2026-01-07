@@ -1,6 +1,17 @@
+---
+sidebar_position: 9
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Chapters
+
+Manage video chapters to enable navigation within your video content.
+
 ## Add Video Chapters
 
-To create chapters for an existing video asset, send an HTTP **POST** request to the API Endpoint with the authentication header.
+To create chapters for an existing video asset, send an HTTP **POST** request to the API endpoint with the [authentication header](./authentication.md).
 
 ### Endpoint
 
@@ -22,13 +33,8 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/chapters/
 | `title`      | string | Title of the chapter                           | Yes      |
 | `start_time` | string | `HH:MM:SS` timestamp within the video duration | Yes      |
 
-ng | `HH:MM:SS` timestamp within the video duration | Yes      |
 
-
-### Create Chapters Request Examples
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+### Examples
 
 <Tabs>
   <TabItem value="curl" label="cURL" default>
@@ -87,7 +93,7 @@ print(response.json())
 
 ## View Video Chapters
 
-To retrieve chapters for a specific video asset, send an HTTP **GET** request to the API Endpoint with the authentication header.
+To retrieve chapters for a specific video asset, send an HTTP **GET** request to the API endpoint with the [authentication header](./authentication.md).
 
 ### Endpoint
 
@@ -95,7 +101,7 @@ To retrieve chapters for a specific video asset, send an HTTP **GET** request to
 https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/chapters/
 ```
 
-### Get Chapters Examples
+### Examples
 
 <Tabs>
   <TabItem value="curl" label="cURL" default>
@@ -141,7 +147,7 @@ print(response.json())
 
 ## Delete a Video Chapter
 
-To delete a specific chapter from a video asset, send an HTTP **DELETE** request to the API Endpoint with the authentication header.
+To delete a specific chapter from a video asset, send an HTTP **DELETE** request to the API endpoint with the [authentication header](./authentication.md).
 
 ### Endpoint
 
@@ -149,7 +155,7 @@ To delete a specific chapter from a video asset, send an HTTP **DELETE** request
 https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/chapters/<chapter_id>/
 ```
 
-### Delete Chapter Examples
+### Examples
 
 <Tabs>
   <TabItem value="curl" label="cURL" default>

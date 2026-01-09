@@ -26,7 +26,7 @@ The following code snippet demonstrates how to set up a download delegate to rec
 TPStreamsDownloadManager.shared.setTPStreamsDownloadDelegate(tpStreamsDownloadDelegate: self)
 ```
 
-Using `TPStreamsDownloadManager.shared` you can get a list of downloaded media and perform operations to delete, pause, resume, and cancel downloads.
+Using `TPStreamsDownloadManager.shared` you can get a list of downloaded media and perform operations to delete and cancel downloads.
 
 #### Get List of Downloaded Media
 
@@ -76,8 +76,8 @@ Use `TPAVPlayer` with the offline asset ID to play downloaded content:
 ```swift
 if TPStreamsDownloadManager.shared.isAssetDownloaded(assetID: assetId) {
     player = TPAVPlayer(offlineAssetId: assetId) { error in
-        guard error == nil else {
-            print("Playback error: \(error!.localizedDescription)")
+        if let error = error {
+            print("Playback error: \(error.localizedDescription)")
             return
         }
         print("Playback started successfully")

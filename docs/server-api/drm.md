@@ -61,6 +61,12 @@ POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_l
 |                                                   | - HDCP_V2_3                                          |
 |                                                   | - HDCP_NO_DIGITAL_OUTPUT                             |
 +---------------------------------------------------+------------------------------------------------------+
+| license_duration                                  | The total duration (in seconds) that the DRM         |
+|                                                   | license is valid. Once this time expires, the        |
+|                                                   | player must request a new license to continue        |
+|                                                   | playback. Set to 0 for unlimited duration            |
+|                                                   | (not recommended for rental content).                |
++---------------------------------------------------+------------------------------------------------------+
 
 **Sample Payload:**
 
@@ -74,7 +80,8 @@ POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_l
             {'track_type': 'UHD1', 'security_level': 1, 'required_output_protection': {'hdcp': 'HDCP_V1'}},
             {'track_type': 'UHD2', 'security_level': 1, 'required_output_protection': {'hdcp': 'HDCP_V1'}},
             {'track_type': 'AUDIO', 'security_level': 1, 'required_output_protection': {'hdcp': 'HDCP_V1'}}
-        ]
+        ],
+        "license_duration": 3600,
     }
 }
 ```

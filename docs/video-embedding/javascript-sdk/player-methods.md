@@ -601,6 +601,45 @@ player.setCustomErrorMessage({
 Only the four error types listed above can be customized. If you don't provide a custom message for a specific error type, the system's default error message will be used.
 :::
 
+---
+
+### Set custom DRM license endpoint
+
+This method allows you to configure a custom DRM license endpoint for the player.
+By default, the embedded player directly calls the platform’s DRM license API. Using this method, API clients can instead route DRM license requests through their own endpoint, which can act as a DRM proxy.
+
+This enables clients to:
+
+* Inject additional DRM configuration or policies
+* Customize request payloads before forwarding them
+* Extend DRM behavior without changing the existing license contract
+
+The configured endpoint receives the DRM challenge from the player, processes or enriches the request as needed, forwards it to the platform’s DRM license API, and returns the license response back to the player.
+
+**Function**
+
+```js
+setDRMURL(url)
+```
+
+**Returns**
+
+```bash
+Promise <void>
+```
+
+**Example**
+
+```js
+player.setDRMURL("https://client.example.com/drm-proxy").then(function() {
+  // Custom DRM endpoint is configured
+}).catch(function(error) {
+  // Handle errors
+});
+```
+
+---
+
 ### Clear custom error messages
 
 This method clears all previously set custom error messages. After calling this method, the player will use the system's default error messages for all error types.

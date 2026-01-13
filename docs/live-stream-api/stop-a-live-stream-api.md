@@ -30,15 +30,38 @@ You can optionally add trim parameters to the stop API request body to schedule 
 
 | Name             | Type         | Description |    Required  |
 | -----------      | -----------  | ----------- |   ---------- |
-| start_time       | integer      | Start time in seconds from the beginning of the recording | Yes (for trim) |
-| end_time         | integer      | End time in seconds from the beginning of the recording | Yes (for trim) |
+| start_time       | integer      | Start time for trim. Can be either relative seconds from the beginning of the recording or epoch timestamp | Yes (for trim) |
+| end_time         | integer      | End time for trim. Can be either relative seconds from the beginning of the recording or epoch timestamp | Yes (for trim) |
 
-**Sample request body with trim scheduling**
+**Timestamp Formats**
+
+You can specify trim times using either of the following formats:
+
+1. **Relative Seconds**: Time in seconds from the beginning of the recording
+2. **Epoch Timestamps**: Unix timestamps
+
+:::important
+
+- Both `start_time` and `end_time` must use the same format (either both relative seconds or both epoch timestamps)
+- Mixing formats in a single request is not allowed
+
+:::
+
+**Sample request body with relative seconds**
 
 ```json
 {
     "start_time": 30,
     "end_time": 120
+}
+```
+
+**Sample request body with epoch timestamps**
+
+```json
+{
+    "start_time": 1736754600,
+    "end_time": 1736754900
 }
 ```
 

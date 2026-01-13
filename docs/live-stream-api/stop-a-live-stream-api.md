@@ -42,7 +42,7 @@ You can specify trim times using either of the following formats:
 
 :::important
 
-- Both `start_time` and `end_time` must use the same format (either both relative seconds or both epoch timestamps)
+- Both `start_time` and `end_time` must use the same format (either relative seconds or epoch timestamps).
 - Mixing formats in a single request is not allowed
 
 :::

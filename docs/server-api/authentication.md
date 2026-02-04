@@ -120,3 +120,118 @@ The response will return an token which should be prefixed with Token and includ
 ```bash
 Authorization: Token auth-token-string
 ```
+---
+## Logout and Delete Authentication Token
+
+Clients can invalidate an existing authentication token using the logout API.  
+This operation permanently deletes the token and prevents it from being used for any future API requests.
+
+**Best Practices for Token Revocation**
+
+* **Logout When Done:** Always revoke tokens when they are no longer needed (for example, user logout).
+* **Immediate Revocation:** If a token is suspected to be compromised, revoke it immediately.
+* **One-Time Action:** Once revoked, the token cannot be reused or recovered.
+* **Client Responsibility:** Clients must explicitly call the logout API to invalidate tokens.
+
+Following these practices improves security and prevents unauthorized access.
+
+---
+
+:::important
+The logout operation **permanently deletes the token** from the system.  
+Any API request made with a revoked token will be rejected.
+:::
+
+Make a **POST** request to the following endpoint to revoke an authentication token.
+
+**POST https://app.tpstreams.com/api/auth/logout**
+
+### Request Headers
+
+| Name            | Type   | Description |
+|-----------------|--------|-------------|
+| Authorization   | string | Authentication token prefixed with `Token` |
+
+**Example Header**
+```bash
+Authorization: Token auth-token-string
+```
+### Sample code
+
+<Tabs>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+url = "https://app.tpstreams.com/api/auth/logout"
+
+headers = {
+    "Authorization": "Token auth-token-string",
+    "content-type": "application/json",
+}
+
+response = requests.post(url, headers=headers)
+
+print(response.status_code)
+
+```
+
+</TabItem>
+<TabItem value="rb" label="Ruby">
+
+```rb
+require 'uri'
+require 'net/http'
+
+url = URI("https://app.tpstreams.com/api/auth/logout")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+
+request = Net::HTTP::Post.new(url)
+request["Authorization"] = "Token auth-token-string"
+request["Content-Type"] = "application/json"
+
+response = http.request(request)
+puts response.code
+
+
+```
+
+</TabItem>
+
+<TabItem value="php" label="php">
+
+```php
+
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://app.tpstreams.com/api/auth/logout',
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_HTTPHEADER => array(
+    'Authorization: Token auth-token-string',
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+
+```
+
+</TabItem>
+</Tabs>
+
+### Response
+
+On successful token revocation, the API returns:
+
+```http
+204 No Content
+```

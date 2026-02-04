@@ -144,7 +144,7 @@ Any API request made with a revoked token will be rejected.
 
 Make a **POST** request to the following endpoint to revoke an authentication token.
 
-**POST https://app.tpstreams.com/api/auth/logout**
+**POST https://app.tpstreams.com/api/auth/logout/**
 
 ### Request Headers
 
@@ -164,11 +164,10 @@ Authorization: Token auth-token-string
 ```py
 import requests
 
-url = "https://app.tpstreams.com/api/auth/logout"
+url = "https://app.tpstreams.com/api/auth/logout/"
 
 headers = {
     "Authorization": "Token auth-token-string",
-    "content-type": "application/json",
 }
 
 response = requests.post(url, headers=headers)
@@ -184,14 +183,13 @@ print(response.status_code)
 require 'uri'
 require 'net/http'
 
-url = URI("https://app.tpstreams.com/api/auth/logout")
+url = URI("https://app.tpstreams.com/api/auth/logout/")
 
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
 
 request = Net::HTTP::Post.new(url)
 request["Authorization"] = "Token auth-token-string"
-request["Content-Type"] = "application/json"
 
 response = http.request(request)
 puts response.code
@@ -201,7 +199,7 @@ puts response.code
 
 </TabItem>
 
-<TabItem value="php" label="php">
+<TabItem value="php" label="PHP">
 
 ```php
 
@@ -210,18 +208,17 @@ puts response.code
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://app.tpstreams.com/api/auth/logout',
-  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_URL => 'https://app.tpstreams.com/api/auth/logout/',
+  CURLOPT_POST => true,
+  CURLOPT_RETURNTRANSFER => true,
   CURLOPT_HTTPHEADER => array(
-    'Authorization: Token auth-token-string',
-    'Content-Type: application/json'
+    'Authorization: Token auth-token-string'
   ),
 ));
-
 $response = curl_exec($curl);
-
+$http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 curl_close($curl);
-echo $response;
+echo $http_code;
 
 ```
 

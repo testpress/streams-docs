@@ -121,24 +121,24 @@ The response will return an token which should be prefixed with Token and includ
 Authorization: Token auth-token-string
 ```
 ---
-## Logout and Delete Authentication Token
+## Delete Authentication Token
 
-Use the logout API to invalidate an existing authentication token.  
+Use this API to revoke an existing authentication token.  
 This operation permanently deletes the token and prevents it from being used in future API requests.
 
 **Best Practices for Token Revocation**
 
-* **Revoke tokens when no longer needed:** Always invalidate tokens during user logout or when they are no longer required.
-* **Revoke compromised tokens immediately:** If you suspect a token has been compromised, revoke it immediately.
-* **Tokens cannot be recovered:** Once revoked, a token cannot be reused or recovered.
-* **Explicit revocation required:** You must explicitly call the logout API to invalidate tokens.
+- **Revoke tokens when no longer needed:** Always invalidate tokens when they are no longer required.
+- **Revoke compromised tokens immediately:** If you suspect a token has been compromised, revoke it immediately.
+- **Tokens cannot be recovered:** Once revoked, a token cannot be reused or recovered.
+- **Explicit revocation required:** You must explicitly call the token deletion API to invalidate tokens.
 
 Following these practices improves security and prevents unauthorized access.
 
 ---
 
 :::important
-The logout operation **permanently deletes the authentication token supplied in the `Authorization` request header**.  
+The delete operation **permanently deletes the authentication token supplied in the `Authorization` request header**.  
 Once revoked, this token cannot be used for any future API requests, and all requests made using it will be rejected.
 :::
 

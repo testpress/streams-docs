@@ -120,3 +120,115 @@ The response will return an token which should be prefixed with Token and includ
 ```bash
 Authorization: Token auth-token-string
 ```
+---
+## Delete Authentication Token
+
+Use this API to revoke an existing authentication token.  
+This operation permanently deletes the token and prevents it from being used in future API requests.
+
+**Best Practices for Token Revocation**
+
+- **Revoke tokens when no longer needed:** Always invalidate tokens when they are no longer required.
+- **Revoke compromised tokens immediately:** If you suspect a token has been compromised, revoke it immediately.
+- **Tokens cannot be recovered:** Once revoked, a token cannot be reused or recovered.
+- **Explicit revocation required:** You must explicitly call the token deletion API to invalidate tokens.
+
+Following these practices improves security and prevents unauthorized access.
+
+---
+
+:::important
+The delete operation **permanently deletes the authentication token supplied in the `Authorization` request header**.  
+Once revoked, this token cannot be used for any future API requests, and all requests made using it will be rejected.
+:::
+
+Make a **POST** request to the following endpoint to revoke an authentication token.
+
+**POST https://app.tpstreams.com/api/auth/logout/**
+
+### Request Headers
+
+| Name            | Type   | Description |
+|-----------------|--------|-------------|
+| Authorization   | string | Authentication token prefixed with `Token` |
+
+**Example Header**
+```bash
+Authorization: Token auth-token-string
+```
+### Sample code
+
+<Tabs>
+<TabItem value="py" label="Python">
+
+```py
+import requests
+
+url = "https://app.tpstreams.com/api/auth/logout/"
+
+headers = {
+    "Authorization": "Token auth-token-string",
+}
+
+response = requests.post(url, headers=headers)
+
+print(response.status_code)
+
+```
+
+</TabItem>
+<TabItem value="rb" label="Ruby">
+
+```rb
+require 'uri'
+require 'net/http'
+
+url = URI("https://app.tpstreams.com/api/auth/logout/")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+
+request = Net::HTTP::Post.new(url)
+request["Authorization"] = "Token auth-token-string"
+
+response = http.request(request)
+puts response.code
+
+
+```
+
+</TabItem>
+
+<TabItem value="php" label="PHP">
+
+```php
+
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://app.tpstreams.com/api/auth/logout/',
+  CURLOPT_POST => true,
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_HTTPHEADER => array(
+    'Authorization: Token auth-token-string'
+  ),
+));
+$response = curl_exec($curl);
+$http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+curl_close($curl);
+echo $http_code;
+
+```
+
+</TabItem>
+</Tabs>
+
+### Response
+
+On successful token revocation, the API returns:
+
+```http
+204 No Content
+```

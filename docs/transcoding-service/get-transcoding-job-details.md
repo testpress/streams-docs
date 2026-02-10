@@ -27,6 +27,10 @@ Replace <organization_id> with your organization's unique identifier and <job_id
     "start_time": "2023-04-20T23:20:06.034924+12:00",
     "end_time": "2023-04-20T23:40:06.034924+12:00",
     "error_message": null,
+    "client_metadata": {
+        "client_id": "12345",
+        "project": "marketing_campaign_2024"
+    }
 }
 ```
 :::important

@@ -70,7 +70,7 @@ Upon a successful request, you will receive a response like below with informati
     "output_path": "s3://example-bucket/path/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
     "start_time": null,
     "end_time": null,
-    "error_message" : null,
+    "error_message": null,
     "client_metadata": {
         "client_id": "12345",
         "project": "marketing_campaign_2024"

@@ -18,7 +18,11 @@ You have the flexibility to choose the method that best fits your workflow. Whet
 {
     "input_url": "https://example.com/input-video.mp4",
     "output_path": "s3://example-bucket/path/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
-    "resolutions": ["240p", "480p"]
+    "resolutions": ["240p", "480p"],
+    "client_metadata": {
+        "client_id": "12345",
+        "project": "marketing_campaign_2024"
+    }
 }
 ```
 
@@ -28,7 +32,11 @@ You have the flexibility to choose the method that best fits your workflow. Whet
 {
     "input_path": "s3://example-bucket/video.mp4/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
     "output_path": "s3://example-bucket/path/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
-    "resolutions": ["240p", "480p"]
+    "resolutions": ["240p", "480p"],
+    "client_metadata": {
+        "client_id": "12345",
+        "project": "marketing_campaign_2024"
+    }
 }
 ```
 
@@ -39,7 +47,11 @@ Here's a breakdown of the fields in the payload:
 | input_url       | The URL of the input video file you want to transcode. **OR** The S3 bucket path of the input video file. If using the S3 path, ensure the access_key , secret_key and region match the bucket's credentials. |
 | output_path     | The S3 bucket path where the transcoded video files will be stored. Ensure a unique path for each transcoding job. The access_key , secret_key and region query parameters should match the bucket's credentials. | 
 | resolutions     | An array of resolutions for transcoding the video. Specify multiple resolutions as needed. Options include 240p, 360p, 480p, 720p, and 1080p.                                      |
+| client_metadata | (Optional) A JSON object containing custom metadata for your reference. This metadata will be returned in the job response and webhook notifications. Maximum size: 10 KB.                                      |
 
+:::important
+The `client_metadata` field is optional and can be used to store custom data for your internal purposes (e.g., tracking client IDs, project names, or reference information). The server does not modify or interpret this data—it simply stores and returns it exactly as provided in API responses and webhook notifications.
+:::
 
 #### Response 
 
@@ -58,7 +70,11 @@ Upon a successful request, you will receive a response like below with informati
     "output_path": "s3://example-bucket/path/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
     "start_time": null,
     "end_time": null,
-    "error_message" : null,    
+    "error_message" : null,
+    "client_metadata": {
+        "client_id": "12345",
+        "project": "marketing_campaign_2024"
+    }
 }
 ```
 :::important
@@ -86,5 +102,9 @@ Upon registering a webhook, you will receive a status change along with informat
     "output_path": "s3://example-bucket/path/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
     "start_time": "2023-11-22T12:30:00Z",
     "end_time": null,
-    "error_message": null
+    "error_message": null,
+    "client_metadata": {
+        "client_id": "12345",
+        "project": "marketing_campaign_2024"
+    }
 }

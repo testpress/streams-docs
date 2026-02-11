@@ -47,10 +47,16 @@ Here's a breakdown of the fields in the payload:
 | **Name**          | **Description**                                                                                                       |
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | input_url       | The URL of the input video file you want to transcode. **OR** The S3 bucket path of the input video file. If using the S3 path, ensure the access_key , secret_key and region match the bucket's credentials. |
-| output_path     | The S3 bucket path where the transcoded video files will be stored. Ensure a unique path for each transcoding job. The access_key , secret_key and region query parameters should match the bucket's credentials. | 
+| output_path     | The storage bucket path where the transcoded video files will be stored. You may include credentials in the query parameters, or omit them if your storage is already configured for your account. If storage is not configured, requests without credentials will not be accepted. | 
 | resolutions     | An array of resolutions for transcoding the video. Specify multiple resolutions as needed. Options include 240p, 360p, 480p, 720p, and 1080p.                                      |
 | enable_drm      | (Optional) This flag allows you to enable Digital Rights Management (DRM) for your video. When set to `true`, your content will be encrypted using Widevine and Fairplay, and a `drm_content_id` will be returned in the response. This ID is required to generate playback licenses. Defaults to `false`. |
 | client_metadata | (Optional) A JSON object containing custom metadata for your reference. This metadata will be returned in the job response and webhook notifications. Maximum size: 10 KB.                                      |
+
+:::important
+Storage credentials (`access_key`, `secret_key`, and `region`) are optional in the `output_path`. 
+
+You may omit them if storage is already configured for your account. If storage is not configured, please contact **TPStreams Support** to set up storage before omitting these fields.
+:::
 
 :::important
 The `client_metadata` field is optional and can be used to store custom data for your internal purposes (e.g., tracking client IDs, project names, or reference information). The server does not modify or interpret this data—it simply stores and returns it exactly as provided in API responses and webhook notifications.

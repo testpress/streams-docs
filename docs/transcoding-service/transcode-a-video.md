@@ -117,7 +117,7 @@ Upon registering a webhook, you will receive a status change along with informat
 }
 ```
 
-:::note
+:::important
 The `drm_content_id` is required to generate playback licenses.
 :::
 

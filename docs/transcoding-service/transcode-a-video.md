@@ -54,10 +54,8 @@ Here's a breakdown of the fields in the payload:
 
 :::important
 - **output_path** : Storage credentials (`access_key`, `secret_key`, and `region`) are optional. You may omit them if storage is configured for your account. If storage is not configured, please contact **TPStreams Support** to enable it before omitting these fields.
-
 - **client_metadata** : This field is optional and can be used to store custom data for your internal purposes (e.g., tracking client IDs, project names, or reference information). The server does not modify or interpret this data—it stores and returns it exactly as provided in API responses and webhook notifications.
 :::
-
 
 #### Response 
 

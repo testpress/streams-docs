@@ -19,6 +19,7 @@ You have the flexibility to choose the method that best fits your workflow. Whet
     "input_url": "https://example.com/input-video.mp4",
     "output_path": "s3://example-bucket/path/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
     "resolutions": ["240p", "480p"],
+    "enable_drm": true,
     "client_metadata": {
         "client_id": "12345",
         "project": "marketing_campaign_2024"
@@ -33,6 +34,7 @@ You have the flexibility to choose the method that best fits your workflow. Whet
     "input_path": "s3://example-bucket/video.mp4/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
     "output_path": "s3://example-bucket/path/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
     "resolutions": ["240p", "480p"],
+    "enable_drm": true,
     "client_metadata": {
         "client_id": "12345",
         "project": "marketing_campaign_2024"
@@ -47,6 +49,7 @@ Here's a breakdown of the fields in the payload:
 | input_url       | The URL of the input video file you want to transcode. **OR** The S3 bucket path of the input video file. If using the S3 path, ensure the access_key , secret_key and region match the bucket's credentials. |
 | output_path     | The S3 bucket path where the transcoded video files will be stored. Ensure a unique path for each transcoding job. The access_key , secret_key and region query parameters should match the bucket's credentials. | 
 | resolutions     | An array of resolutions for transcoding the video. Specify multiple resolutions as needed. Options include 240p, 360p, 480p, 720p, and 1080p.                                      |
+| enable_drm      | (Optional) This flag allows you to enable Digital Rights Management (DRM) for your video. When set to `true`, your content will be encrypted using Widevine and Fairplay to ensure secure playback and prevent unauthorized access. Defaults to `false`. |
 | client_metadata | (Optional) A JSON object containing custom metadata for your reference. This metadata will be returned in the job response and webhook notifications. Maximum size: 10 KB.                                      |
 
 :::important
@@ -66,6 +69,8 @@ Upon a successful request, you will receive a response like below with informati
         ],
     "video_duration": null,
     "status": "Queued",
+    "enable_drm": true,
+    "drm_content_id": "8216dcdb-90c3-4a4f-8abf-1671630a8817",
     "input_url": "https://example.com/input-video.mp4",
     "output_path": "s3://example-bucket/path/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
     "start_time": null,
@@ -98,6 +103,8 @@ Upon registering a webhook, you will receive a status change along with informat
     ],
     "video_duration": null,
     "status": "transcoding",
+    "enable_drm": true,
+    "drm_content_id": "8216dcdb-90c3-4a4f-8abf-1671630a8817",
     "input_url": "https://example.com/input-video.mp4",
     "output_path": "s3://example-bucket/path/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
     "start_time": "2023-11-22T12:30:00Z",
@@ -108,3 +115,14 @@ Upon registering a webhook, you will receive a status change along with informat
         "project": "marketing_campaign_2024"
     }
 }
+```
+
+:::note
+The `drm_content_id` is required to generate playback licenses.
+:::
+
+### Playing DRM Protected Content
+
+If you enabled DRM, the response includes a `drm_content_id`. You will need this ID to generate a signed license token for playback.
+
+Learn how to generate the license token and URL in the [Getting license to playback the content](../drm-service/get-license.md) guide.

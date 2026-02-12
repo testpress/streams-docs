@@ -111,7 +111,7 @@ encoded_content_data = generate_content_data("cf6c30dd50c1492e82344ea3e139da1d")
 signature = generate_signature(encoded_content_data, key, iv)
 ```
 
-**Fields**
+**Parameters**
 
 | Name              | Type   | Description                                                                 | Required |
 | ----------------- | ------ | --------------------------------------------------------------------------- | -------- |

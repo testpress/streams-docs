@@ -62,6 +62,10 @@ To learn more about [Widevine parameter](/docs/drm-service/widevine-specs)
 |                                                   | - HDCP_V2_3                                          |
 |                                                   | - HDCP_NO_DIGITAL_OUTPUT                             |
 +---------------------------------------------------+------------------------------------------------------+
+| license_duration_seconds (optional)                | How long the license is valid (seconds). Default: 15 days. |
++---------------------------------------------------+------------------------------------------------------+
+| rental_duration_seconds (optional)                 | Rental/offline window (seconds). Default: 15 days.   |
++---------------------------------------------------+------------------------------------------------------+
 
 **Sample Payload:**
 
@@ -69,6 +73,8 @@ To learn more about [Widevine parameter](/docs/drm-service/widevine-specs)
 {
     "player_payload": keyMessageInbase64,
     "widevine": {
+        "license_duration_seconds": 3600,
+        "rental_duration_seconds": 86400,
         "content_key_specs": [
             {'track_type': 'SD', 'security_level': 1, 'required_output_protection': {'hdcp': 'HDCP_V1'}},
             {'track_type': 'HD', 'security_level': 1, 'required_output_protection': {'hdcp': 'HDCP_V1'}},

@@ -126,4 +126,4 @@ The `drm_content_id` is required to generate playback licenses.
 
 If you enabled DRM, the response includes a `drm_content_id`. You will need to use this ID as the `content_id` when generating a signed license token for playback.
 
-Learn how to generate the license token and URL in the [Getting license to playback the content](../drm-service/get-license.md) guide.
+Learn how to generate the license token and URL in the [Get license](../drm-service/widevine-configuration) (Widevine) or [FairPlay Configuration](../drm-service/fairplay-configuration) guides.

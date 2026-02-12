@@ -14,4 +14,4 @@ Currently, there are two major DRM providers:
 
 DRM Service consists of two parts
 - Encrypting the content
-- Getting license to playback the content
+- Getting license to playback the content (Widevine and FairPlay)

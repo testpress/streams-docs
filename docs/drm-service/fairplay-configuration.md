@@ -65,7 +65,7 @@ To generate encoded data you need content data [Generating Content Data](#genera
 
 ### Generating Content Data
 
-You can obtain the Encoded data by performing the following steps in Python:
+You can obtain the content data by performing the following steps in Python:
 
 ```python
 import json

@@ -65,7 +65,7 @@ To learn more about [Widevine parameter](/docs/drm-service/widevine-specs)
 | license_duration_seconds (optional)               | How long the license is valid (seconds).             |
 |                                                   | Default: 15 days (1,296,000 seconds).                |
 +---------------------------------------------------+------------------------------------------------------+
-| rental_duration_seconds (optional)                 | Rental/offline window (seconds).                     |
+| rental_duration_seconds (optional)                | Rental/offline window (seconds).                     |
 |                                                   | Default: 15 days (1,296,000 seconds).                |
 +---------------------------------------------------+------------------------------------------------------+
 

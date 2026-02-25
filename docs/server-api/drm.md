@@ -86,6 +86,45 @@ POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_l
 }
 ```
 
+---
+
+### FairPlay DRM License
+
+To play DRM-protected videos on Apple devices, your player must request a FairPlay license from the TPStreams server.
+
+**Request URL**
+
+```http
+POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_license/?access_token={{access_token}}&drm_type=fairplay
+```
+
+**Request Body**
+
+The request must include a JSON payload containing the base64-encoded **Server Playback Context (SPC)**.
+
+| Field            | Type   | Description                                    |
+| :--------------- | :----- | :--------------------------------------------- |
+| `player_payload` | String | **(Required)** The base64-encoded SPC message. |
+
+**Sample Payload:**
+
+```json
+{
+  "player_payload": "<base64_encoded_spc_data>"
+}
+```
+
+---
+
+**Response**
+
+The API returns the raw binary license.
+
+- **Content-Type**: `application/octet-stream`
+- **Body**: Raw binary data (Widevine License or FairPlay Content Key Context).
+
+---
+
 **Security Considerations:**
 
-The recommendation is to invoke the DRM license endpoint on the server, rather than on the client. This precaution is taken because passing the License configuration and calling it from the client could expose configurations to users. 
+The recommendation is to invoke the DRM license endpoint on the server, rather than on the client. This precaution is taken because passing the License configuration and calling it from the client could expose configurations to users.

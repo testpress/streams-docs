@@ -9,17 +9,23 @@ To play DRM protected videos, your player should request DRM licence from our UR
 This API requires [access_token](../video-embedding/authentication.md) in query param for authentication.
 
 ```bash
-POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_license/?access_token={{access_token}}
+POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_license/?access_token={{access_token}}&drm_type={{drm_type}}
 ```
-**Fields**
 
-| Name           | Type   | Description                                            | Required |
-| -------------- | ------ | ------------------------------------------------------ | -------- |
-| player_payload | string | Player license key message encoded into base64 String. | Yes      |
-| widevine       | json   | See the Widevine table below for available fields.     | No       |
+**Query Parameters**
 
-  
-**Widevine**
+| Name       | Type   | Description                                       | Default    |
+| ---------- | ------ | ------------------------------------------------- | ---------- |
+| `drm_type` | string | The type of DRM. Options: `widevine`, `fairplay`. | `widevine` |
+
+**Request Body**
+
+| Name             | Type   | Description                                                                                                           | Required |
+| ---------------- | ------ | --------------------------------------------------------------------------------------------------------------------- | -------- |
+| `player_payload` | string | For **Widevine**, this is the key message. For **FairPlay**, this is the Server Playback Context (SPC) message. This **must be encoded in base64** to be sent within the JSON body. | Yes      |
+| `widevine`       | object | Additional configurations for Widevine. See the Widevine table below.                                                 | No       |
+
+**Widevine Configuration Fields**
 
 +---------------------------------------------------+------------------------------------------------------+
 | **Name**                                          |  **Description**                                     |
@@ -68,24 +74,72 @@ POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_l
 |                                                   | (not recommended for rental content).                |
 +---------------------------------------------------+------------------------------------------------------+
 
-**Sample Payload:**
+**Sample Payloads**
+
+<details>
+<summary>Widevine Sample</summary>
 
 ```json
 {
-    "player_payload": keyMessageInbase64,
-    "widevine": {
-        "content_key_specs": [
-            {'track_type': 'SD', 'security_level': 1, 'required_output_protection': {'hdcp': 'HDCP_V1'}},
-            {'track_type': 'HD', 'security_level': 1, 'required_output_protection': {'hdcp': 'HDCP_V1'}},
-            {'track_type': 'UHD1', 'security_level': 1, 'required_output_protection': {'hdcp': 'HDCP_V1'}},
-            {'track_type': 'UHD2', 'security_level': 1, 'required_output_protection': {'hdcp': 'HDCP_V1'}},
-            {'track_type': 'AUDIO', 'security_level': 1, 'required_output_protection': {'hdcp': 'HDCP_V1'}}
-        ],
-        "license_duration": 3600,
-    }
+  "player_payload": "<base64_encoded_key_message>",
+  "widevine": {
+    "content_key_specs": [
+      {
+        "track_type": "SD",
+        "security_level": 1,
+        "required_output_protection": { "hdcp": "HDCP_V1" }
+      },
+      {
+        "track_type": "HD",
+        "security_level": 1,
+        "required_output_protection": { "hdcp": "HDCP_V1" }
+      },
+      {
+        "track_type": "UHD1",
+        "security_level": 1,
+        "required_output_protection": { "hdcp": "HDCP_V1" }
+      },
+      {
+        "track_type": "UHD2",
+        "security_level": 1,
+        "required_output_protection": { "hdcp": "HDCP_V1" }
+      },
+      {
+        "track_type": "AUDIO",
+        "security_level": 1,
+        "required_output_protection": { "hdcp": "HDCP_V1" }
+      }
+    ],
+    "license_duration": 3600
+  }
 }
 ```
 
+</details>
+
+<details>
+<summary>FairPlay Sample</summary>
+
+```json
+{
+  "player_payload": "<base64_encoded_spc_data>"
+}
+```
+
+</details>
+
+---
+
+### Response
+
+The API returns the raw binary license which should be passed directly to the browser's CDM or the player SDK.
+
+- **Status Code**: `200 OK`
+- **Content-Type**: `application/octet-stream`
+- **Body**: Raw binary data (Widevine License or FairPlay Content Key Context).
+
+---
+
 **Security Considerations:**
 
-The recommendation is to invoke the DRM license endpoint on the server, rather than on the client. This precaution is taken because passing the License configuration and calling it from the client could expose configurations to users. 
+The recommendation is to invoke the DRM license endpoint on the server, rather than on the client. This precaution is taken because passing the License configuration and calling it from the client could expose configurations to users.

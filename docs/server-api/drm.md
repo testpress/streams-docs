@@ -130,7 +130,7 @@ POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_l
 
 ---
 
-**Response**
+### Response
 
 The API returns the raw binary license which should be passed directly to the browser's CDM or the player SDK.
 

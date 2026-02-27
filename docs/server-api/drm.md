@@ -70,12 +70,6 @@ POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_l
 |                                                   | - HDCP_V2_3                                          |
 |                                                   | - HDCP_NO_DIGITAL_OUTPUT                             |
 +---------------------------------------------------+------------------------------------------------------+
-| license_duration                                  | The total duration (in seconds) that the DRM         |
-|                                                   | license is valid. Once this time expires, the        |
-|                                                   | player must request a new license to continue        |
-|                                                   | playback. Set to 0 for unlimited duration            |
-|                                                   | (not recommended for rental content).                |
-+---------------------------------------------------+------------------------------------------------------+
 
 **Sample Payloads**
 

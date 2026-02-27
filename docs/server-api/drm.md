@@ -22,11 +22,11 @@ POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_l
 
 | Name                       | Type    | Description                                                                                                               | Required |
 | -------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `player_payload`           | string  | For **Widevine**, this is the key message. For **FairPlay**, this is the SPC message. This **must be encoded in base64**.                                              | Yes      |
+| `player_payload`           | string  | For **Widevine**, this is the key message. For **FairPlay**, this is the SPC message. This **must be encoded in base64**. | Yes      |
 | `license_duration_seconds` | integer | The total duration (in seconds) that the DRM license is valid for Widevine. Once this time expires, the player must request a new license to continue playback. | No       |
 | `lease_duration_seconds`   | integer | The total duration (in seconds) that the DRM license is valid for FairPlay. Once this time expires, the player must request a new license to continue playback. | No       |
-| `is_persistent`    | boolean | Set to true to allow the license to be stored for offline viewing.                                                             | No       |
-| `widevine`                 | object  | Additional configurations for Widevine. See the Widevine table below.                                                               | No       |
+| `is_persistent`            | boolean | Set to true to allow the license to be stored for offline viewing.                                                        | No       |
+| `widevine`                 | object  | Additional configurations for Widevine. See the Widevine table below.                                                     | No       |
 
 **Widevine Configuration Fields**
 

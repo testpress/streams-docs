@@ -9,5 +9,6 @@ Welcome to the Transcoding as a Service documentation! This guide is your gatewa
 
 Refer the documentation below for more information.
 - [Transcode a Video](transcode-a-video)
+- [List all Transcoding Jobs](list-all-transcoding-jobs)
 - [Get Transcoding Job Details](get-transcoding-job-details)
 - [Cancel Transcoding Job](transcoding-cancelation)

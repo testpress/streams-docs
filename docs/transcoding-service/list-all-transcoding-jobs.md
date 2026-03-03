@@ -19,10 +19,12 @@ You can filter and order the list of transcoding jobs using the following query 
 | :--- | :--- | :--- |
 | `status` | string | Filter jobs by status. You can provide multiple statuses by repeating the parameter. <br/> Options: `queued`, `transcoding`, `completed`, `error`. |
 | `enable_drm` | boolean | Filter jobs by whether DRM is enabled (`true`) or disabled (`false`). |
+| `created_from` | string | Filter jobs created on or after this date and time (ISO 8601 format). |
+| `created_to` | string | Filter jobs created on or before this date and time (ISO 8601 format). |
 | `ordering` | string | Order the jobs by creation time. <br/> Options: `-created` (Latest first), `created` (Oldest first). |
 
 #### Example request with filters
-`https://app.tpstreams.com/api/v1/<organization_id>/transcoding_jobs/?status=completed&status=error&enable_drm=true&ordering=-created`
+`https://app.tpstreams.com/api/v1/<organization_id>/transcoding_jobs/?status=completed&enable_drm=true&created_from=2023-04-20T00:00:00Z&ordering=-created`
 
 ### Sample Response
 
@@ -41,7 +43,7 @@ The response is paginated and contains a list of transcoding jobs.
                 "480p"
             ],
             "video_duration": 120,
-            "status": "Completed",
+            "status": "completed",
             "input_url": "https://example.com/input-video.mp4",
             "output_path": "s3://example-bucket/path/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
             "start_time": "2023-04-20T23:20:06.034924+12:00",
@@ -55,7 +57,7 @@ The response is paginated and contains a list of transcoding jobs.
                 "720p"
             ],
             "video_duration": 300,
-            "status": "Queued",
+            "status": "queued",
             "input_url": "https://example.com/another-video.mp4",
             "output_path": "s3://example-bucket/another-path/?access_key=<access_key>&secret_key=<secret_key>&region=<region>",
             "start_time": null,

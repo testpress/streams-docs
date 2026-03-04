@@ -92,8 +92,8 @@ These events are triggered when an individual download changes state.
 | `onDownloadPaused` | `(item: DownloadItem)` | Download has been paused. |
 | `onDownloadResumed` | `(item: DownloadItem)` | Download has resumed. |
 | `onDownloadCompleted` | `(item: DownloadItem)` | Download finished successfully. |
-| `onDownloadFailed` | `(item: DownloadItem, error: DownloadError)` | Download failed. |
-| `onDownloadStateChanged` | `(item: DownloadItem, error?: DownloadError)` | (Deprecated) General state change listener. |
+| `onDownloadFailed` | `(item, error)` | Download failed. Includes `DownloadError`. |
+| `onDownloadStateChanged` | `(item, error?)` | (Deprecated) General state change listener. |
 | `onDownloadDeleted` | `(videoId: string)` | Triggered when a download is removed. |
 
 ## Data Structures

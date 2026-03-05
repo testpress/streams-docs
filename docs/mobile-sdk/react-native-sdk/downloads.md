@@ -83,7 +83,7 @@ const subscription = onDownloadProgressChanged((downloads: DownloadItem[]) => {
 These events are triggered when an individual download changes state.
 
 :::caution Deprecation Notice
-`onDownloadStateChanged` is being deprecated in the upcoming versions. We recommend using dedicated events like `onDownloadStarted`, `onDownloadCompleted`, etc., for more precise control and better type safety.
+`onDownloadStateChanged` will be deprecated starting from version **v1.1.11**. We recommend using dedicated events like `onDownloadStarted`, `onDownloadCompleted`, etc., for more precise control.
 :::
 
 | Event | Payload | Description |
@@ -117,7 +117,7 @@ interface DownloadItem {
 
 ### `DownloadError`
 
-Returned in `onDownloadFailed` and `onDownloadStateChanged`.
+Returned in `onDownloadFailed`.
 
 ```typescript
 interface DownloadError {
@@ -133,6 +133,7 @@ import React, { useEffect } from 'react';
 import { Alert } from 'react-native';
 import { 
   addDownloadProgressListener, 
+  removeDownloadProgressListener,
   onDownloadCompleted, 
   onDownloadFailed 
 } from 'react-native-tpstreams';
@@ -153,6 +154,8 @@ const MyComponent = () => {
     });
 
     return () => {
+      // 4. Cleanup background tracking and listeners
+      removeDownloadProgressListener();
       completedSub.remove();
       failedSub.remove();
     };

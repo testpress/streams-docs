@@ -20,10 +20,14 @@ POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_l
 
 **Request Body**
 
-| Name             | Type   | Description                                                                                                           | Required |
-| ---------------- | ------ | --------------------------------------------------------------------------------------------------------------------- | -------- |
-| `player_payload` | string | For **Widevine**, this is the key message. For **FairPlay**, this is the Server Playback Context (SPC) message. This **must be encoded in base64** to be sent within the JSON body. | Yes      |
-| `widevine`       | object | Additional configurations for Widevine. See the Widevine table below.                                                 | No       |
+| Name                       | Type    | Description                                                                                                                                                                       | Required |
+| -------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| `player_payload`           | string  | For **Widevine**, this is the key message. For **FairPlay**, this is the SPC message. This **must be encoded in base64**.                                                         | Yes      |
+| `rental_duration_seconds`  | integer | Total validity period (in seconds) of a stored license on the device. Used only for persistent (offline) licenses. Defines how long the license remains usable before it expires. | No       |
+| `license_duration_seconds` | integer | (Widevine only) Duration (in seconds) for which playback is allowed. This defines the active viewing window once playback begins.                                              | No       |
+| `lease_duration_seconds`   | integer | (FairPlay only) Duration (in seconds) for which playback is allowed. This defines the active viewing window once playback begins.                                               | No       |
+| `is_persistent`            | boolean | Set to true to allow the license to be stored on the device for offline playback.                                                                                                   | No       |
+| `widevine`                 | object  | Additional configurations for Widevine. See the Widevine table below.                                                                                                             | No       |
 
 **Widevine Configuration Fields**
 
@@ -67,12 +71,6 @@ POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_l
 |                                                   | - HDCP_V2_3                                          |
 |                                                   | - HDCP_NO_DIGITAL_OUTPUT                             |
 +---------------------------------------------------+------------------------------------------------------+
-| license_duration                                  | The total duration (in seconds) that the DRM         |
-|                                                   | license is valid. Once this time expires, the        |
-|                                                   | player must request a new license to continue        |
-|                                                   | playback. Set to 0 for unlimited duration            |
-|                                                   | (not recommended for rental content).                |
-+---------------------------------------------------+------------------------------------------------------+
 
 **Sample Payloads**
 
@@ -82,6 +80,9 @@ POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_l
 ```json
 {
   "player_payload": "<base64_encoded_key_message>",
+  "license_duration_seconds": 3600,
+  "rental_duration_seconds": 7200,
+  "is_persistent": false,
   "widevine": {
     "content_key_specs": [
       {
@@ -109,8 +110,7 @@ POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_l
         "security_level": 1,
         "required_output_protection": { "hdcp": "HDCP_V1" }
       }
-    ],
-    "license_duration": 3600
+    ]
   }
 }
 ```
@@ -122,7 +122,10 @@ POST: https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/drm_l
 
 ```json
 {
-  "player_payload": "<base64_encoded_spc_data>"
+  "player_payload": "<base64_encoded_spc_data>",
+  "lease_duration_seconds": 3600,
+  "rental_duration_seconds": 7200,
+  "is_persistent": true
 }
 ```
 

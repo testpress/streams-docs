@@ -98,6 +98,34 @@ Fetches the current playback position of the video.
 Duration currentTime = await controller.getCurrentTime();
 ```
 
+### Enter Fullscreen
+
+```dart
+Future<void> enterFullScreen()
+```
+
+Enters fullscreen mode programmatically, providing a fully immersive viewing experience.
+
+**Example Usage:**
+
+```dart
+await controller.enterFullScreen();
+```
+
+### Exit Fullscreen
+
+```dart
+Future<void> exitFullScreen()
+```
+
+Exits fullscreen mode and returns to the normal view.
+
+**Example Usage:**
+
+```dart
+await controller.exitFullScreen();
+```
+
 ### Dispose
 
 ```dart

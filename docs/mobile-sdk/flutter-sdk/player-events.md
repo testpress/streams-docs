@@ -41,11 +41,11 @@ Simply use controller.value.property to access the current state values in the l
 You can also listen to fullscreen-related callbacks:
 
 ```dart
-_controller.onBeforeFullScreenEnter = () {
+_controller?.onBeforeFullScreenEnter = () {
   // Called before entering fullscreen
 };
 
-_controller.onBeforeFullScreenExit = () {
+_controller?.onBeforeFullScreenExit = () {
   // Called before exiting fullscreen
 };
 ```

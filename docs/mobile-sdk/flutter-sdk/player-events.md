@@ -35,3 +35,17 @@ The listener will trigger updates to the following properties of the TPStreamsPl
 - **error:** Provides error information if an error occurs during playback.
 
 Simply use controller.value.property to access the current state values in the listener.
+
+### Fullscreen Callbacks
+
+You can also listen to fullscreen-related callbacks:
+
+```dart
+_controller?.onBeforeFullScreenEnter = () {
+  // Called before entering fullscreen
+};
+
+_controller?.onBeforeFullScreenExit = () {
+  // Called before exiting fullscreen
+};
+```

@@ -4,136 +4,92 @@ sidebar_position: 1
 
 # Getting Started
 
-This SDK enables you to securely stream DRM-protected videos through your Android app.
+TPStreams Android SDK provides an easy way to integrate video playback and offline downloads into your Android application. It supports DRM-protected content, adaptive bitrate streaming, and customizable player UI.
 
-[Sample Android App](https://github.com/testpress/sample-android-app)
+## Installation
 
-## Adding dependency
-- If you have a settings.gradle file in your project root, then you need to add the repositories in the settings.gradle inside dependencyResolutionManagement with the given path below. Else, this will go in build.gradle file in project root.
+Add the JitPack repository to your `settings.gradle` file:
 
-```groovy
-repositories {
-    // other repo, e.g. google() or mavenCentral()
-    maven {
-        url "https://github.com/testpress/maven/raw/main/repo"
+```kotlin
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url = uri("https://jitpack.io") }
     }
 }
 ```
 
-Then reference the library in the dependency section:
+Add the TPStreams SDK dependency to your app level `build.gradle.kts` file:
 
-```groovy
+```kotlin
 dependencies {
-    implementation "com.tpstreams.player:player:3.1.6"
+    implementation("com.github.testpress:TPStreamsAndroidPlayer:1.1.11-beta.1")
 }
 ```
 
-### Using ProGuard
-If you use ProGuard in your app, you might need to add the following rule to your ProGuard file.
-```groovy
--keep class com.tpstream.player.** { *; }
+## Basic Setup
+
+### Initialize the SDK
+Initialize the SDK in your `Application` class or the `onCreate` method of your main activity:
+
+#### Option 1: In Application Class (Recommended)
+```kotlin
+import android.app.Application
+import com.tpstreams.player.TPStreamsSDK
+
+class MyApp : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        TPStreamsSDK.init("YOUR_ORG_ID")
+    }
+}
 ```
 
-## Initializing Player SDK
-
-You need to initialize the Player SDK at the top level in the Activity.
-
+#### Option 2: In Activity Class
 ```kotlin
-class PlayerActivity : AppCompatActivity() {
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.tpstreams.player.TPStreamsSDK
 
+class PlayerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
-        TPStreamsSDK.initialize(TPStreamsSDK.Provider.TPStreams, "organization_id")  //  app.tpstreams.com/api/v1/organizations_id/
+
+        TPStreamsSDK.init("YOUR_ORG_ID")
     }
 }
 ```
 
-## Integrating player fragment
-Drop a TpStreamPlayerFragment into your activity layout with an id. This is the fastest and easiest way to integrate the player into your application. TpStreamPlayerFragment includes a prebuilt UI for the player with ample features and functionality.
+### Add Player View to Layout
+Add the `TPStreamsPlayerView` to your activity or fragment layout XML:
 
 ```xml
-<androidx.fragment.app.FragmentContainerView
-    android:id="@+id/tpstream_player_fragment"
-    android:name="com.tpstream.player.TpStreamPlayerFragment"
+<com.tpstreams.player.TPStreamsPlayerView
+    android:id="@+id/tp_player_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:keepScreenOn="true"
-    tools:layout="@layout/fragment_tp_stream_player" />
-```
-and receive its instance in your activity using findFragmentbyId()
-
-```kotlin
-playerFragment = supportFragmentManager.findFragmentById(R.id.tpstream_player_fragment) as TpStreamPlayerFragment
+    app:layout_constraintDimensionRatio="16:9" />
 ```
 
-
-## Initializing Player And Starting Playback
-
-You can set listener class with onInitializationSuccess method and receive the player in the onInitializationSuccess callback.
+### Initialize the Player
+In your Activity or Fragment, create a `TPStreamsPlayer` instance and attach it to the view:
 
 ```kotlin
-playerFragment.setOnInitializationListener(object: InitializationListener {
-    override fun onInitializationSuccess(player: TpStreamPlayer) {
-        this.player = player
-    }
-})
-```
+import com.tpstreams.player.TPStreamsPlayer
 
-Once you have a player, you can start loading media onto it for playback. You'll need a TpInitParams object to specify which media to load along with your playback preferences.
+// Create player instance
+val player = TPStreamsPlayer.create(
+    context = this, // Use requireContext() if in a Fragment
+    assetId = "YOUR_ASSET_ID",
+    accessToken = "YOUR_ACCESS_TOKEN",
+    shouldAutoPlay = true, // Default is true
+    enableDownload = true,  // Set to true to enable download feature in UI
+    downloadMetadata = mapOf("key" to "value") // Custom metadata for downloads
+)
 
-A TpInitParams object needs videoId, [accessToken](../../server-api/access-token.md) and orgCode.
-
-```kotlin
-try {
-    val parameters = TpInitParams.Builder()
-        .setVideoId(videoId) // mandatory
-        .setAccessToken(accessToken) // mandatory
-        .build()
-    player.load(parameters)
-} catch (exception: IllegalArgumentException){
-    // videoId and accessToken must not be null or empty
-}
-```
-
-
-Final code will look like this
-```kotlin
-override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_player)
-    playerFragment =
-        supportFragmentManager.findFragmentById(R.id.tpstream_player_fragment) asTpStreamPlayerFragment
-    playerFragment.setOnInitializationListener(object: InitializationListener {
-        override fun onInitializationSuccess(player: TpStreamPlayer) {
-            val parameters = TpInitParams.Builder()
-                .setVideoId(videoId)
-                .setAccessToken(accessToken)
-                .build()
-            player.load(parameters)
-        }
-    });
-}
-```
-
-## Initializing Player Even Listener
-
-Set up a listener to handle player even.
-
-```kotlin
-player.setListener(object : TPStreamPlayerListener {
-    override fun onPlaybackStateChanged(playbackState: Int) {
-        Log.d(TAG, "onPlaybackStateChanged: $playbackState")
-    }
-
-    override fun onAccessTokenExpired(videoId: String, callback: (String) -> Unit) {
-        // Provide the new access token.
-        val newAccessToken = "5c49285b-0557-4cef-b214-66034d0b77c3"
-        callback(newAccessToken)
-    }
-
-    override fun onPlayerError(playbackError: PlaybackError) {
-        Log.d(TAG, "onPlayerError: $playbackError")
-    }
-})
+// Attach to view
+binding.tpPlayerView.player = player
 ```

@@ -34,6 +34,7 @@ dependencies {
 ### Initialize the SDK
 Initialize the SDK in your `Application` class or the `onCreate` method of your main activity:
 
+#### Option 1: In Application Class (Recommended)
 ```kotlin
 import android.app.Application
 import com.tpstreams.player.TPStreamsSDK
@@ -41,6 +42,22 @@ import com.tpstreams.player.TPStreamsSDK
 class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
+        TPStreamsSDK.init("YOUR_ORG_ID")
+    }
+}
+```
+
+#### Option 2: In Activity Class
+```kotlin
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.tpstreams.player.TPStreamsSDK
+
+class PlayerActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_player)
+
         TPStreamsSDK.init("YOUR_ORG_ID")
     }
 }

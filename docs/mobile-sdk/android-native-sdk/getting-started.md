@@ -35,6 +35,7 @@ dependencies {
 Initialize the SDK in your `Application` class or the `onCreate` method of your main activity:
 
 ```kotlin
+import android.app.Application
 import com.tpstreams.player.TPStreamsSDK
 
 class MyApp : Application() {
@@ -73,5 +74,5 @@ val player = TPStreamsPlayer.create(
 )
 
 // Attach to view
-binding.tp_player_view.player = player
+binding.tpPlayerView.player = player
 ```

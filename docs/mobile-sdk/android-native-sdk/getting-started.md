@@ -82,7 +82,7 @@ import com.tpstreams.player.TPStreamsPlayer
 
 // Create player instance
 val player = TPStreamsPlayer.create(
-    context = this,
+    context = this, // Use requireContext() if in a Fragment
     assetId = "YOUR_ASSET_ID",
     accessToken = "YOUR_ACCESS_TOKEN",
     shouldAutoPlay = true, // Default is true

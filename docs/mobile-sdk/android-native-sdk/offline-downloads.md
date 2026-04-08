@@ -62,10 +62,13 @@ val downloadItems = downloadClient.getAllDownloadItems()
 ```
 
 ### 6. Handling Download Events
-Implement `DownloadClient.Listener` to receive updates about download progress and state changes.
+Implement `DownloadClient.Listener` to receive updates about download progress and state changes. **Note:** Define the `listener` as a class-level property so it can be accessed in `onDestroy()` for proper cleanup.
 
 ```kotlin
-val listener = object : DownloadClient.Listener {
+private lateinit var listener: DownloadClient.Listener
+
+// Inside your Activity or Fragment onCreate:
+listener = object : DownloadClient.Listener {
     override fun onDownloadStateChanged(downloadItem: DownloadItem, error: Exception?) {
         // Called when state changes (DOWNLOADING, COMPLETED, FAILED, etc.)
         println("Download state: ${downloadItem.state}")

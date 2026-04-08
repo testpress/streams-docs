@@ -21,7 +21,7 @@ dependencyResolutionManagement {
 }
 ```
 
-Add the TPStreams SDK dependency to your app level `build.gradle` file:
+Add the TPStreams SDK dependency to your app level `build.gradle.kts` file:
 
 ```kotlin
 dependencies {

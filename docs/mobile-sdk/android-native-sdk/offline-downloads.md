@@ -12,14 +12,14 @@ val downloadClient = DownloadClient.getInstance(context)
 ```
 
 ### 2. Start a Download
-You can start a download using the `startDownload` method. If no resolution is provided, it will show a resolution selection bottom sheet.
+You can start a download using the `startDownload` method. If no resolution is provided, it will show a resolution selection bottom sheet (only if the context is a `FragmentActivity`).
 
 ```kotlin
 downloadClient.startDownload(
-    context = this,
+    context = this, // resolution = null shows selection UI only if context is FragmentActivity
     assetId = "YOUR_ASSET_ID",
     accessToken = "YOUR_ACCESS_TOKEN",
-    resolution = "720p", // Optional, will show selection sheet if null
+    resolution = "720p", // For non-activity contexts, pass a resolution explicitly ("480p", "720p", etc.)
     metadata = mapOf("category" to "math", "teacher" to "John Doe") // Optional custom metadata
 )
 ```
@@ -65,7 +65,7 @@ val downloadItems = downloadClient.getAllDownloadItems()
 Implement `DownloadClient.Listener` to receive updates about download progress and state changes.
 
 ```kotlin
-downloadClient.addListener(object : DownloadClient.Listener {
+val listener = object : DownloadClient.Listener {
     override fun onDownloadStateChanged(downloadItem: DownloadItem, error: Exception?) {
         // Called when state changes (DOWNLOADING, COMPLETED, FAILED, etc.)
         println("Download state: ${downloadItem.state}")
@@ -79,10 +79,6 @@ downloadClient.addListener(object : DownloadClient.Listener {
 
     override fun onDownloadStarted(downloadItem: DownloadItem) {
         println("Download started: ${downloadItem.title}")
-    }
-
-    override fun onDownloadPaused(downloadItem: DownloadItem) {
-        println("Download paused: ${downloadItem.title}")
     }
 
     override fun onDownloadResumed(downloadItem: DownloadItem) {
@@ -100,5 +96,17 @@ downloadClient.addListener(object : DownloadClient.Listener {
     override fun onDownloadDeleted(assetId: String) {
         println("Download removed for asset: $assetId")
     }
-})
+}
+
+downloadClient.addListener(listener)
+```
+
+### 7. Remove Listener
+To prevent leaking listeners and keep the app production-safe, ensure you remove the listener in `onDestroy()`:
+
+```kotlin
+override fun onDestroy() {
+    super.onDestroy()
+    downloadClient.removeListener(listener)
+}
 ```

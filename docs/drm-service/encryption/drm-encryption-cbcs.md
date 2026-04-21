@@ -58,7 +58,7 @@ The request body must contain a base64 encoded JSON string and a security signat
 #### Sample Request Body
 ```json
 {
-  "request": "eyJjb250ZW50X2lkIjogImNmNmMzMGRkLTUwYzEtNDkyZS04MjM0LTRlYTNlMTM5ZGExZCJ9",
+  "request": "eyJjb250ZW50X2lkIjogImNmNmMzMGRkNTBjMTQ5MmU4MjM0NGVhM2UxMzlZGExZCJ9",
   "signature": "JzwEMcwgf4Tp1b6o5x0HbM08o7PuXA6XnwTmWeHF0g4="
 }
 ```
@@ -66,7 +66,7 @@ The request body must contain a base64 encoded JSON string and a security signat
 ### Response
 ```json
 {
-  "content_id": "cf6c30dd-50c1-492e-8234-4ea3e139da1d",
+  "content_id": "cf6c30dd50c1492e82344ea3e139da1d",
   "key": "3ab60de900d64edf9cb25a76f81794e6",
   "iv": "f70bce4094fd4612abac60d9809c5b0c",
   "uri": "skd://e5573f8bb8ac47ea839a65beae73263d"
@@ -102,7 +102,7 @@ def generate_signature(data, key, iv):
 key = "xxxx"  # AES Signing key
 iv = "yyy"    # AES Signing iv
 data = {
-  "content_id": "cf6c30dd-50c1-492e-8234-4ea3e139da1d"
+  "content_id": "cf6c30dd50c1492e82344ea3e139da1d"
 }
 data = json.dumps(data, separators=(',', ':'))
 signature = generate_signature(data, key, iv)

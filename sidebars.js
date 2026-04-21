@@ -34,6 +34,7 @@ const sidebars = {
       items: [
         'drm-service/encryption/widevine-encryption',
         'drm-service/encryption/fairplay-encryption',
+        'drm-service/encryption/drm-encryption-cbcs',
       ],
     },
     {

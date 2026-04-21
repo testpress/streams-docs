@@ -53,7 +53,7 @@ The request body must contain a base64 encoded JSON string and a security signat
 | :--- | :--- | :--- | :--- |
 | **org_code** | string | Your unique organization code. | Yes |
 | **request** | string | Base64 encoded JSON containing the `content_id`. | Yes |
-| **signature** | string | HMAC-SHA1 signature of the request data. | Yes |
+| **signature** | string | AES-CBC encrypted SHA1 hash of the request data. | Yes |
 
 #### Sample Request Body
 ```json

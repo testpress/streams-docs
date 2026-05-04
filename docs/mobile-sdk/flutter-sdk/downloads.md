@@ -33,7 +33,8 @@ final downloadManager = TPStreamsDownloadManager();
 await downloadManager.startDownload(
   assetId,      // String: Required
   accessToken,  // String: Required
-  metadata,     // Map<String, String> | null: Optional custom metadata
+  metadata,    // Map<String, String> | null: Optional custom metadata
+  resolution,  // String | null: Optional preferred resolution (e.g., "480p", "720p", "1080p")
 );
 ```
 
@@ -42,6 +43,7 @@ await downloadManager.startDownload(
 | `assetId` | `String` | Unique identifier for the video asset. |
 | `accessToken` | `String` | Valid access token for the video. |
 | `metadata` | `Map<String, String>` | (Optional) Any custom key-value pairs you want to attach to the download. |
+| `resolution` | `String` | (Optional) Preferred video quality. Supported values: `360p`, `480p`, `720p`, `1080p`. When specified, the quality picker dialog is skipped and the selected resolution is downloaded.
 
 ## Managing Downloads
 

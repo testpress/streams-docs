@@ -1,86 +1,115 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Offline Downloads
 
-We'll explore the workflow in this document.The [Sample Android App](https://github.com/testpress/sample-android-app) on Github provides code examples for a typical use case.
+TPStreams SDK provides a `DownloadClient` to manage offline video downloads.
 
-## Enable Download support
-
-Create TpInitParams with .enableDownloadSupport(true) to enable download support.
-
+### 1. Initialize Download Manager
 ```kotlin
-var parameters = TpInitParams.Builder()
-    .setVideoId(videoId)
-    .setAccessToken(accessToken)
-    .enableDownloadSupport(true)
-    .setOfflineLicenseExpireTime(60 * 60 * 24 * 15) //15 Days
-    .build()
+val downloadClient = DownloadClient.getInstance(context)
 ```
 
-## Creating a TpStreamsDownloadManager
-
-The following code snippet demonstrates how to instantiate a TpStreamsDownloadManager
-
-```kotlin
-val tpStreamDownloadManager : TpStreamDownloadManager = TpStreamDownloadManager(activityContext)
-```
-
-Using this TpStreamDownloadManager we can get a list of downloaded media and the following media operations to start, delete, pause, resume, and cancel.
-
-#### Get list of downloaded media
+### 2. Start a Download
+You can start a download using the `startDownload` method. If no resolution is provided, it will show a resolution selection bottom sheet (only if the context is a `FragmentActivity`).
 
 ```kotlin
-val downloads : LiveData<List<Asset>?> = tpStreamDownloadManager.getAllDownloads()
+downloadClient.startDownload(
+    context = this, // resolution = null shows selection UI only if context is FragmentActivity
+    assetId = "YOUR_ASSET_ID",
+    accessToken = "YOUR_ACCESS_TOKEN",
+    resolution = "720p", // For non-activity contexts, pass a resolution explicitly ("480p", "720p", etc.)
+    metadata = mapOf("category" to "math", "teacher" to "John Doe") // Optional custom metadata
+)
 ```
-It will return a list of Asset in LiveData to monitor the download progress use ViewModel and observe.
 
-#### Start
+### 3. Custom Metadata for Downloads
+Custom metadata passed during `startDownload` (or `TPStreamsPlayer.create`) is persisted and can be retrieved later from the `DownloadItem`. This is useful for storing extra context like categories, IDs, or any other strings related to the video.
 
 ```kotlin
-// Start download Using TpInitParams
-tpStreamDownloadManager.startDownload(fragmentActivity, params)
-// Start download Using TpStreamPlayer
-tpStreamDownloadManager.startDownload(fragmentActivity, player)
+val allDownloads = downloadClient.getAllDownloadItems()
+allDownloads.forEach { item ->
+    val category = item.metadata["category"]
+    println("Category for ${item.title}: $category")
+}
 ```
 
-#### Delete
+### 4. Manage Downloads (Quick Reference)
+
+| Method | Description |
+| :--- | :--- |
+| `pauseDownload(assetId)` | Pauses an active download. |
+| `resumeDownload(assetId)` | Resumes a paused download. |
+| `removeDownload(assetId)` | Deletes a downloaded video or cancels a pending download. |
+| `isDownloaded(assetId)` | Checks if the video is fully downloaded. |
+
+### 5. Handle Download State and Progress
+To build a custom download UI, you can use the `DownloadItem` provided by the `DownloadClient`.
 
 ```kotlin
-tpStreamDownloadManager.deleteDownload(asset)
+// Get all current downloads
+val downloadItems = downloadClient.getAllDownloadItems()
+
+// DownloadItem Properties:
+// - assetId: String          - Unique identifier for the video
+// - title: String            - Title of the video
+// - thumbnailUrl: String?     - URL to the thumbnail (optional)
+// - totalBytes: Long          - Total size of the video in bytes
+// - downloadedBytes: Long     - Number of bytes downloaded so far
+// - progressPercentage: Float - Progress as a percentage (0.0 - 100.0)
+// - state: Int                - Current state (e.g., STATE_DOWNLOADING, STATE_COMPLETED)
 ```
 
-#### Pause
-
-``` kotlin
-tpStreamDownloadManager.pauseDownload(asset)
-```
-
-#### Resume
+### 6. Handling Download Events
+Implement `DownloadClient.Listener` to receive updates about download progress and state changes. **Note:** Define the `listener` as a class-level property so it can be accessed in `onDestroy()` for proper cleanup.
 
 ```kotlin
-tpStreamDownloadManager.resumeDownload(asset)
+private lateinit var listener: DownloadClient.Listener
+
+// Inside your Activity or Fragment onCreate:
+listener = object : DownloadClient.Listener {
+    override fun onDownloadStateChanged(downloadItem: DownloadItem, error: Exception?) {
+        // Called when state changes (DOWNLOADING, COMPLETED, FAILED, etc.)
+        println("Download state: ${downloadItem.state}")
+    }
+
+    override fun onDownloadsChanged() {
+        // Called periodically (every 1 sec) while any download is active.
+        // Use this to update progress bars or refresh your download list UI.
+        val activeDownloads = downloadClient.getAllDownloadItems()
+    }
+
+    override fun onDownloadStarted(downloadItem: DownloadItem) {
+        println("Download started: ${downloadItem.title}")
+    }
+
+    override fun onDownloadResumed(downloadItem: DownloadItem) {
+        println("Download resumed: ${downloadItem.title}")
+    }
+
+    override fun onDownloadCompleted(downloadItem: DownloadItem) {
+        println("Download complete: ${downloadItem.title}")
+    }
+
+    override fun onDownloadFailed(downloadItem: DownloadItem, error: Exception) {
+        println("Download failed: ${error.message}")
+    }
+
+    override fun onDownloadDeleted(assetId: String) {
+        println("Download removed for asset: $assetId")
+    }
+}
+
+downloadClient.addListener(listener)
 ```
 
-#### Cancel
+### 7. Remove Listener
+To prevent leaking listeners and keep the app production-safe, ensure you remove the listener in `onDestroy()`:
 
 ```kotlin
-tpStreamDownloadManager.cancelDownload(asset)
-```
-
-#### Delete All
-
-```kotlin
-tpStreamDownloadManager.deleteAllDownload()
-```
-
-## Playing downloaded media
-
-Create offline params and pass them to player activity via intent to play an offline video.
-
-```kotlin
-val intent = Intent(activityContext,PlayerActivity::class.java)
-intent.putExtra(TP_OFFLINE_PARAMS,TpInitParams.createOfflineParams(video.videoId))
-startActivity(intent)
+override fun onDestroy() {
+    super.onDestroy()
+    downloadClient.removeListener(listener)
+}
 ```

@@ -384,12 +384,22 @@ To get all assets in the organization, you need to send an HTTP GET request to t
 https://app.tpstreams.com/api/v1/<organization_id>/assets/
 ```
 
-Use these query parameters to filter assets by folder or retrieve root-level assets.
+**Query Parameters**
 
-| Use case | Query parameter | Example |
-| --- | --- | --- |
-| Get assets inside a specific folder | `parent=<folder_id>` | `https://app.tpstreams.com/api/v1/<organization_id>/assets/?parent=4qA6HUN3F7Z` |
-| Get assets that do not belong to any folder | `has_parent=false` | `https://app.tpstreams.com/api/v1/<organization_id>/assets/?has_parent=false` |
+| Name | Type | Description | Required |
+| --- | --- | --- | --- |
+| `parent` | string | UUID of the folder whose assets you want to retrieve. | No |
+| `has_parent` | boolean | Set to `false` to retrieve assets directly under the root directory. | No |
+
+<details>
+<summary>Examples</summary>
+
+```bash
+GET https://app.tpstreams.com/api/v1/<organization_id>/assets/?parent=4qA6HUN3F7Z
+GET https://app.tpstreams.com/api/v1/<organization_id>/assets/?has_parent=false
+```
+
+</details>
 
 **Response**
 ```json

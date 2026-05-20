@@ -384,6 +384,23 @@ To get all assets in the organization, you need to send an HTTP GET request to t
 https://app.tpstreams.com/api/v1/<organization_id>/assets/
 ```
 
+**Query Parameters**
+
+| Name | Type | Description | Required |
+| --- | --- | --- | --- |
+| `parent` | string | UUID of the folder whose assets you want to retrieve. | No |
+| `has_parent` | boolean | Set to `false` to retrieve assets directly under the root directory. | No |
+
+<details>
+<summary>Examples</summary>
+
+```bash
+GET https://app.tpstreams.com/api/v1/<organization_id>/assets/?parent=4qA6HUN3F7Z
+GET https://app.tpstreams.com/api/v1/<organization_id>/assets/?has_parent=false
+```
+
+</details>
+
 **Response**
 ```json
 {

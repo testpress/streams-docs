@@ -603,6 +603,74 @@ If the specified asset is a folder, it will remove all its child assets. you nee
 
 This will delete the specified asset from your organization
 
+## Delete Video Resolutions
+
+To selectively delete one or more transcoded resolutions from a video asset, send an HTTP POST request to the API endpoint along with the [authentication Header](../server-api/authentication.md).
+
+**Endpoint**
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/delete_resolutions/
+```
+
+**Fields**
+
+| Name        | Type  | Description                                                                                     | Required |
+|-------------|-------|-------------------------------------------------------------------------------------------------|----------|
+| resolutions | array | Array of resolution labels to delete (e.g., `["240p", "360p"]`). Note: At least one resolution must remain; deleting all resolutions of a video is not allowed. | Yes      |
+
+**Sample request body**
+
+```json
+{
+    "resolutions": ["240p", "360p"]
+}
+```
+
+**Response**
+
+For successful requests where all requested resolutions are processed or deleted, the API server returns a JSON response with status code `200 OK`:
+
+```json
+{
+    "results": [
+        {
+            "resolution": "240p",
+            "status": "success",
+            "message": "Resolution 240p deleted successfully."
+        },
+        {
+            "resolution": "360p",
+            "status": "success",
+            "message": "Resolution 360p deleted successfully."
+        }
+    ]
+}
+```
+
+If some requested resolutions do not exist while others are deleted successfully, the API server returns a JSON response with status code `207 Multi-Status`:
+
+```json
+{
+    "results": [
+        {
+            "resolution": "240p",
+            "status": "success",
+            "message": "Resolution 240p deleted successfully."
+        },
+        {
+            "resolution": "1080p",
+            "status": "error",
+            "message": "Resolution 1080p does not exist for this video."
+        }
+    ]
+}
+```
+
+:::important
+- Deleting all available resolutions of a video is restricted to prevent unusable assets. Attempting to delete all resolutions will return a `400 Bad Request`.
+- This operation deletes the corresponding HLS playlists (.m3u8), segments (.ts), and static MP4 renditions from cloud storage, updates the master playlist, and invalidates CDN caches.
+:::
+
 ## Move Individual Asset
 To move an asset from one folder to another or to the root directory,  you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md) .
 

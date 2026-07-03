@@ -616,58 +616,75 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/delete_reso
 
 | Name        | Type  | Description                                                                                     | Required |
 |-------------|-------|-------------------------------------------------------------------------------------------------|----------|
-| resolutions | array | Array of resolution labels to delete (e.g., `["240p", "360p"]`). Note: At least one resolution must remain; deleting all resolutions of a video is not allowed. | Yes      |
+| resolutions | array | Array of resolutions to delete (e.g., `[240, 360]`). Note: At least one resolution must remain; deleting all resolutions of a video is not allowed. | Yes      |
 
 **Sample request body**
 
 ```json
 {
-    "resolutions": ["240p", "360p"]
+    "resolutions": [240, 360]
 }
 ```
 
-**Response**
+**Sample Response**
 
-For successful requests where all requested resolutions are processed or deleted, the API server returns a JSON response with status code `200 OK`:
+For **valid requests**, the API server immediately queues the task and returns an **HTTP status code 202 Accepted**
 
 ```json
 {
-    "results": [
+    "uuid": "4jjgG7ma3XE",
+    "resolutions": [
         {
-            "resolution": "240p",
-            "status": "success",
-            "message": "Resolution 240p deleted successfully."
+            "resolution": 240,
+            "status": "queued",
+            "detail": "Deletion task queued. Final status will be sent via webhook."
         },
         {
-            "resolution": "360p",
-            "status": "success",
-            "message": "Resolution 360p deleted successfully."
+            "resolution": 360,
+            "status": "not_found",
+            "detail": "Resolution does not exist on this video."
         }
     ]
 }
 ```
 
-If some requested resolutions do not exist while others are deleted successfully, the API server returns a JSON response with status code `207 Multi-Status`:
+**Webhook Notification**
 
+Once the background deletion task finishes (or fails), a webhook notification is sent to any [configured webhook endpoints](../server-api/webhooks.md).
+
+**Sample success webhook payload:**
 ```json
 {
-    "results": [
+    "id": "4jjgG7ma3XE",
+    "title": "Sample Training Video",
+    "status": "completed",
+    "resolutions": [
         {
-            "resolution": "240p",
-            "status": "success",
-            "message": "Resolution 240p deleted successfully."
+            "resolution": 240,
+            "status": "deleted"
         },
         {
-            "resolution": "1080p",
-            "status": "error",
-            "message": "Resolution 1080p does not exist for this video."
+            "resolution": 360,
+            "status": "not_found"
         }
-    ]
+    ],
+    "freed_bytes": 1548293,
+    "deleted_resolutions": [240]
+}
+```
+
+**Sample failure webhook payload:**
+```json
+{
+    "id": "4jjgG7ma3XE",
+    "title": "Sample Training Video",
+    "status": "failed",
+    "error": "Error message describing the failure."
 }
 ```
 
 :::important
-- Deleting all available resolutions of a video is restricted to prevent unusable assets. Attempting to delete all resolutions will return a `400 Bad Request`.
+- Resolution deletion is only supported for DRM and NON DRM videos  currently and is not supported for AES-protected videos.
 - This operation deletes the corresponding HLS playlists (.m3u8), segments (.ts), and static MP4 renditions from cloud storage, updates the master playlist, and invalidates CDN caches.
 :::
 

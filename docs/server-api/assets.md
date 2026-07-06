@@ -603,6 +603,56 @@ If the specified asset is a folder, it will remove all its child assets. you nee
 
 This will delete the specified asset from your organization
 
+## Delete Video Resolutions
+
+To selectively delete one or more transcoded resolutions from a video asset, send an HTTP POST request to the API endpoint along with the [authentication Header](../server-api/authentication.md).
+
+**Endpoint**
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/delete_resolutions/
+```
+
+**Fields**
+
+| Name        | Type  | Description                                                                                     | Required |
+|-------------|-------|-------------------------------------------------------------------------------------------------|----------|
+| resolutions | array | Array of resolutions to delete (e.g., `[240, 360]`). Note: At least one resolution must remain; deleting all resolutions of a video is not allowed. | Yes      |
+
+**Sample request body**
+
+```json
+{
+    "resolutions": [240, 360]
+}
+```
+
+**Sample Response**
+
+For **valid requests**, the API server immediately queues the task and returns an **HTTP status code 202 Accepted**
+
+```json
+{
+    "uuid": "4jjgG7ma3XE",
+    "resolutions": [
+        {
+            "resolution": 240,
+            "status": "queued",
+            "detail": "Deletion task queued. Final status will be sent via webhook."
+        },
+        {
+            "resolution": 360,
+            "status": "not_found",
+            "detail": "Resolution does not exist on this video."
+        }
+    ]
+}
+```
+
+:::important
+- Resolution deletion is only supported for DRM and NON DRM videos  currently and is not supported for AES-protected videos.
+- This operation deletes the corresponding HLS playlists (.m3u8), segments (.ts), and static MP4 renditions from cloud storage, updates the master playlist, and invalidates CDN caches.
+:::
+
 ## Move Individual Asset
 To move an asset from one folder to another or to the root directory,  you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md) .
 

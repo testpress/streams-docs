@@ -648,41 +648,6 @@ For **valid requests**, the API server immediately queues the task and returns a
 }
 ```
 
-**Webhook Notification**
-
-Once the background deletion task finishes (or fails), a webhook notification is sent to any [configured webhook endpoints](../server-api/webhooks.md).
-
-**Sample success webhook payload:**
-```json
-{
-    "id": "4jjgG7ma3XE",
-    "title": "Sample Training Video",
-    "status": "completed",
-    "resolutions": [
-        {
-            "resolution": 240,
-            "status": "deleted"
-        },
-        {
-            "resolution": 360,
-            "status": "not_found"
-        }
-    ],
-    "freed_bytes": 1548293,
-    "deleted_resolutions": [240]
-}
-```
-
-**Sample failure webhook payload:**
-```json
-{
-    "id": "4jjgG7ma3XE",
-    "title": "Sample Training Video",
-    "status": "failed",
-    "error": "Error message describing the failure."
-}
-```
-
 :::important
 - Resolution deletion is only supported for DRM and NON DRM videos  currently and is not supported for AES-protected videos.
 - This operation deletes the corresponding HLS playlists (.m3u8), segments (.ts), and static MP4 renditions from cloud storage, updates the master playlist, and invalidates CDN caches.

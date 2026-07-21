@@ -62,9 +62,11 @@ For valid requests the API server returns a JSON response containing the asset i
     "client_payload": {
         "upload_link": "https://s3.amazonaws.com/tpstreams-bucket",
         "key": "private/server-uploads/9328558d-e0a5-4093-b3b9-8f15ad1550d8",
-        "AWSAccessKeyId": "AKIAIOSFODNN7EXAMPLE",
+        "x-amz-algorithm": "AWS4-HMAC-SHA256",
+        "x-amz-credential": "AKIAIOSFODNN7EXAMPLE/20260721/us-east-1/s3/aws4_request",
+        "x-amz-date": "20260721T000000Z",
         "policy": "eyJleHBpcmF0aW9uIjoiMjAy...",
-        "signature": "vSdt2134k..."
+        "x-amz-signature": "vSdt2134k..."
     }
 }
 ```
@@ -94,9 +96,11 @@ curl -X POST https://app.tpstreams.com/api/v1/<organization_id>/assets/upload-se
 # 2. Extract the payload from the response above and upload the file
 curl -X POST https://s3.amazonaws.com/tpstreams-bucket \
   -F "key=private/server-uploads/9328558d-e0a5-4093-b3b9-8f15ad1550d8" \
-  -F "AWSAccessKeyId=AKIAIOSFODNN7EXAMPLE" \
+  -F "x-amz-algorithm=AWS4-HMAC-SHA256" \
+  -F "x-amz-credential=AKIAIOSFODNN7EXAMPLE/20260721/us-east-1/s3/aws4_request" \
+  -F "x-amz-date=20260721T000000Z" \
   -F "policy=eyJleHBpcmF0aW9uIjoiMjAy..." \
-  -F "signature=vSdt2134k..." \
+  -F "x-amz-signature=vSdt2134k..." \
   -F "file=@/path/to/your/video.mp4"
 ```
 

@@ -23,7 +23,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/upload-sessions/
 | -----------      | -----------  | ----------- |   ---------- |
 | content_protection_type    | string      |  To ensure the security of your video content, you can choose from available protection types: 'drm', 'aes' encryption, or indicate 'disable' for no specific protection. Each option offers varying levels of security for your content.       | No |
 | title            | string      |  Specify a text string or identifier which can be used for filtering or searching the asset.| Yes |
-| resolutions      | array         | Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Can be a comma separated string out of the following values: 240p, 360p, 480p, 540p, 720p, and 1080p. Re-sized rendition will retain the input aspect ratio. | Yes |
+| resolutions      | array         | Required resolutions of the transformed asset in case of HLS or MPEG-DASH delivery format. Must be an array of strings containing any of the following values: 240p, 360p, 480p, 540p, 720p, and 1080p. Re-sized rendition will retain the input aspect ratio. | Yes |
 | folder | string | The UUID of the folder, if you want to upload the video into that specific folder | No |
 | generate_subtitle | boolean | Enable automatic generation of subtitles for the video after upload. Defaults to false if not specified. | No |
 
@@ -161,9 +161,9 @@ upload_url = URI(client_payload.delete("upload_link"))
 File.open("/path/to/your/video.mp4") do |video_file|
   client_payload["file"] = UploadIO.new(video_file, "video/mp4", "video.mp4")
   
-  multipart_req = Net::HTTP::Post::Multipart.new(upload_url.path, client_payload)
+  multipart_req = Net::HTTP::Post::Multipart.new(upload_url.request_uri, client_payload)
   
-  res = Net::HTTP.start(upload_url.host, upload_url.port, use_ssl: true) do |multipart_http|
+  res = Net::HTTP.start(upload_url.host, upload_url.port, use_ssl: upload_url.scheme == "https") do |multipart_http|
     multipart_http.request(multipart_req)
   end
   puts "Upload status: #{res.code}"

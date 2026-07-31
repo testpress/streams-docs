@@ -99,6 +99,12 @@ const config = {
           {
             type: 'docSidebar',
             position: 'left',
+            sidebarId: 'subtitleSidebar',
+            label: 'Subtitle Service',
+          },
+          {
+            type: 'docSidebar',
+            position: 'left',
             sidebarId: 'tpstorageSidebar',
             label: 'TPStorage',
           },

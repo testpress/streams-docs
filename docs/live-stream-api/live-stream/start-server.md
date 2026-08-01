@@ -42,7 +42,7 @@ For valid requests the API server returns a JSON:
 This will start the server for specified live stream
 
 Above response has the details of the live stream started which can also be obtained by API 
-**/api/v1/<organization_id>/assets/<asset_id>/**
+**`/api/v1/<organization_id>/assets/<asset_id>/`**
 
 :::important
 

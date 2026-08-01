@@ -1,7 +1,9 @@
 /** @type {import('@docusaurus/types').Config} */
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const { themes } = require('prism-react-renderer');
+
+const lightCodeTheme = themes.github;
+const darkCodeTheme = themes.dracula;
 
 const config = {
   title: 'Streams Docs',
@@ -34,7 +36,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           remarkPlugins: [
-            require('remark-grid-tables'),
+            require('@adobe/remark-gridtables').default,
           ]
         },
         theme: {

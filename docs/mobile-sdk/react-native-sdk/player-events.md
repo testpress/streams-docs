@@ -14,7 +14,7 @@ The TPStreamsPlayerView component provides the following event handlers:
 - **onIsPlayingChanged(isPlaying: boolean)**: Fires when playing state changes.
 - **onPlaybackSpeedChanged(speed: number)**: Fires when playback speed changes.
 - **onIsLoadingChanged(isLoading: boolean)**: Fires when loading state changes.
-- **onError(error: {message: string, code: number, details?: string})**: Fires when an error occurs.
+- **`onError(error: {message: string, code: number, details?: string})`**: Fires when an error occurs.
 - **onAccessTokenExpired(videoId: string, callback: (newToken: string) => void)**: Fires when the access token expires. Call the callback with a new token to continue playback.
 
 ## Player State Values

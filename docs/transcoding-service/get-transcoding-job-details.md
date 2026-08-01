@@ -9,7 +9,7 @@ To retrieve the details of a transcoding job, make a GET request to the followin
 https://app.tpstreams.com/api/v1/<organization_id>/transcoding_jobs/<job_id>/
 ```
 
-Replace <organization_id> with your organization's unique identifier and <job_id> with the specific job ID you want to retrieve details for.
+Replace `<organization_id>` with your organization's unique identifier and `<job_id>` with the specific job ID you want to retrieve details for.
 
 #### Sample Response
 

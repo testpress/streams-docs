@@ -26,7 +26,17 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-  plugins: ['@docusaurus/theme-live-codeblock'],
+  plugins: [
+    '@docusaurus/theme-live-codeblock',
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+      ({
+        hashed: true,
+        indexBlog: false,
+      }),
+    ],
+  ],
 
   presets: [
     [
@@ -111,6 +121,10 @@ const config = {
             label: 'TPStorage',
           },
 
+          {
+            type: 'search',
+            position: 'right',
+          },
           {
             type: 'html',
             position: 'right',

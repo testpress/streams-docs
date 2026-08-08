@@ -105,11 +105,6 @@
   object-fit: contain;
 }
 
-/* Match the dark/light mode toggle icon size to the postman logo */
-.navbar button[aria-label^='Switch between dark and light mode'] svg {
-  height: 2rem;
-  width: 2rem;
-}
 
 /* Increase navbar title size slightly */
 .navbar__title {

@@ -34,6 +34,12 @@
   );
   
   --site-hero-text-color: #1f2933;
+
+  /* Local search variables for light mode */
+  --search-local-modal-background: #ffffff;
+  --search-local-hit-background: var(--ifm-color-emphasis-100);
+  --search-local-hit-color: var(--ifm-font-color-base);
+  --search-local-muted-color: var(--ifm-color-emphasis-600);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -62,6 +68,12 @@
   );
 
   --site-hero-text-color: #f5f3ff;
+
+  /* Local search variables for dark mode */
+  --search-local-modal-background: #18181b;
+  --search-local-hit-background: #27272a;
+  --search-local-hit-color: #f3f4f6;
+  --search-local-muted-color: #9ca3af;
 }
 
 /* Navbar links: keep the neutral text color, show a violet underline on
@@ -117,6 +129,40 @@
   color: inherit;
   text-decoration: none;
   opacity: 1;
+}
+
+/* Ensure search input colors and borders adapt seamlessly to light/dark themes */
+.navbar__search-input {
+  background-color: var(--ifm-color-emphasis-100) !important;
+  color: var(--ifm-font-color-base) !important;
+  border: 1px solid var(--ifm-color-emphasis-300) !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.navbar__search-input::placeholder {
+  color: var(--ifm-color-emphasis-500) !important;
+}
+
+[data-theme='dark'] .navbar__search-input {
+  background-color: #18181b !important;
+  color: #ffffff !important;
+  border-color: #27272a !important;
+}
+
+[data-theme='dark'] .navbar__search-input::placeholder {
+  color: #a1a1aa !important;
+}
+
+.navbar__search-input:focus {
+  border-color: var(--ifm-color-primary) !important;
+  background-color: var(--ifm-background-color) !important;
+  color: var(--ifm-font-color-base) !important;
+}
+
+[data-theme='dark'] .navbar__search-input:focus {
+  background-color: #0d0d10 !important;
+  border-color: var(--ifm-color-primary) !important;
+  color: #ffffff !important;
 }
 
 

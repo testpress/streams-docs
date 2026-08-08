@@ -27,10 +27,10 @@
      Rendered over the neutral background and faded out via alpha stops. */
   --site-hero-glow: linear-gradient(
     180deg,
-    rgba(124, 58, 237, 0.10) 0%,
-    rgba(139, 92, 246, 0.07) 18%,
-    rgba(167, 139, 250, 0.035) 32%,
-    rgba(255, 255, 255, 0) 45%
+    rgba(124, 58, 237, 0.15) 0%,
+    rgba(139, 92, 246, 0.13) 20%,
+    rgba(167, 139, 250, 0.07) 38%,
+    rgba(255, 255, 255, 0) 50%
   );
   
   --site-hero-text-color: #1f2933;
@@ -61,10 +61,10 @@
 
   --site-hero-glow: linear-gradient(
     180deg,
-    rgba(76, 61, 105, 0.42) 0%,
-    rgba(62, 49, 85, 0.28) 18%,
-    rgba(46, 38, 60, 0.14) 32%,
-    rgba(27, 27, 29, 0) 45%
+    rgba(76, 61, 105, 0.75) 0%,
+    rgba(62, 49, 85, 0.50) 20%,
+    rgba(46, 38, 60, 0.25) 38%,
+    rgba(27, 27, 29, 0) 50%
   );
 
   --site-hero-text-color: #f5f3ff;

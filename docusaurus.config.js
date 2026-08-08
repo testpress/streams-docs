@@ -6,13 +6,13 @@ const lightCodeTheme = themes.github;
 const darkCodeTheme = themes.dracula;
 
 const config = {
-  title: 'Streams Docs',
-  tagline: '',
+  title: 'TPStreams Docs',
+  tagline: 'Guides, API references, SDKs, and examples\nto help you integrate TPStreams faster.',
   url: 'https://testpress.github.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/testpress_favicon.ico',
+  favicon: 'img/tpstreams_favicon.ico',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -50,7 +50,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Streams',
+        title: 'TPStreams',
         logo: {
           alt: 'Testpress Logo',
           src: 'img/logo.png',
@@ -112,9 +112,11 @@ const config = {
           },
 
           {
-            href: 'https://app.getpostman.com/run-collection/18601519-52c5b04b-8b6c-457f-a38d-e015ee8752dd?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D18601519-52c5b04b-8b6c-457f-a38d-e015ee8752dd%26entityType%3Dcollection%26workspaceId%3Dc04c7c68-3b97-4c20-9ed4-ec556fccdd29',
-            label: 'Postman Collection',
+            type: 'html',
             position: 'right',
+            className: 'navbar__postman',
+            value:
+              '<a href="https://app.getpostman.com/run-collection/18601519-52c5b04b-8b6c-457f-a38d-e015ee8752dd?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D18601519-52c5b04b-8b6c-457f-a38d-e015ee8752dd%26entityType%3Dcollection%26workspaceId%3Dc04c7c68-3b97-4c20-9ed4-ec556fccdd29" target="_blank" rel="noopener noreferrer"><img src="img/postman.png" alt="Postman Collection" /></a>',
           },
         ],
       },

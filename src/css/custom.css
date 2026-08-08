@@ -6,25 +6,122 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #1d8ad2;
-  --ifm-color-primary-dark: #1a7cbd;
-  --ifm-color-primary-darker: #1975b2;
-  --ifm-color-primary-darkest: #146193;
-  --ifm-color-primary-light: #2697e1;
-  --ifm-color-primary-lighter: #309ce2;
-  --ifm-color-primary-lightest: #50abe7;
+  /* Violet brand palette */
+  --ifm-color-primary:  #7c3aed;
+  --ifm-color-primary-dark: #6d28d9;
+  --ifm-color-primary-darker: #6321cc;
+  --ifm-color-primary-darkest: #5b21b6;
+  --ifm-color-primary-light: #8b5cf6;
+  --ifm-color-primary-lighter: #a78bfa;
+  --ifm-color-primary-lightest: #c4b5fd;
+
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Solid neutral surfaces (navbar must stay flat, no gradient) */
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #ffffff;
+  --ifm-navbar-background-color: #ffffff;
+
+  /* Subtle ambient violet glow used by the homepage hero.
+     Rendered over the neutral background and faded out via alpha stops. */
+  --site-hero-glow: linear-gradient(
+    180deg,
+    rgba(124, 58, 237, 0.10) 0%,
+    rgba(139, 92, 246, 0.07) 18%,
+    rgba(167, 139, 250, 0.035) 32%,
+    rgba(255, 255, 255, 0) 45%
+  );
+  
+  --site-hero-text-color: #1f2933;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #1d8ad2;
-  --ifm-color-primary-dark: #1a7cbd;
-  --ifm-color-primary-darker: #1975b2;
-  --ifm-color-primary-darkest: #146193;
-  --ifm-color-primary-light: #2697e1;
-  --ifm-color-primary-lighter: #309ce2;
-  --ifm-color-primary-lightest: #50abe7;
+  --ifm-color-primary: #a78bfa;
+  --ifm-color-primary-dark: #7c3aed;
+  --ifm-color-primary-darker: #6d28d9;
+  --ifm-color-primary-darkest: #5b21b6;
+  --ifm-color-primary-light: #a78bfa;
+  --ifm-color-primary-lighter: #c4b5fd;
+  --ifm-color-primary-lightest: #ddd6fe;
+
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  /* Near-black base background, pure black flat navbar */
+  --ifm-background-color: #0d0d10;
+  --ifm-background-surface-color: #0d0d10;
+  --ifm-navbar-background-color: #000000;
+
+  --site-hero-glow: linear-gradient(
+    180deg,
+    rgba(76, 61, 105, 0.42) 0%,
+    rgba(62, 49, 85, 0.28) 18%,
+    rgba(46, 38, 60, 0.14) 32%,
+    rgba(27, 27, 29, 0) 45%
+  );
+
+  --site-hero-text-color: #f5f3ff;
 }
+
+/* Navbar links: keep the neutral text color, show a violet underline on
+   hover and for the active page instead of recoloring the text.
+   Hover uses the lighter shade, the selected page uses the darker shade. */
+.navbar__link:hover {
+  color: var(--ifm-navbar-link-color);
+  text-decoration: underline;
+  text-decoration-color: var(--ifm-color-primary);
+  text-decoration-thickness: 2.5px;
+  text-underline-offset: 10px;
+}
+
+.navbar__link--active {
+  color: var(--ifm-navbar-link-color);
+  text-decoration: underline;
+  text-decoration-color: var(--ifm-color-primary-dark);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 10px;
+}
+
+/* Postman collection icon in the navbar.
+   Match the theme toggle box: 2rem, no item padding, vertically centered. */
+.navbar__item.navbar__postman {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-right: 0.75rem;
+}
+
+.navbar__postman a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar__postman img {
+  height: 2rem;
+  width: 2rem;
+  object-fit: contain;
+}
+
+/* Match the dark/light mode toggle icon size to the postman logo */
+.navbar button[aria-label^='Switch between dark and light mode'] svg {
+  height: 2rem;
+  width: 2rem;
+}
+
+/* Increase navbar title size slightly */
+.navbar__title {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+/* Disable hover effect (opacity change, color change, text-decoration) on the navbar brand (logo and title) */
+.navbar__brand:hover {
+  color: inherit;
+  text-decoration: none;
+  opacity: 1;
+}
+
+

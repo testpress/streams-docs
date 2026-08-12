@@ -38,3 +38,39 @@ Now you use constructed iframe code in your code to embed the video.
 </body>
 </html>
 ```
+
+## Live viewer count
+
+For a live stream, the Streams dashboard shows how many people are watching while it is on air.
+
+By default the player identifies a viewer with a cookie it sets on the embed page, so the count measures devices rather than people.
+
+| Situation | Counted as |
+| ----------- | ----------- |
+| Two tabs in the same browser | 1 |
+| Two different browsers on one device | 2 |
+| The same person on a phone and a laptop | 2 |
+
+Counting devices means nobody can inflate the number by opening more tabs, but it reads higher than your real audience when people watch on more than one device.
+
+To count people instead, add the `viewer_id` parameter to the embed URL.
+
+```bash
+https://app.tpstreams.com/embed/{{asset_id}}/?access_token={{access_token}}&viewer_id={{your_user_id}}
+```
+
+**Fields**
+
+| Name             | Type         | Description |    Required  |
+| -----------      | -----------  | ----------- |   ---------- |
+| viewer_id        | string       | The identifier your own system uses for the signed-in user. The same person is then counted once across every device they watch on |      No     |
+
+:::important
+
+- Use the identifier your own system already has for that user, so it stays the same across sessions and devices. A value that changes per session counts one person many times.
+- Use an opaque ID rather than an email address or a name. The value travels in the embed URL, and URLs end up in browser history, referrer headers and server logs.
+- The value is hashed and scoped to your organization before it is used for counting, so Streams does not hold the raw ID and the same ID in two organizations is never confused.
+
+:::
+
+This parameter affects only the live viewer count. It has no effect on recorded videos, playback or authorization.

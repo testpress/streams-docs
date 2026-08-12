@@ -39,9 +39,12 @@ Now you use constructed iframe code in your code to embed the video.
 </html>
 ```
 
-## Live viewer count
+## Live Viewer Count
 
-For a live stream, the Streams dashboard shows how many people are watching while it is on air.
+TPStreams displays the number of viewers currently watching a live stream.
+The viewer count is shown above the player on the live stream page.
+
+![Live viewer count above the player](./img/live_viewer_count.png)
 
 By default the player identifies a viewer with a cookie it sets on the embed page, so the count measures devices rather than people.
 

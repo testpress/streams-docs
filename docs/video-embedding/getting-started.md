@@ -32,7 +32,7 @@ Now you use constructed iframe code in your code to embed the video.
 <html>
 <body>
 
-<div style={{ paddingTop: '56.25%', position: 'relative'}}><iframe src="https://app.tpstreams.com/embed/dcek2m/ByPzR7s6fzG/?access_token=550b0334-eede-4c23-b50f-b20ae9924cc7" style={{ border: 0, maxWidth: '100%', position: 'absolute', top:0, left:0, height:'100%', width:'100%' }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope picture-in-picture" allowfullscreen="" frameborder="0"></iframe></div>
+<div style={{ paddingTop: '56.25%', position: 'relative'}}><iframe src="https://app.tpstreams.com/embed/4j4yyu/6UBrgEchPPY/?access_token=5874d46d-1ef8-4df3-8653-1a332408e88e" style={{ border: 0, maxWidth: '100%', position: 'absolute', top:0, left:0, height:'100%', width:'100%' }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0"></iframe></div>
 
 
 </body>

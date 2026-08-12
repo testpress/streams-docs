@@ -95,5 +95,10 @@ class ViewController: UIViewController {
  Since TPAVPlayer is a wrapper class of AVPlayer, you can also use the TPAVPlayer with native iOS player to play Streams Videos.
 :::
 
+## Watermarks
+
+Display one or more text watermarks over the video content by passing `WatermarkConfig` entries to `setWatermarks(_:)`.
+For the full reference (configuration properties, defaults, and behavior), see [Watermarks](./watermarks).
+
 
 For a practical implementation and usage of TPStreamsSDK, refer to our [Sample iOS App](https://github.com/testpress/sample-iOS-app).

@@ -100,6 +100,9 @@ The object returned in the `downloadsStream` and by `getAllDownloads()`.
 | `title` | `String?` | Title of the video. |
 | `state` | `DownloadState` | The current state of the download. |
 | `progress` | `double` | Percentage of the download completed (0 to 100). |
+| `totalSize` | `int` | Total size of the downloaded media in bytes. |
+| `downloadedSize` | `int` | Number of bytes downloaded so far. Use with `totalSize` to calculate download progress. |
+| `thumbnailUrl` | `String?` | URL of the video thumbnail for displaying in the UI. |
 | `metadata` | `Map<String, String>?` | Custom metadata attached to the download. |
 
 ### `DownloadState`

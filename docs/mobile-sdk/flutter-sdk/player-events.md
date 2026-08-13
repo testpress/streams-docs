@@ -26,6 +26,7 @@ _controller?.addListener(() {
 ### Available Properties to Track
 
 The listener will trigger updates to the following properties of the TPStreamsPlayerValue:
+- **isLoading:** true if the video is still being loaded into the player.
 - **isPlaying:** true if the video is playing, false if paused.
 - **position:** The current playback position.
 - **duration:** The total duration of the video.
@@ -47,5 +48,27 @@ _controller?.onBeforeFullScreenEnter = () {
 
 _controller?.onBeforeFullScreenExit = () {
   // Called before exiting fullscreen
+};
+```
+
+### Replay Callback
+
+Set `onReplay` to be notified when the replay button is clicked after playback ends:
+
+```dart
+_controller?.onReplay = () {
+  // Called when the replay button is clicked
+};
+```
+
+### Access Token Expiration Callback
+
+Set `onAccessTokenExpired` to refresh the access token seamlessly when it expires during playback:
+
+```dart
+_controller?.onAccessTokenExpired = (String videoId) async {
+  // Fetch a fresh token for the given video and return it
+  String newToken = await fetchNewTokenFromServer(videoId);
+  return newToken;
 };
 ```

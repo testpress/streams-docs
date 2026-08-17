@@ -4,7 +4,7 @@ sidebar_position: 5
 
 
 # Stop a live stream
-To Stop a live stream you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
+To Stop a live stream you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../authentication.md).
 
 
 ```bash

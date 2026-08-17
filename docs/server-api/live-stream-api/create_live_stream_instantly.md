@@ -5,7 +5,7 @@ sidebar_position: 2
 # Create a live stream instantly
 
 
-To Create a live stream instantly you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../server-api/authentication.md).
+To Create a live stream instantly you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../authentication.md).
 
 
 ```bash

@@ -4,7 +4,7 @@ sidebar_position: 6
 
 # Delete Live Stream API
 
-To delete an individual live stream in the organization, send an HTTP DELETE request to the API Endpoint , with the [authentication Header](../server-api/authentication.md). This API supports the deletion of both live and scheduled live streams. 
+To delete an individual live stream in the organization, send an HTTP DELETE request to the API Endpoint , with the [authentication Header](../authentication.md). This API supports the deletion of both live and scheduled live streams. 
 
 
 ```bash

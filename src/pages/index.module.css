@@ -1,18 +1,74 @@
 .heroBanner {
-  padding: 6rem 0;
-  text-align: center;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: left;
   position: relative;
   overflow: hidden;
+}
+
+/* Keep the homepage hero on the neutral base background with a subtle
+   violet radial glow that fades out, instead of a flat primary fill. */
+:global(.hero--primary).heroBanner {
+  --ifm-hero-background-color: var(--ifm-background-color);
+  --ifm-hero-text-color: var(--site-hero-text-color);
+  background-image: var(--site-hero-glow);
+  background-repeat: no-repeat;
+}
+
+.heroContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+}
+
+.heroText {
+  flex: 1;
+}
+
+:global(.hero__title) {
+  font-size: 3.8rem;
+}
+
+:global(.hero__subtitle) {
+  white-space: pre-line;
+  font-size: 1.1rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.heroLogo {
+  height: 20rem;
+  width: auto;
+  justify-self: end;
 }
 
 @media screen and (max-width: 996px) {
   .heroBanner {
     padding: 2rem;
   }
+
+  .heroContent {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .heroLogo {
+    order: -1;
+    height: 6rem;
+    margin-right: 0;
+  }
 }
 
 .buttons {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+}
+
+.heroContainer {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }

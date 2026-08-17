@@ -1,0 +1,113 @@
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.spinner {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 3px solid var(--ifm-color-emphasis-200);
+  border-top-color: var(--ifm-color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.errorContainer {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: #ef4444;
+  margin: 1.5rem 0;
+}
+
+:global([data-theme='dark']) .errorContainer {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+.changelogWrapper {
+  margin: 1.5rem 0;
+}
+
+.metaHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+:global([data-theme='dark']) .metaHeader {
+  background: #18181b;
+  border: 1px solid #27272a;
+}
+
+.liveBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #10b981; /* emerald green */
+  font-weight: 600;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+.githubLink {
+  color: var(--ifm-color-primary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.githubLink:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+/* Style headings to act as clear dividers between versions, like GitHub */
+.changelogWrapper h2 {
+  border-bottom: 1px solid var(--ifm-hr-border-color, var(--ifm-color-emphasis-200));
+  padding-bottom: 0.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.changelogWrapper h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Ensure horizontal rules also render as clean separator lines */
+.changelogWrapper hr {
+  background-color: var(--ifm-hr-border-color, var(--ifm-color-emphasis-200));
+  height: 1px;
+  border: none;
+  margin: 2.5rem 0;
+}

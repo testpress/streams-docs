@@ -85,7 +85,7 @@ For valid requests the API server returns a JSON:
 }
 
 ```
-Above response can also be obtained by asset detail API **/api/v1/<organization_id>/assets/<asset_id>/**
+Above response can also be obtained by asset detail API **`/api/v1/<organization_id>/assets/<asset_id>/`**
 
 ---
 

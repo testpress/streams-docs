@@ -99,10 +99,10 @@ Use the following endpoint to construct the license URLs for both Widevine and F
 https://app.tpstreams.com/api/v1/<ORG_ID>/assets/<ASSET_ID>/drm_license/?access_token=<ACCESS_TOKEN>&drm_type=<DRM_TYPE>
 ```
 Replace placeholders with actual values:
-- <ORG_ID>: Your organization's ID
-- <ASSET_ID>: ID of the asset
-- <ACCESS_TOKEN>: Access token obtained in above step.
-- <DRM_TYPE>: Use "widevine" for Widevine or "fairplay" for FairPlay.
+- `<ORG_ID>`: Your organization's ID
+- `<ASSET_ID>`: ID of the asset
+- `<ACCESS_TOKEN>`: Access token obtained in above step.
+- `<DRM_TYPE>`: Use "widevine" for Widevine or "fairplay" for FairPlay.
 
 Incorporate the generated license URLs into your Shaka Player configuration for Widevine and FairPlay DRM support. 
 

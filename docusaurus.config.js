@@ -1,16 +1,18 @@
 /** @type {import('@docusaurus/types').Config} */
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const { themes } = require('prism-react-renderer');
+
+const lightCodeTheme = themes.github;
+const darkCodeTheme = themes.dracula;
 
 const config = {
-  title: 'Streams Docs',
-  tagline: '',
+  title: 'TPStreams Docs',
+  tagline: 'Guides, API references, SDKs, and examples\nto help you integrate TPStreams faster.',
   url: 'https://testpress.github.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/testpress_favicon.ico',
+  favicon: 'img/tpstreams_favicon.ico',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -24,7 +26,17 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-  plugins: ['@docusaurus/theme-live-codeblock'],
+  plugins: [
+    '@docusaurus/theme-live-codeblock',
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+      ({
+        hashed: true,
+        indexBlog: false,
+      }),
+    ],
+  ],
 
   presets: [
     [
@@ -34,7 +46,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           remarkPlugins: [
-            require('remark-grid-tables'),
+            require('@adobe/remark-gridtables').default,
           ]
         },
         theme: {
@@ -48,7 +60,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Streams',
+        title: 'TPStreams',
         logo: {
           alt: 'Testpress Logo',
           src: 'img/logo.png',
@@ -63,56 +75,53 @@ const config = {
           {
             type: 'docSidebar',
             position: 'left',
-            sidebarId: 'liveStreamApi',
-            label: 'Live Stream',
-          },
-          {
-            type: 'docSidebar',
-            position: 'left',
-            sidebarId: 'videoEmbeddingSidebar',
-            label: 'Video Embedding',
-          },
-          {
-            type: 'docSidebar',
-            position: 'left',
-            sidebarId: 'uploaderSidebar',
-            label: 'Videos Uploader',
+            sidebarId: 'videoSidebar',
+            label: 'Video',
           },
           {
             type: 'docSidebar',
             position: 'left',
             sidebarId: 'mobileSdk',
-            label: 'Mobile SDK',
+            label: 'SDK',
           },
           {
-            type: 'docSidebar',
+            type: 'dropdown',
             position: 'left',
-            sidebarId: 'drmSidebar',
-            label: 'DRM Service',
-          },
-          {
-            type: 'docSidebar',
-            position: 'left',
-            sidebarId: 'transcodingSidebar',
-            label: 'Transcoding Service',
-          },
-          {
-            type: 'docSidebar',
-            position: 'left',
-            sidebarId: 'subtitleSidebar',
-            label: 'Subtitle Service',
-          },
-          {
-            type: 'docSidebar',
-            position: 'left',
-            sidebarId: 'tpstorageSidebar',
-            label: 'TPStorage',
+            label: 'Services',
+            items: [
+              {
+                type: 'docSidebar',
+                sidebarId: 'drmSidebar',
+                label: 'DRM Service',
+              },
+              {
+                type: 'docSidebar',
+                sidebarId: 'transcodingSidebar',
+                label: 'Transcoding Service',
+              },
+              {
+                type: 'docSidebar',
+                sidebarId: 'subtitleSidebar',
+                label: 'Subtitle Service',
+              },
+              {
+                type: 'docSidebar',
+                sidebarId: 'tpstorageSidebar',
+                label: 'TPStorage',
+              },
+            ],
           },
 
           {
-            href: 'https://app.getpostman.com/run-collection/18601519-52c5b04b-8b6c-457f-a38d-e015ee8752dd?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D18601519-52c5b04b-8b6c-457f-a38d-e015ee8752dd%26entityType%3Dcollection%26workspaceId%3Dc04c7c68-3b97-4c20-9ed4-ec556fccdd29',
-            label: 'Postman Collection',
+            type: 'search',
             position: 'right',
+          },
+          {
+            type: 'html',
+            position: 'right',
+            className: 'navbar__postman',
+            value:
+              '<a href="https://app.getpostman.com/run-collection/18601519-52c5b04b-8b6c-457f-a38d-e015ee8752dd?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D18601519-52c5b04b-8b6c-457f-a38d-e015ee8752dd%26entityType%3Dcollection%26workspaceId%3Dc04c7c68-3b97-4c20-9ed4-ec556fccdd29" target="_blank" rel="noopener noreferrer"><img src="/img/postman.png" alt="Postman Collection" /></a>',
           },
         ],
       },

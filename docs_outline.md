@@ -1,0 +1,84 @@
+# Documentation Navigation Structure (File Level)
+
+## 1. Server APIs
+- **Authentication** (`server-api/authentication.md`)
+- **Organization** (`server-api/organizations.md`)
+- **Assets** (`server-api/assets.md`)
+- **Direct Video Upload** (`server-api/direct-video-upload.md`)
+- **Folders** (`server-api/folders.md`)
+- **DRM License** (`server-api/drm.md`)
+- **Subtitles** (`server-api/subtitles.md`)
+- **Web Hooks** (`server-api/webhooks.md`)
+- **Access token** (`server-api/access-token.md`)
+- **Usages** (`server-api/usages.md`)
+- **Chapters** (`server-api/chapters.md`)
+
+## 2. Live Stream
+- **Introduction** (`live-stream-api/Introduction.md`)
+- **Schedule a live stream** (`live-stream-api/live-stream/schedule-a-live-stream.md`)
+- **Start the scheduled live stream** (`live-stream-api/live-stream/start-server.md`)
+- **Create a live stream instantly** (`live-stream-api/create_live_stream_instantly.md`)
+- **Live Stream Events & Status** (`live-stream-api/live-stream-event-status.md`)
+- **List Live Streams API** (`live-stream-api/list-live-stream-api.md`)
+- **Stop a live stream** (`live-stream-api/stop-a-live-stream-api.md`)
+- **Delete Live Stream API** (`live-stream-api/delete-live-stream-api.md`)
+- **WebHook** (`live-stream-api/webhook-response.md`)
+- **Chat SDK** (`live-stream-api/chat-sdk.md`)
+
+## 3. Video Embedding
+- **Getting started** (`video-embedding/getting-started.md`)
+- **About player SDK** (`video-embedding/javascript-sdk/introduction.md`)
+- **Markers** (`video-embedding/javascript-sdk/plugins/markers.md`)
+- **AES Encryption** (`video-embedding/aes-encryption.md`)
+- **Playback Authentication** (`video-embedding/authentication.md`)
+- **Using Player SDK** (`video-embedding/javascript-sdk/using-player-sdk.md`)
+- **Player Methods** (`video-embedding/javascript-sdk/player-methods.md`)
+- **Watermark Videos** (`video-embedding/watermarking.md`)
+- **Player Events** (`video-embedding/javascript-sdk/player-events.md`)
+- **Shaka Player Integration Guide** (`video-embedding/shaka-player-integration.md`)
+- **Custom Overlays** (`video-embedding/javascript-sdk/custom-overlays.md`)
+- **Player Parameters** (`video-embedding/javascript-sdk/player-params.md`)
+
+## 4. Videos Uploader
+- **Embedded Uploader** (`videos-uploader/embedded-uploader.md`)
+- **Javascript Uploader** (`videos-uploader/javascript-uploader.md`)
+
+## 5. Mobile SDK
+- **Getting Started (Android)** (`mobile-sdk/android-native-sdk/getting-started.md`)
+- **Getting Started (Flutter)** (`mobile-sdk/flutter-sdk/getting-started.md`)
+- **Getting Started (iOS)** (`mobile-sdk/ios-native-sdk/getting-started.md`)
+- **Getting Started (React Native)** (`mobile-sdk/react-native-sdk/getting-started.md`)
+- **Offline Downloads (Android)** (`mobile-sdk/android-native-sdk/offline-downloads.md`)
+- **Player Methods (Flutter)** (`mobile-sdk/flutter-sdk/player-methods.md`)
+- **Offline Downloads (iOS)** (`mobile-sdk/ios-native-sdk/offline-downloads.md`)
+- **Player Methods (React Native)** (`mobile-sdk/react-native-sdk/player-methods.md`)
+- **Player Fragment Methods (Android)** (`mobile-sdk/player-fragment-methods.md`)
+- **Player Events (Flutter)** (`mobile-sdk/flutter-sdk/player-events.md`)
+- **Player Events (React Native)** (`mobile-sdk/react-native-sdk/player-events.md`)
+- **Troubleshooting (Android)** (`mobile-sdk/android-native-sdk/troubleshooting.md`)
+- **Downloads (React Native)** (`mobile-sdk/react-native-sdk/downloads.md`)
+- **Downloads (Flutter)** (`mobile-sdk/flutter-sdk/downloads.md`)
+- **Changelog (Android)** (`mobile-sdk/android-native-sdk/changelog.md`)
+- **Changelog (iOS)** (`mobile-sdk/ios-native-sdk/changelog.md`)
+- **Changelog (React Native)** (`mobile-sdk/react-native-sdk/changelog.md`)
+
+## 6. DRM Service
+- **DRM Service Getting Started** (`drm-service/getting-started.md`)
+- **Widevine Encryption** (`drm-service/encryption/widevine-encryption.md`)
+- **Fairplay Encryption** (`drm-service/encryption/fairplay-encryption.md`)
+- **DRM Encryption (CBCS)** (`drm-service/encryption/drm-encryption-cbcs.md`)
+- **Widevine Configuration** (`drm-service/widevine-configuration.md`)
+- **Widevine Specs** (`drm-service/widevine-specs.md`)
+- **FairPlay Configuration** (`drm-service/fairplay-configuration.md`)
+- **DRM Policies** (`drm-service/drm-policies.md`)
+
+## 7. Transcoding Service
+- **Transcoding Service Introduction** (`transcoding-service/transcoding-service-introduction.md`)
+- **Trancode a video** (`transcoding-service/transcode-a-video.md`)
+- **List all Transcoding Jobs** (`transcoding-service/list-all-transcoding-jobs.md`)
+- **Get Transcoding Job detail** (`transcoding-service/get-transcoding-job-details.md`)
+- **Cancel Transcoding Job** (`transcoding-service/transcoding-cancelation.md`)
+
+## 8. TPStorage
+- **Introduction** (`tpstorage/index.md`)
+- **Getting Started with TPStorage** (`tpstorage/getting-started.md`)

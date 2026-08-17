@@ -10,5 +10,5 @@ sidebar_position: 1
 - With the TP Streams system, you have the ability to create live streams in two distinct ways:
 
 1. [Create a live stream instantly](create_live_stream_instantly)
-2. [Schedule live streams and start them later](../category/schedule-a-live-stream)
+2. [Schedule live streams and start them later](./live-stream/schedule-a-live-stream)
 

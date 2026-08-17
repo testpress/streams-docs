@@ -4,44 +4,52 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Video DRM Encryption',
-    Svg: require('@site/static/img/security-svgrepo-com.svg').default,
+    title: 'On-Demand Video Streaming',
+    imgSrc: 'img/feature-cards/on-demand-video.png',
     description: (
       <>
-        No downloader, plugin or hack can download the videos streamed through Streams.
+        Deliver recorded video content with a reliable, scalable streaming pipeline. TPStreams handles encoding, storage, and adaptive delivery so your videos play smoothly across devices and varying network conditions. Build experiences like course platforms, media libraries, or event archives without worrying about playback compatibility or performance.
       </>
     ),
   },
   {
-    title: 'Dynamic Watermarking',
-    Svg: require('@site/static/img/web-security-svgrepo-com.svg').default,
+    title: 'Live Streaming',
+    imgSrc: 'img/feature-cards/live-streaming.png',
     description: (
       <>
-        Total Screen Capture Block in Mobile Apps. Discourage screen capture in websites with user based watermark like IP address, user id, email id, phone no. etc.
+        Stream real-time video with infrastructure designed for scale and consistency. Create and schedule live streams, manage ingestion, and deliver content to large audiences with minimal latency. Whether it's classes, webinars, or live events, TPStreams ensures stable playback and seamless transition between live and recorded content.
       </>
     ),
   },
   {
-    title: 'Upload & Embed on Your Site Or App',
-    Svg: require('@site/static/img/app-plugin-plug-addon-connect-svgrepo-com.svg').default,
+    title: 'DRM Encryption',
+    imgSrc: 'img/feature-cards/drm.png',
     description: (
       <>
-        Embed player with subtitles, multiple qualities & speed change options.
-        Option for the viewer to download securely in mobile app and play offline.
+        Protect premium video content using industry-standard DRM technologies. Enforce secure playback environments that prevent unauthorized downloads, screen recording, and content redistribution. Integrate content protection across web and mobile platforms while maintaining a smooth and uninterrupted user experience.
+      </>
+    ),
+  },
+  {
+    title: 'Video Player',
+    imgSrc: 'img/feature-cards/video-player.png',
+    description: (
+      <>
+        Integrate a flexible, production-ready video player built for modern streaming workflows. Support adaptive bitrate playback, subtitles, playback speed control, chapters, and preview thumbnails. Customize the player UI and behavior while ensuring secure playback and consistent performance across browsers and devices.
       </>
     ),
   },
 ];
 
-function Feature({Svg, title, description}) {
+function Feature({imgSrc, title, description}) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+    <div className={styles.featureCard}>
+      <div className={styles.featureImageContainer}>
+        <img src={imgSrc} className={styles.featureImage} alt={title} />
       </div>
-      <div className="text--center padding-horiz--md">
-        <h3>{title}</h3>
-        <p>{description}</p>
+      <div className={styles.featureTextContainer}>
+        <h3 className={styles.featureTitle}>{title}</h3>
+        <p className={styles.featureDescription}>{description}</p>
       </div>
     </div>
   );
@@ -50,12 +58,10 @@ function Feature({Svg, title, description}) {
 export default function HomepageFeatures() {
   return (
     <section className={styles.features}>
-      <div className="container">
-        <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
-        </div>
+      <div className={styles.featuresContainer}>
+        {FeatureList.map((props, idx) => (
+          <Feature key={idx} {...props} />
+        ))}
       </div>
     </section>
   );

@@ -4,7 +4,7 @@ sidebar_position: 7
 
 # WebHook 
 To notify your application about things that happen asynchronously ,
-[Create a Web Hook](../server-api/webhooks.md).
+[Create a Web Hook](../webhooks.md).
 
 After successfully registering the webhook, whenever the status of live stream changes, response will be sent to the webhook.
 

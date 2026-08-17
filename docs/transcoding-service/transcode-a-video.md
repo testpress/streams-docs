@@ -8,7 +8,7 @@ To transcode a video, you need to make a POST request to the following API endpo
 ```bash
 https://app.tpstreams.com/api/v1/<organization_id>/transcoding_jobs/
 ```
-Replace <organization_id> with your organization's unique identifier.
+Replace `<organization_id>` with your organization's unique identifier.
 
 #### Sample payload:
 You have the flexibility to choose the method that best fits your workflow. Whether you prefer using an external video URL or a direct S3 bucket path, both options are available to you:

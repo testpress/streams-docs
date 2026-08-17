@@ -85,28 +85,31 @@ const config = {
             label: 'SDK',
           },
           {
-            type: 'docSidebar',
+            type: 'dropdown',
             position: 'left',
-            sidebarId: 'drmSidebar',
-            label: 'DRM Service',
-          },
-          {
-            type: 'docSidebar',
-            position: 'left',
-            sidebarId: 'transcodingSidebar',
-            label: 'Transcoding Service',
-          },
-          {
-            type: 'docSidebar',
-            position: 'left',
-            sidebarId: 'subtitleSidebar',
-            label: 'Subtitle Service',
-          },
-          {
-            type: 'docSidebar',
-            position: 'left',
-            sidebarId: 'tpstorageSidebar',
-            label: 'TPStorage',
+            label: 'Services',
+            items: [
+              {
+                type: 'docSidebar',
+                sidebarId: 'drmSidebar',
+                label: 'DRM Service',
+              },
+              {
+                type: 'docSidebar',
+                sidebarId: 'transcodingSidebar',
+                label: 'Transcoding Service',
+              },
+              {
+                type: 'docSidebar',
+                sidebarId: 'subtitleSidebar',
+                label: 'Subtitle Service',
+              },
+              {
+                type: 'docSidebar',
+                sidebarId: 'tpstorageSidebar',
+                label: 'TPStorage',
+              },
+            ],
           },
 
           {

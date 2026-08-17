@@ -75,20 +75,14 @@ const config = {
           {
             type: 'docSidebar',
             position: 'left',
-            sidebarId: 'videoEmbeddingSidebar',
-            label: 'Video Embedding',
-          },
-          {
-            type: 'docSidebar',
-            position: 'left',
-            sidebarId: 'uploaderSidebar',
-            label: 'Videos Uploader',
+            sidebarId: 'videoSidebar',
+            label: 'Video',
           },
           {
             type: 'docSidebar',
             position: 'left',
             sidebarId: 'mobileSdk',
-            label: 'Mobile SDK',
+            label: 'SDK',
           },
           {
             type: 'docSidebar',

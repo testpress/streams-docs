@@ -59,6 +59,7 @@
 - **Downloads (React Native)** (`mobile-sdk/react-native-sdk/downloads.md`)
 - **Downloads (Flutter)** (`mobile-sdk/flutter-sdk/downloads.md`)
 - **Changelog (Android)** (`mobile-sdk/android-native-sdk/changelog.md`)
+- **Changelog (Flutter)** (`mobile-sdk/flutter-sdk/changelog.md`)
 - **Changelog (iOS)** (`mobile-sdk/ios-native-sdk/changelog.md`)
 - **Changelog (React Native)** (`mobile-sdk/react-native-sdk/changelog.md`)
 

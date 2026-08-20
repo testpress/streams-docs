@@ -19,7 +19,7 @@ First, initialize TPStreams with your organization ID. This should be done **onl
 ```js
 import { TPStreams } from "react-native-tpstreams";
 
-TPStreams.initialize('YOUR_ORGANIZATION_ID');
+TPStreams.initialize('YOUR_ORGANIZATION_ID', { allowFallbackToL3: true });
 ```
 
 ## Add the Player Component
@@ -47,5 +47,6 @@ import { TPStreamsPlayerView } from "react-native-tpstreams";
 - `enableDownload`: (Optional) Whether to enable download functionality for the video. When set to true, the player will show a download button. Default is false.
 - `offlineLicenseExpireTime`: (Optional) The expiration time for offline licenses in seconds. If not provided, defaults to 15 days (1,296,000 seconds).
 - `downloadMetadata`: (Optional) Custom metadata to attach to downloads. Accepts an object with string key-value pairs. This metadata is stored with the download and can be retrieved later. Default is undefined.
+- `allowFallbackToL3`: (Android only) Allow Widevine L1 to L3 fallback for DRM license acquisition. Default is false.
 
 For a practical implementation and usage of react-native-tpstreams, refer to our [Sample React Native App](https://github.com/testpress/sample-rn-player-app).

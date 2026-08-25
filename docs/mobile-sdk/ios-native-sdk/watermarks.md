@@ -51,9 +51,11 @@ On iOS, watermarks are configuration rather than imperative methods. On the UIKi
 
 ## WatermarkAnimation / WatermarkAnimationType
 
-`WatermarkAnimation` has `type` (`WatermarkAnimationType.pingPong`) and `duration` in milliseconds (default `10000`,
-minimum `100`). `pingPong` moves the watermark horizontally from the left edge to the right edge and back, taking the
-configured duration per leg. Animated watermarks **ignore the x coordinate**; their y position is honored.
+`WatermarkAnimation` has `type` (`WatermarkAnimationType`) and `duration` in milliseconds (default `10000`, minimum `100`).
+
+Supported animation types:
+- **`pingPong`** (`.pingPong`): Moves the watermark horizontally from the left edge to the right edge and back, taking the configured duration per leg. Animated watermarks **ignore the x coordinate**; their y position is honored.
+- **`random`** (`.random`): Repositions the watermark to random coordinates across the player view every `duration` milliseconds. Both `x` and `y` initial coordinates are randomized.
 
 ## Behavior
 

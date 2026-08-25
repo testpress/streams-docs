@@ -168,7 +168,7 @@ Applies text watermark overlays on the video player. Each `WatermarkConfig` crea
 
 | Parameter | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `type` | `WatermarkAnimationType` | — | The animation type. Currently supports `WatermarkAnimationType.pingPong` for a sweep effect. |
+| `type` | `WatermarkAnimationType` | — | The animation type: `WatermarkAnimationType.pingPong` (moves horizontally back and forth) or `WatermarkAnimationType.random` (repositions to random coordinates at each interval). |
 | `duration` | `int` | `10000` | Animation duration in milliseconds. Minimum 100ms. |
 
 **Example Usage:**

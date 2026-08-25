@@ -93,3 +93,8 @@ val player = TPStreamsPlayer.create(
 // Attach to view
 binding.tpPlayerView.player = player
 ```
+
+## Watermarks
+
+Display one or more text watermarks over the video content by passing `WatermarkConfig` entries to `TPStreamsPlayerView.setWatermarks()`.
+For the full reference (configuration properties, defaults, and behavior), see [Watermarks](./watermarks).

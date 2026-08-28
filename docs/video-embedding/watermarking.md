@@ -141,5 +141,5 @@ It is possible to have watermark skip for some time between two overlays. Here i
 
 Now you just need pass the watermark code that you've created to the player to apply on the video. There are two ways to do that
 
-- Pass the code as part of the [Access token Request](./authentication#add-watermark).
+- Pass the code as part of the [Access token Request](../server-api/access-token.md#create-an-access-token).
 - Pass the code via Player SDK method called [applyWatermark](./javascript-sdk/player-methods#apply-watermark-to-the-video).

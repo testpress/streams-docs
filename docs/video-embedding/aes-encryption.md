@@ -80,7 +80,7 @@ The player sends a request to our endpoint, as indicated within the m3u8 file, t
 To handle this, it's important to ensure that the access token is included in the request as a query parameter initiated by the player.
 
 
-To generate access tokens send an HTTP GET request to the API [Endpoint](authentication.md#obtaining-an-access-token)
+To generate access tokens send an HTTP POST request to the API [Endpoint](../server-api/access-token.md#create-an-access-token)
 
 
 

@@ -6,7 +6,4 @@ sidebar_position: 100
 
 import GitHubChangelog from '@site/src/components/GitHubChangelog';
 
-<GitHubChangelog 
-  rawUrl="https://raw.githubusercontent.com/testpress/iOSPlayerSDK/main/CHANGELOG.md"
-  repoUrl="https://github.com/testpress/iOSPlayerSDK"
-/>
+<GitHubChangelog sdk="ios" />

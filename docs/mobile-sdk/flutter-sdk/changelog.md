@@ -6,7 +6,4 @@ sidebar_position: 100
 
 import GitHubChangelog from '@site/src/components/GitHubChangelog';
 
-<GitHubChangelog 
-  rawUrl="https://raw.githubusercontent.com/testpress/flutter-player-sdk/main/CHANGELOG.md"
-  repoUrl="https://github.com/testpress/flutter-player-sdk"
-/>
+<GitHubChangelog sdk="flutter" />

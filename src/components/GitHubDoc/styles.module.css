@@ -38,7 +38,7 @@
   color: #f87171;
 }
 
-.changelogWrapper {
+.docWrapper {
   margin: 1.5rem 0;
 }
 
@@ -62,7 +62,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #10b981; /* emerald green */
+  color: #10b981;
   font-weight: 600;
   animation: pulse 2s infinite;
 }
@@ -91,21 +91,19 @@
   opacity: 0.85;
 }
 
-/* Style headings to act as clear dividers between versions, like GitHub */
-.changelogWrapper h2 {
+.docWrapper h2 {
   border-bottom: 1px solid var(--ifm-hr-border-color, var(--ifm-color-emphasis-200));
   padding-bottom: 0.5rem;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
 }
 
-.changelogWrapper h3 {
+.docWrapper h3 {
   margin-top: 2rem;
   margin-bottom: 0.75rem;
 }
 
-/* Ensure horizontal rules also render as clean separator lines */
-.changelogWrapper hr {
+.docWrapper hr {
   background-color: var(--ifm-hr-border-color, var(--ifm-color-emphasis-200));
   height: 1px;
   border: none;

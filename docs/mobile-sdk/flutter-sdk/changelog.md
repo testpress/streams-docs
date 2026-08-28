@@ -4,6 +4,6 @@ description: Real-time release history and updates for the TPStreams Flutter Pla
 sidebar_position: 100
 ---
 
-import GitHubChangelog from '@site/src/components/GitHubChangelog';
+import GitHubDoc from '@site/src/components/GitHubDoc';
 
-<GitHubChangelog sdk="flutter" />
+<GitHubDoc sdk="flutter" docType="changelog" />

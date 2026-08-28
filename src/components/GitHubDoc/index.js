@@ -9,10 +9,18 @@ marked.setOptions({
   breaks: true,
 });
 
-export default function GitHubChangelog({ sdk, file = 'CHANGELOG.md', rawUrl: directRawUrl, repoUrl: directRepoUrl }) {
-  const docConfig = sdk ? getGitHubDoc(sdk, file, 'changelog') : null;
+export default function GitHubDoc({
+  sdk,
+  docType,
+  contentType: directContentType,
+  rawUrl: directRawUrl,
+  repoUrl: directRepoUrl,
+}) {
+  const targetDoc = docType || 'changelog';
+  const docConfig = sdk ? getGitHubDoc(sdk, targetDoc, directContentType) : null;
   const rawUrl = directRawUrl || docConfig?.rawUrl;
   const repoUrl = directRepoUrl || docConfig?.repoUrl;
+  const contentType = directContentType || docConfig?.contentType || 'document';
 
   const [html, setHtml] = useState('');
   const [loading, setLoading] = useState(true);
@@ -22,23 +30,25 @@ export default function GitHubChangelog({ sdk, file = 'CHANGELOG.md', rawUrl: di
     let isMounted = true;
 
     if (!rawUrl) {
-      setError('No source URL or SDK specified for Changelog.');
+      setError(`No source URL or SDK specified for ${contentType}.`);
       setLoading(false);
       return;
     }
-    
+
     setLoading(true);
     fetch(rawUrl)
       .then((res) => {
         if (!res.ok) {
-          throw new Error(`Failed to fetch changelog (Status: ${res.status})`);
+          throw new Error(`Failed to fetch ${contentType} (Status: ${res.status})`);
         }
         return res.text();
       })
       .then((text) => {
         if (isMounted) {
-          // Parse markdown to HTML
-          const parsedHtml = marked.parse(text);
+          // Strip the leading h1 heading to avoid duplicating the Docusaurus page title
+          // Use [ \t]+ (horizontal whitespace only) and [^\n]* to ensure exactly one line is removed
+          const strippedText = text.replace(/^#[ \t]+[^\n]*\n?/, '');
+          const parsedHtml = marked.parse(strippedText);
           setHtml(parsedHtml);
           setLoading(false);
         }
@@ -54,13 +64,13 @@ export default function GitHubChangelog({ sdk, file = 'CHANGELOG.md', rawUrl: di
     return () => {
       isMounted = false;
     };
-  }, [rawUrl]);
+  }, [rawUrl, contentType]);
 
   if (loading) {
     return (
       <div className={styles.loadingContainer}>
         <div className={styles.spinner} />
-        <p>Fetching latest changelog from GitHub...</p>
+        <p>Fetching latest {contentType} from GitHub...</p>
       </div>
     );
   }
@@ -71,7 +81,7 @@ export default function GitHubChangelog({ sdk, file = 'CHANGELOG.md', rawUrl: di
         <p>⚠️ {error}</p>
         {repoUrl && (
           <p>
-            You can view the changelog directly on GitHub:{' '}
+            You can view the {contentType} directly on GitHub:{' '}
             <a href={repoUrl} target="_blank" rel="noopener noreferrer">
               {repoUrl}
             </a>
@@ -82,7 +92,7 @@ export default function GitHubChangelog({ sdk, file = 'CHANGELOG.md', rawUrl: di
   }
 
   return (
-    <div className={styles.changelogWrapper}>
+    <div className={styles.docWrapper}>
       <div 
         className="markdown"
         dangerouslySetInnerHTML={{ __html: html }} 

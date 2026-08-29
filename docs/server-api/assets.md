@@ -852,6 +852,57 @@ For valid requests the API server returns a JSON:
 For Thumbnail upload, use form-data in the request body. select an image file in .png, .jpeg, or .jpg format that is less than 2 MB in size .
 :::
 
+## Sprite Preview Thumbnails
+
+Sprite preview thumbnails (storyboard/scrubbing thumbnails) provide a single composite image grid containing video frame snapshots captured at fixed intervals across the duration of a video.
+
+The sprite thumbnail data is available in the [Get Individual Asset Details](#get-individual-asset-details) response inside the `tracks` array (`video.tracks`) for the track where `type` is `"Preview Thumbnail"`.
+
+**Fields**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| url | string | The CDN URL to the sprite image file. |
+| interval | integer | Time gap (in seconds) between consecutive thumbnail snapshots (e.g., 2 means a frame every 2 seconds). |
+| width | integer | Width of an individual thumbnail tile in pixels. |
+| height | integer | Height of an individual thumbnail tile in pixels. |
+| rows | integer | Number of rows in the sprite image grid. |
+| columns | integer | Number of columns in the sprite image grid. |
+
+**Sample Response**
+
+```json
+{
+  "id": "<asset_id>",
+  "title": "Sample Video",
+  "type": "video",
+  "video": {
+    "status": "Completed",
+    "playback_url": "https://<cdn_domain>/transcoded/<asset_id>/video.m3u8",
+    "tracks": [
+      {
+        "id": 102,
+        "type": "Preview Thumbnail",
+        "name": "Preview Thumbnail",
+        "preview_thumbnail": {
+          "url": "https://<cdn_domain>/transcoded/<asset_id>/sprite/sprite_image.png",
+          "interval": 2,
+          "width": 160,
+          "height": 90,
+          "rows": 10,
+          "columns": 10
+        }
+      }
+    ]
+  }
+}
+```
+
+:::important
+- Generated automatically during video transcoding for both standard and DRM-protected videos.
+- All preview tiles are packed into a single image sheet to minimize network requests.
+:::
+
 ## Trim Video Asset
 
 To trim a video asset, send an HTTP POST request to the API endpoint with either start_time or end_time (or both) in the request body along with the [authentication Header](../server-api/authentication.md).

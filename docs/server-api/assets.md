@@ -603,6 +603,47 @@ If the specified asset is a folder, it will remove all its child assets. you nee
 
 This will delete the specified asset from your organization
 
+## Add Video Resolutions
+
+To selectively add one or more transcoded resolutions to an existing completed video asset, send an HTTP POST request to the API endpoint along with the [authentication Header](../server-api/authentication.md).
+
+**Endpoint**
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/add_resolutions/
+```
+
+**Fields**
+
+| Name        | Type  | Description                                                                                                                                           | Required |
+|-------------|-------|-------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
+| resolutions | array | Array of resolutions to add (e.g., `[1080, "4k"]` or `["720p", "1080p"]`). Supported values: `240p`, `360p`, `480p`, `720p`, `1080p`, `4k` (or heights `240`, `360`, `480`, `720`, `1080`, `2160`). | Yes      |
+
+**Sample request body**
+
+```json
+{
+    "resolutions": [1080, "4k"]
+}
+```
+
+**Sample Response**
+
+For **valid requests**, the API server immediately queues the transcoding task in the background and returns an **HTTP status code 202 Accepted**
+
+```json
+{
+    "uuid": "4jjgG7ma3XE",
+    "job_id": "8fa1b93f-c689-4fa2-bc42-f8510dc41372",
+    "resolutions": [1080, 2160]
+}
+```
+
+:::important
+- Resolutions can only be added to completed videos and completed livestreams.
+- Adding a resolution that already exists on the video will return an error (`400 Bad Request`).
+- If an incremental resolution addition task is already in progress for the asset, new requests will be rejected until the active task completes.
+:::
+
 ## Delete Video Resolutions
 
 To selectively delete one or more transcoded resolutions from a video asset, send an HTTP POST request to the API endpoint along with the [authentication Header](../server-api/authentication.md).

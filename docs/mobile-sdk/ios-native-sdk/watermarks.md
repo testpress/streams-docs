@@ -4,66 +4,102 @@ sidebar_position: 4
 
 # Watermarks
 
-Display one or more text watermarks over the video content by passing `WatermarkConfig` entries to
-`setWatermarks(_:)`. Watermarks render above the video and subtitles but below the player controls, on both the SwiftUI
-and UIKit paths. Pass an empty list to remove all watermarks.
+Display one or more text and image watermarks over video playback by passing `BaseWatermarkConfig` entries (`TextWatermarkConfig` and `ImageWatermarkConfig`) to `setWatermarks(_:)`. Watermarks render above the video and subtitles but below the player controls on both SwiftUI and UIKit paths. Pass an empty list to remove all watermarks.
+
+:::caution Migration Notice
+`WatermarkConfig` is currently retained as a `typealias` for backward compatibility. Please update your code to use `TextWatermarkConfig`, as `WatermarkConfig` will be deprecated in upcoming releases.
+:::
 
 ## Usage
 
 ```swift
+import TPStreamsSDK
+
 let config = TPStreamPlayerConfigurationBuilder()
     .setWatermarks([
-        WatermarkConfig(
-            text: "example-user",
+        // Animated text watermark
+        TextWatermarkConfig(
+            text: "user@example.com",
             x: 0,
             y: 50,
             color: 0xFFFFFFFF,
-            textSize: 18,
+            textSize: 16,
             opacity: 0.5,
             animation: WatermarkAnimation(type: .pingPong, duration: 10000)
         ),
-        WatermarkConfig(
-            text: "example-user",
-            x: 100,
-            y: 100,
+        // Static text watermark
+        TextWatermarkConfig(
+            text: "CONFIDENTIAL",
+            x: 50,
+            y: 10,
             color: 0xFFFF0000,
             textSize: 14,
-            opacity: 0.2
+            opacity: 0.3
+        ),
+        // Image watermark (e.g., instructor avatar or brand logo)
+        ImageWatermarkConfig(
+            imageUrl: "https://example.com/branding/logo.png",
+            width: 48,
+            height: 48,
+            x: 92,
+            y: 88,
+            opacity: 1.0
         )
     ])
     .build()
 ```
 
-On iOS, watermarks are configuration rather than imperative methods. On the UIKit path you can mutate
-`TPStreamPlayerViewController.config.watermarks` at runtime to re-apply them without recreating the player.
+On iOS, watermarks are defined via configuration. On the UIKit path, you can mutate `TPStreamPlayerViewController.config.watermarks` at runtime to update or re-apply them without recreating the player.
 
-## WatermarkConfig properties
+---
+
+## Configuration Types
+
+Both text and image watermark configurations conform to `BaseWatermarkConfig`.
+
+### TextWatermarkConfig Properties
+
+Use `TextWatermarkConfig` to overlay text strings (e.g., user email, ID, or notice) for content protection.
 
 | Property | Type | Default | Description |
-| --- | --- | --- | --- |
-| `text` | String | — | Watermark text (required) |
-| `x` | Int64 | `0` | Horizontal position as a percentage of the player view width (0–100) |
-| `y` | Int64 | `0` | Vertical position as a percentage of the player view height (0–100) |
-| `color` | Int64 | `0xFFFFFFFF` | Watermark color as an ARGB value (white) |
-| `textSize` | Double | `14` | Text size in points |
-| `opacity` | Double | `0.3` | Watermark opacity (0.0–1.0) |
-| `animation` | WatermarkAnimation? | `nil` | Optional animation; `nil` renders a static watermark |
+| :--- | :--- | :--- | :--- |
+| `text` | `String` | — | Watermark text (required) |
+| `x` | `Int64` | `0` | Horizontal position as a percentage of the player view width (`0`–`100`) |
+| `y` | `Int64` | `0` | Vertical position as a percentage of the player view height (`0`–`100`) |
+| `color` | `Int64` | `0xFFFFFFFF` | Watermark text color as an ARGB integer value (default: white) |
+| `textSize` | `Double` | `14` | Text size in points |
+| `opacity` | `Double` | `0.3` | Opacity from `0.0` (transparent) to `1.0` (opaque) |
+| `animation` | `WatermarkAnimation?` | `nil` | Optional animation; `nil` renders a static watermark |
+
+### ImageWatermarkConfig Properties
+
+Use `ImageWatermarkConfig` to display remote image overlays such as instructor avatars or company branding.
+
+| Property | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `imageUrl` | `String` | — | HTTPS URL of the watermark image (required, PNG recommended) |
+| `width` | `Double` | `48` | Width in points (clamped to `>= 0`) |
+| `height` | `Double` | `48` | Height in points (clamped to `>= 0`) |
+| `x` | `Int64` | `92` | Horizontal position percentage (`0`–`100`, default places towards bottom-right) |
+| `y` | `Int64` | `88` | Vertical position percentage (`0`–`100`, default places towards bottom-right) |
+| `opacity` | `Double` | `1.0` | Opacity from `0.0` (transparent) to `1.0` (opaque) |
+
+---
 
 ## WatermarkAnimation / WatermarkAnimationType
 
-`WatermarkAnimation` has `type` (`WatermarkAnimationType`) and `duration` in milliseconds (default `10000`, minimum `100`).
+`WatermarkAnimation` is supported on `TextWatermarkConfig` and accepts `type` (`WatermarkAnimationType`) and `duration` in milliseconds (default `10000`, minimum `100`).
 
 Supported animation types:
-- **`pingPong`** (`.pingPong`): Moves the watermark horizontally from the left edge to the right edge and back, taking the configured duration per leg. Animated watermarks **ignore the x coordinate**; their y position is honored.
-- **`random`** (`.random`): Repositions the watermark to random coordinates across the player view every `duration` milliseconds. Both `x` and `y` initial coordinates are randomized.
+- **`pingPong`** (`.pingPong`): Moves the watermark horizontally from the left edge to the right edge and back, taking the configured duration per leg. Animated watermarks **ignore the initial x coordinate**; their y position is honored.
+- **`random`** (`.random`): Repositions the watermark to random coordinates across the active player view every `duration` milliseconds. Both `x` and `y` initial coordinates are randomized.
 
-## Behavior
+---
 
-- Watermarks are kept fully visible inside the player view with a small fixed inset, and reposition on rotation,
-  fullscreen transitions, and view resizing.
-- Animated watermarks pause while playback is not active (paused, buffering, ended) and resume from the paused position;
-  the watermark remains visible.
-- Out-of-range `x`/`y` (0–100) and `opacity` (0.0–1.0) values are clamped to the nearest bound; an animation duration
-  below 100 ms is floored to 100 ms. Invalid values never crash playback.
-- Overlapping watermarks render with earlier list entries on top.
-- Watermarks are cleaned up and all animations stopped when the player view is released or deinitialized.
+## Behavior & Features
+
+- **Asynchronous Image Loading & Caching:** Remote images in `ImageWatermarkConfig` are fetched asynchronously and cached for smooth rendering.
+- **Controls Auto-Hide:** Image watermark overlays automatically fade out when player controls are visible and smoothly fade back in when controls are dismissed.
+- **Safe Positioning & Boundary Clamping:** Watermarks are kept fully visible inside the player view with a fixed inset, and automatically reposition on screen rotation, fullscreen transitions, and view resizing. Out-of-range `x`/`y` (`0`–`100`) and `opacity` (`0.0`–`1.0`) values are clamped to the nearest bound.
+- **Playback Sync:** Animated text watermarks pause while playback is not active (paused, buffering, ended) and resume smoothly from the paused position when playback resumes.
+- **Lifecycle Cleanup:** Overlays and running animation timers are cleanly torn down when the player view controller is deinitialized.

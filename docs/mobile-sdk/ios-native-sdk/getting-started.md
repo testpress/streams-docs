@@ -97,7 +97,7 @@ class ViewController: UIViewController {
 
 ## Watermarks
 
-Display one or more text watermarks over the video content by passing `WatermarkConfig` entries to `setWatermarks(_:)`.
+Display one or more text or image watermarks over the video content by passing `BaseWatermarkConfig` entries (`TextWatermarkConfig` and `ImageWatermarkConfig`) to `setWatermarks(_:)`.
 For the full reference (configuration properties, defaults, and behavior), see [Watermarks](./watermarks).
 
 

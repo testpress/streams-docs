@@ -42,10 +42,11 @@ player.listener = object : TPStreamsPlayer.Listener {
 
 ### Watermark Methods (`TPStreamsPlayerView`)
 
-Watermarks are configured on the `TPStreamsPlayerView` instance. For detailed parameters and animation options, see [Watermarks](./watermarks).
+Watermarks are configured on the `TPStreamsPlayerView` instance. For detailed parameters, configuration properties, and animation options, see [Watermarks](./watermarks).
 
 | Method | Description |
 | :--- | :--- |
-| `setWatermarks(configs: List<WatermarkConfig>)` | Applies a list of text watermark overlays with configurable positioning, opacity, and animations (`PING_PONG`, `RANDOM`). |
-| `clearWatermarks()` | Removes all active watermark overlays and stops animations. |
+| `setWatermarks(configs: List<BaseWatermarkConfig>)` | Applies a list of text (`TextWatermarkConfig`) and image (`ImageWatermarkConfig`) watermark overlays with configurable positioning, opacity, and animations (`PING_PONG`, `RANDOM`). |
+| `clearWatermarks()` | Removes all active watermark overlays and stops running animations. |
+
 

@@ -115,9 +115,8 @@ void _onPlayerCreated(TPStreamsPlayerController controller) {
 
 ```
 
-Once you have the controller, you can use it to interact with the player, such as controlling playback, fetching the current position, or listening to events.
-
 - To control playback or fetch video details, refer to the [Player Methods documentation](./player-methods).
 - To listen to player state changes and events, refer to the [Player Events documentation](./player-events).
+- To configure dynamic text and image watermarks, refer to the [Watermarks documentation](./watermarks).
 
 For a practical implementation and usage of tpstreams_player_sdk, refer to our [Sample Flutter App](https://github.com/testpress/sample_flutter_app).

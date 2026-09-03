@@ -147,12 +147,16 @@ await controller.exitFullScreen();
 ### Set Watermarks
 
 ```dart
-Future<void> setWatermarks(List<WatermarkConfig> configs)
+Future<void> setWatermarks(List<BaseWatermarkConfig> configs)
 ```
 
-Applies text watermark overlays on the video player. Each `WatermarkConfig` creates an independent watermark overlay. Pass an empty list to clear all watermarks.
+Applies text (`TextWatermarkConfig`) and/or image (`ImageWatermarkConfig`) watermark overlays on the video player. Each config creates an independent watermark overlay. Pass an empty list to clear all watermarks. For comprehensive documentation, see [Watermarks](./watermarks).
 
-**`WatermarkConfig` fields:**
+:::caution Migration Notice
+`WatermarkConfig` is retained as a `typedef` for backward compatibility. Please update your code to use `TextWatermarkConfig`, as `WatermarkConfig` will be deprecated in upcoming releases.
+:::
+
+**`TextWatermarkConfig` fields:**
 
 | Parameter | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
@@ -163,6 +167,17 @@ Applies text watermark overlays on the video player. Each `WatermarkConfig` crea
 | `textSize` | `double` | `14.0` | Text size in SP. |
 | `opacity` | `double` | `0.3` | Opacity from 0.0 (invisible) to 1.0 (fully opaque). |
 | `animation` | `WatermarkAnimation?` | `null` | (Optional) Animation applied to the watermark. |
+
+**`ImageWatermarkConfig` fields:**
+
+| Parameter | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `imageUrl` | `String` | — | HTTPS URL of the watermark image (required). |
+| `width` | `int` | `48` | Width in logical pixels / dp. |
+| `height` | `int` | `48` | Height in logical pixels / dp. |
+| `x` | `int` | `92` | Horizontal position as 0–100 percent. |
+| `y` | `int` | `88` | Vertical position as 0–100 percent. |
+| `opacity` | `double` | `1.0` | Opacity from 0.0 (invisible) to 1.0 (fully opaque). |
 
 **`WatermarkAnimation` fields:**
 
@@ -175,21 +190,32 @@ Applies text watermark overlays on the video player. Each `WatermarkConfig` crea
 
 ```dart
 await controller.setWatermarks([
-  WatermarkConfig(
+  // Animated text watermark
+  TextWatermarkConfig(
     text: '© testpress',
     x: 100,
     y: 50,
     opacity: 0.9,
     animation: WatermarkAnimation(
       type: WatermarkAnimationType.pingPong,
-      duration: 1000,
+      duration: 10000,
     ),
   ),
-  WatermarkConfig(
+  // Static text watermark
+  TextWatermarkConfig(
     text: '© TPStreams',
     x: 0,
     y: 50,
     opacity: 0.3,
+  ),
+  // Image watermark (e.g., logo or avatar)
+  ImageWatermarkConfig(
+    imageUrl: 'https://example.com/branding/logo.png',
+    width: 48,
+    height: 48,
+    x: 92,
+    y: 88,
+    opacity: 1.0,
   ),
 ]);
 ```

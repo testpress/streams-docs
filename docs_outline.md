@@ -51,6 +51,7 @@
 - **Offline Downloads (Android)** (`mobile-sdk/android-native-sdk/offline-downloads.md`)
 - **Watermarks (Android)** (`mobile-sdk/android-native-sdk/watermarks.md`)
 - **Watermarks (iOS)** (`mobile-sdk/ios-native-sdk/watermarks.md`)
+- **Watermarks (Flutter)** (`mobile-sdk/flutter-sdk/watermarks.md`)
 - **Player Methods (Flutter)** (`mobile-sdk/flutter-sdk/player-methods.md`)
 - **Offline Downloads (iOS)** (`mobile-sdk/ios-native-sdk/offline-downloads.md`)
 - **Player Methods (React Native)** (`mobile-sdk/react-native-sdk/player-methods.md`)

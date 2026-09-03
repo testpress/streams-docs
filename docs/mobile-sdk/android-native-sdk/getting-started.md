@@ -96,5 +96,5 @@ binding.tpPlayerView.player = player
 
 ## Watermarks
 
-Display one or more text watermarks over the video content by passing `WatermarkConfig` entries to `TPStreamsPlayerView.setWatermarks()`.
+Display one or more text or image watermarks over the video content by passing `BaseWatermarkConfig` entries (`TextWatermarkConfig` and `ImageWatermarkConfig`) to `TPStreamsPlayerView.setWatermarks()`.
 For the full reference (configuration properties, defaults, and behavior), see [Watermarks](./watermarks).

@@ -80,6 +80,7 @@ class ViewController: UIViewController {
         player = TPAVPlayer(assetID: "YOUR_ASSET_ID", accessToken: "YOUR_ACCESS_TOKEN")
         playerViewController = TPStreamPlayerViewController()
         playerViewController?.player = player
+        playerViewController?.delegate = self
 
         addChild(playerViewController!)
         playerContainer.addSubview(playerViewController!.view)
@@ -94,6 +95,19 @@ class ViewController: UIViewController {
 
  Since TPAVPlayer is a wrapper class of AVPlayer, you can also use the TPAVPlayer with native iOS player to play Streams Videos.
 :::
+
+
+### Player Delegate Events
+
+Implement `TPStreamPlayerViewControllerDelegate` to handle player events such as subtitle state changes:
+
+```swift
+extension ViewController: TPStreamPlayerViewControllerDelegate {
+    func onSubtitleStateChanged(enabled: Bool, language: String?) {
+        print("Subtitles enabled: \(enabled), language: \(language ?? "N/A")")
+    }
+}
+```
 
 ## Watermarks
 

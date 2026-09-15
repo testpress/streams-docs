@@ -16,6 +16,7 @@ The TPStreamsPlayerView component provides the following event handlers:
 - **onIsLoadingChanged(isLoading: boolean)**: Fires when loading state changes.
 - **`onError(error: {message: string, code: number, details?: string})`**: Fires when an error occurs.
 - **onAccessTokenExpired(videoId: string, callback: (newToken: string) => void)**: Fires when the access token expires. Call the callback with a new token to continue playback.
+- **`onSubtitleStateChanged(enabled: boolean, language?: string)`**: Fires when subtitle state changes (subtitles turned ON/OFF or active subtitle language changed).
 
 ## Player State Values
 
@@ -52,6 +53,9 @@ The **onPlayerStateChanged** event provides numeric state values that correspond
   onPlaybackSpeedChanged={(speed) => console.log(`Speed changed: ${speed}x`)}
   onIsLoadingChanged={(isLoading) => console.log(`Loading: ${isLoading}`)}
   onError={(error) => console.error('Player error:', error)}
+  onSubtitleStateChanged={(enabled, language) =>
+    console.log(`Subtitles ${enabled ? 'ON' : 'OFF'}${language ? ` (${language})` : ''}`)
+  }
   onAccessTokenExpired={async (videoId, callback) => {
     // Fetch a new token from your server
     const newToken = await getNewTokenForVideo(videoId);

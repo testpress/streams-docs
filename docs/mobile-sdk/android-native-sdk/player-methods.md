@@ -37,6 +37,11 @@ player.listener = object : TPStreamsPlayer.Listener {
         // Called when a playback error occurs
         println("Error: $message")
     }
+
+    override fun onSubtitleStateChanged(enabled: Boolean, language: String?) {
+        // Called when subtitle state changes (enabled/disabled or language changed)
+        println("Subtitles enabled: $enabled, language: $language")
+    }
 }
 ```
 

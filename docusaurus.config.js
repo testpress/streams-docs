@@ -112,6 +112,12 @@ const config = {
               },
             ],
           },
+          {
+            type: 'doc',
+            docId: 'ai-skill',
+            position: 'left',
+            label: 'AI Skill',
+          },
 
           {
             type: 'search',

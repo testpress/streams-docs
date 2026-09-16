@@ -31,6 +31,36 @@ function HomepageHeader() {
   );
 }
 
+function AiBanner() {
+  return (
+    <section className={styles.aiBannerSection}>
+      <div className={styles.aiBannerContainer}>
+        <div className={styles.aiBanner}>
+          <div className={styles.aiBannerLeft}>
+            <div className={styles.aiBannerIconWrap}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L14.7 8.3L21 11L14.7 13.7L12 20L9.3 13.7L3 11L9.3 8.3L12 2Z" />
+                <path d="M19 16L20.2 18.8L23 20L20.2 21.2L19 24L17.8 21.2L15 20L17.8 18.8L19 16Z" opacity="0.7" />
+              </svg>
+            </div>
+            <div>
+              <h3 className={styles.aiBannerTitle}>Build with TPStreams using AI</h3>
+              <p className={styles.aiBannerDescription}>
+                Give your AI coding assistant the context it needs to integrate TPStreams.<br/> Works with Claude Code, Cursor, Codex, and more.
+              </p>
+            </div>
+          </div>
+          <div className={styles.aiBannerActions}>
+            <Link className={styles.aiBannerButton} to="docs/ai-skill">
+              Get the AI Skill &rarr;
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
@@ -39,8 +69,10 @@ export default function Home() {
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
       <main>
+        <AiBanner />
         <HomepageFeatures />
       </main>
     </Layout>
   );
 }
+

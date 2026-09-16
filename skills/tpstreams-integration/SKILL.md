@@ -102,7 +102,8 @@ Expert guide and index for integrating TPStreams video infrastructure, including
 - [Live Streaming Introduction](https://developer.tpstreams.com/docs/server-api/live-stream-api/Introduction): Live broadcast concepts and ingestion.
 - [Create Instant Live Stream](https://developer.tpstreams.com/docs/server-api/live-stream-api/create_live_stream_instantly): Provision an on-demand live stream.
 - [Schedule a Live Stream](https://developer.tpstreams.com/docs/server-api/live-stream-api/live-stream/schedule-a-live-stream): Schedule future live broadcasts.
-- [Start / Stop Live Server](https://developer.tpstreams.com/docs/server-api/live-stream-api/live-stream/start-server): Server management for scheduled streams.
+- [Start Live Server](https://developer.tpstreams.com/docs/server-api/live-stream-api/live-stream/start-server): Start the live streaming server for scheduled streams.
+- [Stop Live Stream](https://developer.tpstreams.com/docs/server-api/live-stream-api/stop-a-live-stream-api): Stop an active live stream.
 - [Delete Live Stream](https://developer.tpstreams.com/docs/server-api/live-stream-api/delete-live-stream-api): Removing live stream instances.
 - [List Live Streams](https://developer.tpstreams.com/docs/server-api/live-stream-api/list-live-stream-api): Querying existing live streams.
 - [Live Stream Events and Status](https://developer.tpstreams.com/docs/server-api/live-stream-api/live-stream-event-status): Progression lifecycle and state transitions.

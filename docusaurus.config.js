@@ -8,7 +8,7 @@ const darkCodeTheme = themes.dracula;
 const config = {
   title: 'TPStreams Docs',
   tagline: 'Guides, API references, SDKs, and examples\nto help you integrate TPStreams faster.',
-  url: 'https://testpress.github.io',
+  url: 'https://developer.tpstreams.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',

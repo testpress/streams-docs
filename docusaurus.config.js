@@ -112,10 +112,16 @@ const config = {
               },
             ],
           },
-
           {
             type: 'search',
             position: 'right',
+          },
+          {
+            type: 'html',
+            position: 'right',
+            className: 'navbar__ai-badge',
+            value:
+              '<a href="/docs/ai-skill" class="navbar__ai-link"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C12 7.5 7.5 12 2 12C7.5 12 12 16.5 12 22C12 16.5 16.5 12 22 12C16.5 12 12 7.5 12 2Z"/></svg><span>AI</span></a>',
           },
           {
             type: 'html',

@@ -1,0 +1,4 @@
+interface:
+  display_name: "TPStreams Integration"
+  short_description: "Guides, API references, SDKs, and examples to integrate TPStreams video infrastructure"
+  default_prompt: "Use $tpstreams-integration to integrate TPStreams video playback, DRM, or APIs."

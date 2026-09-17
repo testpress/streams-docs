@@ -7,6 +7,7 @@ This file contains links to documentation sections following the llmstxt.org sta
 
 ## Table of Contents
 
+- [TPStreams AI Skill](https://developer.tpstreams.com/docs/ai-skill): Equip your AI coding assistants (Codex, Cursor, Claude Code, etc.) with TPStreams domain knowledge and integration guides.
 - [DRM Policies](https://developer.tpstreams.com/docs/drm-service/drm-policies): | Security Level                 | Widevine minimum security level | FairPlay minimum security level | Digital output                |
 - [DRM Encryption (CBCS)](https://developer.tpstreams.com/docs/drm-service/encryption/drm-encryption-cbcs): DRM Encryption (CBCS) allows you to use a single set of encryption keys for both FairPlay and Widevine DRM. By this we can create a single set of e...
 - [Fairplay Encryption](https://developer.tpstreams.com/docs/drm-service/encryption/fairplay-encryption): To obtain  the FairPlay Encryption Key, IV, and URI, please check this [Fairplay Encrption Keys](#obtain-fairplay-encryption-keys)

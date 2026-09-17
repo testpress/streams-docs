@@ -5,6 +5,137 @@
 
 This file contains all documentation content in a single document following the llmstxt.org standard.
 
+## TPStreams AI Skill
+
+Equip your AI coding assistants (Codex, Cursor, Claude Code, etc.) with TPStreams domain knowledge and integration guides.
+
+### Install Skill
+
+  Run the following command in your terminal:
+  
+    <code>npx skills@latest add https://github.com/testpress/streams-docs.git</code>
+    <button className="ai-code-box__btn" onClick={() => navigator.clipboard.writeText('npx skills@latest add https://github.com/testpress/streams-docs.git')}>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copy
+    </button>
+  
+
+### Works with
+
+Compatible with popular AI coding agents and tools.
+
+  
+    
+      
+    
+    Claude Code
+  
+  
+    
+      
+    
+    Cursor
+  
+  
+    
+      
+    
+    Codex
+  
+  
+    
+      
+    
+    GitHub Copilot
+  
+  
+    
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+        <circle cx="5" cy="12" r="2.5"/>
+        <circle cx="12" cy="12" r="2.5"/>
+        <circle cx="19" cy="12" r="2.5"/>
+      </svg>
+    
+    and more
+  
+
+### How to use
+
+Mention `/tpstreams-integration` in your prompts:
+
+  
+    1
+    "Use /tpstreams-integration integrate to play videos in Flutter with offline downloads."
+  
+  
+    2
+    "Use /tpstreams-integration add webhook to handle video transcoding webhook events."
+  
+  
+    3
+    "Use /tpstreams-integration add logic for generating access tokens for video playback."
+  
+
+### LLM Endpoints
+
+Direct access to TPStreams documentation for LLMs.
+
+  
+    
+      Resource
+      URL
+    
+  
+  
+    
+      
+        
+          Index
+          <code>llms.txt</code>
+        
+      
+      
+        
+          https://developer.tpstreams.com/llms.txt
+          <button className="ai-copy-btn-sm" title="Copy URL" onClick={() => navigator.clipboard.writeText('https://developer.tpstreams.com/llms.txt')}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy
+          </button>
+        
+      
+    
+    
+      
+        
+          Full Documentation
+          <code>llms-full.txt</code>
+        
+      
+      
+        
+          https://developer.tpstreams.com/llms-full.txt
+          <button className="ai-copy-btn-sm" title="Copy URL" onClick={() => navigator.clipboard.writeText('https://developer.tpstreams.com/llms-full.txt')}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy
+          </button>
+        
+      
+    
+  
+
+  
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9 18h6" />
+      <path d="M10 22h4" />
+      <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14" />
+    </svg>
+  
+  
+    The skill is automatically kept up to date with our latest documentation.
+    No manual updates required — your agent always has the latest information.
+
+---
+
 ## DRM Policies
 
 This guide explains Digital Rights Management (DRM) policies

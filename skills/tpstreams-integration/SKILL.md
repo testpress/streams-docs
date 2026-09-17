@@ -25,4 +25,8 @@ Expert guide and index for integrating TPStreams video infrastructure, including
 
 ## Documentation
 
-For the complete and up-to-date documentation index, refer to [llms.txt](https://developer.tpstreams.com/llms.txt).
+For exact SDK classes, API signatures, parameters, configuration options, and implementation examples, refer to the complete documentation index:
+
+https://developer.tpstreams.com/llms.txt
+
+Use the documentation to verify technical details before providing implementation-specific answers.

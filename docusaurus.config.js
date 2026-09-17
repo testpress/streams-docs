@@ -36,6 +36,7 @@ const config = {
         indexBlog: false,
       }),
     ],
+    'docusaurus-plugin-llms',
   ],
 
   presets: [

@@ -1,20 +1,14 @@
 ---
 id: ai-skill
-title: AI Skill
+title: TPStreams AI Skill
 sidebar_label: AI Skill
 slug: /ai-skill
-hide_title: true
 ---
 
-<div className="ai-page__header">
-  <div className="ai-page__header-text">
-    <h1>TPStreams AI Skill</h1>
-    <p>Equip your AI coding assistants (Codex, Cursor, Claude Code, etc.) with TPStreams domain knowledge and integration guides.</p>
-  </div>
-</div>
+Equip your AI coding assistants (Codex, Cursor, Claude Code, etc.) with TPStreams domain knowledge and integration guides.
 
+## Install Skill
 <div className="ai-install-card">
-  <div className="ai-install-card__title">Install the TPStreams Skill</div>
   <div className="ai-install-card__subtitle">Run the following command in your terminal:</div>
   <div className="ai-code-box">
     <code>npx skills@latest add https://github.com/testpress/streams-docs.git</code>
@@ -25,8 +19,9 @@ hide_title: true
   </div>
 </div>
 
-<div className="ai-section-title">Works with</div>
-<div className="ai-section-subtitle">Compatible with popular AI coding agents and tools.</div>
+## Works with
+
+Compatible with popular AI coding agents and tools.
 
 <div className="ai-tools-grid">
   <div className="ai-tool-card">
@@ -65,8 +60,9 @@ hide_title: true
   </div>
 </div>
 
-<div className="ai-section-title">How to use</div>
-<div className="ai-section-subtitle">Mention <code>/tpstreams-integration</code> in your prompts:</div>
+## How to use
+
+Mention `/tpstreams-integration` in your prompts:
 
 <div className="ai-prompt-box">
   <div className="ai-prompt-line">
@@ -83,8 +79,9 @@ hide_title: true
   </div>
 </div>
 
-<div className="ai-section-title">LLM Endpoints</div>
-<div className="ai-section-subtitle">Direct access to TPStreams documentation for LLMs.</div>
+## LLM Endpoints
+
+Direct access to TPStreams documentation for LLMs.
 
 <table className="ai-endpoints-table">
   <thead>
@@ -144,4 +141,3 @@ hide_title: true
     <p className="ai-callout-desc">No manual updates required — your agent always has the latest information.</p>
   </div>
 </div>
-

@@ -219,40 +219,19 @@
    AI Skill Page Styles
    ========================================================================== */
 
-.docs-doc-id-ai-skill .container {
-  max-width: 860px !important;
-  margin: 0 auto !important;
-  padding: 0 1.5rem !important;
+.docs-doc-id-ai-skill [class*='docSidebarContainer'] {
+  display: none !important;
 }
 
-.docs-doc-id-ai-skill .row {
-  justify-content: center !important;
-  margin: 0 !important;
-}
-
-.docs-doc-id-ai-skill .col,
-.docs-doc-id-ai-skill [class*='docItemCol'] {
+.docs-doc-id-ai-skill [class*='docMainContainer'] {
   max-width: 100% !important;
+  flex-grow: 1;
+}
+
+.docs-doc-id-ai-skill .container {
+  max-width: 1140px !important;
   margin: 0 auto !important;
-  padding: 0 !important;
-  flex: 0 0 100% !important;
-}
-
-.ai-page__header {
-  margin-bottom: 2rem;
-}
-
-.ai-page__header-text h1 {
-  font-size: 2.4rem;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-}
-
-.ai-page__header-text p {
-  font-size: 1.1rem;
-  color: var(--ifm-color-emphasis-700);
-  margin: 0;
-  max-width: 750px;
+  padding: 2rem 1.5rem 3rem 1.5rem !important;
 }
 
 /* Install Card */

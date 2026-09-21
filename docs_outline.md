@@ -8,6 +8,7 @@
 - **Folders** (`server-api/folders.md`)
 - **DRM License** (`server-api/drm.md`)
 - **Subtitles** (`server-api/subtitles.md`)
+- **Audio Tracks** (`server-api/audio-tracks.md`)
 - **Web Hooks** (`server-api/webhooks.md`)
 - **Access token** (`server-api/access-token.md`)
 - **Usages** (`server-api/usages.md`)

@@ -1646,19 +1646,53 @@ To use our Flutter player SDK, add [`tpstreams_player_sdk`](https://pub.dev/pack
 
 #### Initializing TPStreamsSDK 
 
-First, imported our package:
+First, import the package:
 
 ```dart
 import 'package:tpstreams_player_sdk/tpstreams_player_sdk.dart';
 ```
 
-Next, you can initialize the TPStreamsSDK with your organization code.
+Next, initialize the SDK at the entry point of your application (in the `main` function) before calling `runApp`:
 
 ```dart
-TPStreamsSDK.initialize(orgCode: "YOUR_ORG_CODE");
+import 'package:flutter/material.dart';
+import 'package:tpstreams_player_sdk/tpstreams_player_sdk.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  TPStreamsSDK.initialize(
+    orgCode: "YOUR_ORG_CODE",
+    allowFallbackToL3: true, // Optional, defaults to false
+  );
+  runApp(const MyApp());
+}
 ```
 
-Make sure to replace "YOUR_ORG_CODE" with your actual organization code. This code snippet should be placed at the entry point of your application (usually in the main function) to ensure proper initialization of the TPStreamsSDK.
+Make sure to replace `"YOUR_ORG_CODE"` with your actual organization code.
+
+##### Initialization Parameters
+
+| Parameter | Type | Required | Default | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| `orgCode` | `String` | Yes | — | Your TPStreams organization code. |
+| `provider` | `PROVIDER` | No | `PROVIDER.tpstreams` | The provider type (`PROVIDER.tpstreams`). |
+| `authToken` | `String?` | No | `null` | Optional authentication token for protected resources. |
+| `allowFallbackToL3` | `bool` | No | `false` | Enables automatic fallback to software decryption (Widevine L3) if hardware DRM (L1) fails on Android devices. |
+
+:::info Widevine L3 Fallback (`allowFallbackToL3`)
+
+`allowFallbackToL3` is an optional boolean parameter in `TPStreamsSDK.initialize` (default: `false`).
+
+On Android devices, Widevine DRM operates at two primary security levels:
+- **Widevine L1 (Hardware-level)**: Decryption and rendering occur entirely in the device's hardware Trusted Execution Environment (TEE).
+- **Widevine L3 (Software-level)**: Decryption occurs via software.
+
+**Why enable L3 fallback?**
+- **Hardware & OEM DRM issues**: On certain Android devices (e.g., devices with custom ROMs, corrupted keystores, or buggy OEM DRM implementations), hardware L1 decryption may fail and cause DRM playback to break completely.
+- **MediaTek & low-end device decoder limits (Error 4003)**: Error 4003 is commonly observed on low-end MediaTek devices where releasing the secure hardware decoder of an earlier player instance takes time. Due to the limited number of hardware secure decoders on these chipsets, the player fails to create a secure decoder instance.
+
+Setting `allowFallbackToL3: true` instructs the native Android player to automatically fall back to software decryption (L3) in such error scenarios to avoid demanding a hardware secure decoder, preventing playback failures.
+:::
 
 #### Android Setup
 

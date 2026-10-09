@@ -79,6 +79,46 @@ In TPStreams settings, you can restrict the allowed domains that can embed this 
  ![Domain Restriction](./img/uploader_allowed_domains.png)
 
 
+## Customizing Uploader Steps
+
+You can customize which steps appear in the embedded uploader by passing attributes to `<tpstreams-uploader>` or setting properties in JavaScript. This is useful for simplifying the workflow for specific user roles (e.g., hiding subtitle generation or folder selection).
+
+### Supported Options
+
+| HTML Attribute | JS Property | Description |
+| :--- | :--- | :--- |
+| `hide-video-settings` | `hideVideoSettings` | Hides Step 2 (**Video Settings**, including the auto-generate subtitles option). Subtitle generation remains disabled. |
+| `disable-folder-selection` | `disableFolderSelection` | Hides Step 0 (**Select Folder**). Videos are uploaded directly to the root folder. |
+| `hide-transcode-settings` | `hideTranscodeSettings` | Hides Step 3 (**Transcode Settings**). |
+
+### Example: Using HTML Attributes
+
+You can directly add boolean attributes to `<tpstreams-uploader>`:
+
+```html
+<!-- Video Settings (subtitles) step will be hidden -->
+<tpstreams-uploader 
+  organization-id="your-organization-id" 
+  hide-video-settings>
+</tpstreams-uploader>
+```
+
+### Example: Using JavaScript Properties
+
+Alternatively, you can set the properties in JavaScript before calling `.initialize()`:
+
+```html
+<script>
+  const uploader = document.querySelector('tpstreams-uploader');
+  uploader.authToken = '<authentication token>';
+
+  // Hide the video settings (subtitles) step
+  uploader.hideVideoSettings = true;
+
+  uploader.initialize();
+</script>
+```
+
 ## Uploader Events
 You can listen for events in the uploader by attaching a callback using .on()
 

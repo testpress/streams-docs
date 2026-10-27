@@ -3488,9 +3488,24 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
 
 **Fields**
 
+#### Request Parameters
+
 | Name   | Type   | Description                                                                 | Required |
 |--------|--------|-----------------------------------------------------------------------------|----------|
 | expiry | string | The duration (in seconds) for the playback URL to remain valid. For non-encrypted videos, the URL is valid for a lifetime by default. For AES-encrypted videos, defaults to 120 seconds if not specified. | No       |
+
+#### Response Fields
+
+| Name | Type | Description |
+| --- | --- | --- |
+| bytes | integer | Total storage consumed by the asset in bytes (including all transcoded resolutions, audio, and preview thumbnails). |
+| source_file_size_bytes | integer | Size of the original uploaded source video file in bytes. |
+| video.tracks | array | List of media tracks associated with the video asset. |
+| video.tracks[].playlists | array | Present when track `type` is `"Playlist"`. Contains resolution renditions with individual sizes: |
+| ↳ name | string | Resolution label (e.g., `"240p"`, `"360p"`, `"480p"`, `"720p"`). |
+| ↳ bytes | integer | Size of the specific transcoded resolution file in bytes. |
+| ↳ width | integer | Video width in pixels. |
+| ↳ height | integer | Video height in pixels. |
 
 **Sample request body**
 
@@ -3505,6 +3520,7 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
 {
     "title": "Big Buck Bunny Video",
     "bytes": 450881324,
+    "source_file_size_bytes": 524288000,
     "type": "video",
     "video": {
         "progress": 0,
@@ -3532,9 +3548,18 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
         "audio_codec": "aac",
         "enable_drm": true,
         "tracks": [
-                {
+            {
                 "id": 4094,
                 "type": "Preview Thumbnail",
+                "name": "Preview Thumbnail",
+                "url": "https://d28qihy7z761lk.cloudfront.net/transcoded/996NXydJQDU/sprite/sprite_image.png",
+                "bytes": 881324,
+                "language": "en",
+                "width": null,
+                "height": null,
+                "duration": null,
+                "is_active": true,
+                "playlists": [],
                 "preview_thumbnail": {
                     "url": "https://d28qihy7z761lk.cloudfront.net/transcoded/996NXydJQDU/sprite/sprite_image.png",
                     "interval": 2,
@@ -3543,8 +3568,48 @@ https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
                     "rows": 10,
                     "columns": 10
                 }
+            },
+            {
+                "id": 4095,
+                "type": "Playlist",
+                "name": "Playlists",
+                "url": "https://d28qihy7z761lk.cloudfront.net/transcoded/yXrprYum2TS/video.m3u8",
+                "bytes": 450000000,
+                "language": "en",
+                "width": null,
+                "height": null,
+                "duration": 597,
+                "is_active": true,
+                "playlists": [
+                    {
+                        "name": "240p",
+                        "bytes": 35481230,
+                        "width": 426,
+                        "height": 240
+                    },
+                    {
+                        "name": "360p",
+                        "bytes": 78241020,
+                        "width": 640,
+                        "height": 360
+                    },
+                    {
+                        "name": "480p",
+                        "bytes": 142857140,
+                        "width": 854,
+                        "height": 480
+                    },
+                    {
+                        "name": "720p",
+                        "bytes": 193420610,
+                        "width": 1280,
+                        "height": 720
                     }
-            ],
+                ],
+                "subtitle_type": null,
+                "preview_thumbnail": null
+            }
+        ],
         "inputs": [
             {
                 "url": "private/yXrprYum2TS.mp4"

@@ -5135,6 +5135,8 @@ For valid requests the API server returns a JSON:
 1. [Create a live stream instantly](create_live_stream_instantly)
 2. [Schedule live streams and start them later](./live-stream/schedule-a-live-stream)
 
+To host a browser-based session where attendees can join the stage, see [Interactive live stream](./interactive-live-stream/introduction).
+
 ---
 
 ## Chat SDK
@@ -5298,6 +5300,483 @@ For a successful request, status 204 is returned.
 :::important
  If the streaming live stream or a live stream with an active server is deleted, it will result in stopping the server.
 :::
+
+---
+
+## Access tokens and embedding
+
+Every host and attendee needs their own access token. The token identifies the user inside the session, and its `playback_url` is the page you open or embed for that user.
+
+To generate an access token, send an HTTP POST request to the API endpoint with the [authentication header](../../authentication.md). This is the same endpoint used for [video access tokens](../../access-token.md). For interactive live streams it accepts the fields below.
+
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/access_tokens/
+```
+
+**Fields**
+
+| Name              | Type    | Description | Required |
+| ----------------- | ------- | ----------- | -------- |
+| is_host           | boolean | `true` generates a host token, `false` an attendee token. Defaults to `false`. | No |
+| user_id           | string  | Your own unique id for the user, up to 255 characters. Use the same id for the same user every time. | Yes, for attendees |
+| name              | string  | Display name shown in the session. | No |
+| profile_pic_url   | string  | URL of the user's profile picture. | No |
+| user_email        | string  | Email address of the user. | No |
+| user_phone_number | string  | Phone number of the user, up to 32 characters. | No |
+| time_to_live      | integer | How long the token is valid, in seconds. Defaults to `86400` (1 day). Maximum `604800` (7 days). | No |
+| playback_options  | object  | Playback settings for this user. See [playback options](#playback-options). | No |
+
+#### Attendee token
+
+```json
+{
+  "user_id": "student-1024",
+  "name": "Priya Sharma",
+  "user_email": "priya@example.com",
+  "time_to_live": 7200
+}
+```
+
+#### Host token
+
+```json
+{
+  "is_host": true,
+  "name": "Arun Kumar"
+}
+```
+
+- Host tokens can only be generated with an API key of a user who has permission to manage live streams.
+- If `user_id` is omitted for a host, it defaults to the id of the user who owns the API key, and `name` and `user_email` default to that user's details.
+- Open the host `playback_url` in a new browser tab. It is the host's studio, where they can share their camera, microphone and screen.
+
+#### Response
+
+For valid requests the API server returns `201 Created`:
+
+```json
+{
+    "playback_url": "https://app.tpstreams.com/embed/gcdem4/5h6EpZQC6sh/?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "user_id": "student-1024"
+}
+```
+
+The token is valid for the whole session, including the recording after the session ends, until `time_to_live` expires. It only works for the live stream it was generated for.
+
+#### Playback options
+
+`playback_options` controls how the session and its recording play for the user. All keys are optional and default to `false`.
+
+| Key | Type | Description |
+| --- | ---- | ----------- |
+| shouldPreferOnlyHighDefinitionPlayback | boolean | Plays only in 1080p and 720p. Users on slow connections may see buffering. |
+| shouldHideSeekControls | boolean | Hides the seek bar and the forward and backward buttons. |
+| shouldDisallowRecordedPlaybackIfNotLive | boolean | After the session ends, this token cannot play the recording. |
+| customBrandingData | object | Shows your brand in the session. `name` (string, required) and `logoUrl` (URL, optional). |
+
+```json
+{
+  "user_id": "student-1024",
+  "name": "Priya Sharma",
+  "playback_options": {
+    "shouldHideSeekControls": true,
+    "customBrandingData": {
+      "name": "Acme Academy",
+      "logoUrl": "https://example.com/logo.png"
+    }
+  }
+}
+```
+
+#### Errors
+
+| Status code | Reason |
+| ----------- | ------ |
+| 400 Bad Request | `user_id` is missing for an attendee token, or a field is invalid. |
+| 403 Forbidden | Interactive live streaming is not enabled for your organization, or the API key's user cannot host this live stream. |
+| 404 Not Found | No asset exists with this id in your organization. |
+| 502 Bad Gateway | The host session could not be set up. Retry the request. |
+
+### Embed the live stream
+
+Embed the attendee's `playback_url` in an iframe. The `allow` attribute is required so attendees on stage can use their camera, microphone and screen share, and so the recording can play with DRM.
+
+```html
+<iframe
+  src="https://app.tpstreams.com/embed/gcdem4/5h6EpZQC6sh/?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  style="border: 0; width: 100%; aspect-ratio: 16 / 9;"
+  allow="camera; microphone; display-capture; autoplay; fullscreen; picture-in-picture; encrypted-media; clipboard-write"
+  allowfullscreen>
+</iframe>
+```
+
+- Generate the token on your server and never expose your API key in the browser.
+- If your organization has allowed domains for embedding configured, the embed only loads on those domains, the same as video embeds.
+- The embed returns a not found page if the token is invalid, expired, or belongs to a different live stream.
+- When an attendee leaves the stage, the embed shows a **Rejoin** option. When the session ends, the recording stays visible in the embed.
+
+To react to what happens inside the embed, such as an attendee joining the stage or the session ending, see [player events](player-events).
+
+---
+
+## Create an interactive live stream
+
+To create an interactive live stream, send an HTTP POST request to the API endpoint with the [authentication header](../../authentication.md) and `type` set to `interactive`.
+
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/live_streams/
+```
+
+**Fields**
+
+| Name                  | Type    | Description | Required |
+| --------------------- | ------- | ----------- | -------- |
+| title                 | string  | Name of the live stream. Used for filtering and searching. | Yes |
+| type                  | string  | Must be `interactive`. Defaults to `broadcast` when omitted. | Yes |
+| start                 | string  | Date and time to schedule the session, in the format `YYYY-MM-DD HH:MM:SS`. Must not be in the past. Omit to create the session instantly. | No |
+| enable_drm            | boolean | Protects the session recording with DRM. Defaults to `false`. | No |
+| skip_join_screen      | boolean | Attendees enter the session directly, without a pre-join screen. Defaults to `false`. | No |
+| add_everyone_on_stage | boolean | Every attendee joins the stage instead of watching as a viewer. Defaults to `false`. | No |
+
+**Sample request body**
+
+```json
+{
+  "title": "Data science live class",
+  "type": "interactive",
+  "start": "2026-11-05 15:30:00",
+  "enable_drm": true,
+  "skip_join_screen": true,
+  "add_everyone_on_stage": false
+}
+```
+
+For valid requests the API server returns `201 Created` with the live stream asset. The response below is trimmed to the fields that matter for interactive live streams:
+
+```json
+{
+    "title": "Data science live class",
+    "type": "livestream",
+    "id": "5h6EpZQC6sh",
+    "live_stream": {
+        "type": "interactive",
+        "external_session_id": "6a9d565031ba022f16368188",
+        "status": "Not Started",
+        "start": "2026-11-05 15:30:00",
+        "enable_drm": true
+    },
+    "parent": null,
+    "parent_id": null
+}
+```
+
+- Use the asset `id` in all later API calls for this live stream.
+- `external_session_id` identifies the interactive session. It is only returned for interactive live streams.
+- Broadcast-only fields such as `rtmp_url` and `stream_key` are returned as `null` and can be ignored. Users join and watch through the [access token](access-tokens-and-embedding) `playback_url`.
+- The live stream stays in `Not Started` until you [start it](start-and-stop#start-a-live-stream), even if a `start` time is set.
+
+#### Errors
+
+| Status code | Reason |
+| ----------- | ------ |
+| 400 Bad Request | Invalid fields, a `start` time in the past, or the organization's live stream limit is reached. |
+| 403 Forbidden | Interactive live streaming is not enabled for your organization. |
+| 502 Bad Gateway | The interactive session could not be created. No live stream is created, so it is safe to retry. |
+
+---
+
+## Introduction(Interactive-live-stream)
+
+An interactive live stream is a real-time session that runs in the browser. The host goes live from a studio page with their camera, microphone or screen, and attendees can be brought on stage to talk with the host. There is no RTMP ingest and no OBS setup.
+
+Attendees who are not on stage watch the session as a normal live video, and the recording is available in the same player once the session ends.
+
+#### Interactive vs broadcast live streams
+
+|                      | Broadcast (default)                    | Interactive                                   |
+| -------------------- | -------------------------------------- | --------------------------------------------- |
+| How the host goes live | OBS or any RTMP encoder              | Browser studio, no software to install        |
+| Attendees on stage   | No                                     | Yes                                           |
+| `type` field         | `broadcast`                            | `interactive`                                 |
+| Start the stream     | Start streaming from the encoder       | [Start API](start-and-stop) or the dashboard  |
+| Playback for viewers | [Access token](../../access-token.md) `playback_url` | Interactive [access token](access-tokens-and-embedding) `playback_url` |
+
+:::important
+
+Interactive live streaming must be enabled for your organization. Contact TPStreams support to enable it. Until it is enabled, creating an interactive live stream returns `403 Forbidden`.
+
+:::
+
+#### Integration flow
+
+1. [Create an interactive live stream](create-interactive-live-stream), either instantly or scheduled for later.
+2. [Generate a host access token](access-tokens-and-embedding#host-token) and open its `playback_url` for the host. This is the host's studio.
+3. [Start the live stream](start-and-stop#start-a-live-stream).
+4. [Generate an attendee access token](access-tokens-and-embedding#attendee-token) for each attendee and [embed](access-tokens-and-embedding#embed-the-live-stream) the `playback_url` in your page.
+5. Optionally, listen for [player events](player-events) on your page to react when an attendee joins or leaves the stage, or when the session ends.
+6. [Stop the live stream](start-and-stop#stop-a-live-stream) when the session is over. The recording plays in the same embed afterwards.
+
+Status changes are sent to your [webhook](start-and-stop#webhooks), just like broadcast live streams.
+
+---
+
+## Player events(Interactive-live-stream)
+
+When you [embed an interactive live stream](access-tokens-and-embedding#embed-the-live-stream) in your page, the embed sends events to your page as things happen inside it, such as the user joining the stage or the session ending.
+
+Use these events to keep your page in sync with the session. For example, show a "You are live" badge while the user is on stage, show a thank-you message when the session ends, or track how much of the recording a user watched.
+
+### Before you start
+
+A user inside the embed is always in one of two views:
+
+- **Stage**: the live room where the host and attendees on stage talk with camera and microphone.
+- **Live video**: a video player for attendees who are not on stage. After the session ends, the same player plays the recording.
+
+Events starting with `webrtc:` come from the stage. Events starting with `video:` come from the live video player.
+
+### Listening for events
+
+The embed sends events with the browser's [`postMessage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) API. Add a `message` listener on `window` in the page that contains the iframe:
+
+```js
+const liveSession = document.getElementById("live-session"); // your iframe
+
+window.addEventListener("message", (event) => {
+  // Only accept messages from the TPStreams embed on this page.
+  if (event.origin !== "https://app.tpstreams.com") return;
+  if (event.source !== liveSession.contentWindow) return;
+
+  const data = event.data;
+  if (!data || typeof data.type !== "string") return;
+
+  console.log("Received event:", data.type, data);
+});
+```
+
+Every event is an object with a `type` field. Some events have extra fields, described below.
+
+### Events
+
+#### webrtc:join-stage
+
+Fires when the user joins the stage.
+
+```json
+{ "type": "webrtc:join-stage" }
+```
+
+Use it to update your page when the user goes live, for example to show a "You are live" badge.
+
+#### webrtc:left-stage
+
+Fires when the user leaves the stage while the session is still running.
+
+```json
+{ "type": "webrtc:left-stage" }
+```
+
+Use it to undo anything you changed on `webrtc:join-stage`, or to track how long users stay on stage.
+
+#### webrtc:view-mode
+
+Fires when the user enters a view. `mode` tells you which one.
+
+```json
+{ "type": "webrtc:view-mode", "mode": "stage" }
+```
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `mode` | `"stage"` or `"hls"` | `stage` when the user enters the stage, `hls` when the user enters the live video view. |
+
+Use it to adjust your layout for the current view, for example to make room for a chat panel while the user is watching the live video.
+
+#### webrtc:livestream-ended
+
+Fires when the session ends while the user is on stage. This happens when the host ends the session or you call the [stop API](start-and-stop#stop-a-live-stream).
+
+```json
+{ "type": "webrtc:livestream-ended" }
+```
+
+Use it to show an end-of-session message, a feedback form, or to redirect the user.
+
+#### video:play
+
+Fires when the video starts or resumes playing, in the live video or the recording.
+
+```json
+{ "type": "video:play", "durationAtInSeconds": 312.4 }
+```
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `durationAtInSeconds` | number | The playback position, in seconds, when the video started playing. |
+
+Use it with `video:pause` to track watch time.
+
+#### video:pause
+
+Fires when the video is paused, in the live video or the recording.
+
+```json
+{ "type": "video:pause", "durationAtInSeconds": 498.1 }
+```
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| `durationAtInSeconds` | number | The playback position, in seconds, when the video was paused. |
+
+Use it with `video:play` to track watch time.
+
+#### video:livestream-ended
+
+Fires when the session ends while the user is watching the live video.
+
+```json
+{ "type": "video:livestream-ended" }
+```
+
+This is the live video counterpart of `webrtc:livestream-ended`. The session can end in either view, so listen for both to know when the session is over.
+
+#### video:ended
+
+Fires when the recording plays to the end.
+
+```json
+{ "type": "video:ended" }
+```
+
+Use it to mark the recording as watched or to show what's next.
+
+### Event types
+
+If you use TypeScript, this type covers every event the embed sends:
+
+```ts
+type InteractiveLiveStreamEvent =
+  | { type: "webrtc:join-stage" }
+  | { type: "webrtc:left-stage" }
+  | { type: "webrtc:view-mode"; mode: "stage" | "hls" }
+  | { type: "webrtc:livestream-ended" }
+  | { type: "video:play"; durationAtInSeconds: number }
+  | { type: "video:pause"; durationAtInSeconds: number }
+  | { type: "video:livestream-ended" }
+  | { type: "video:ended" };
+```
+
+### Order of events
+
+These examples show the events your page receives in common situations.
+
+**An attendee joins the stage, then leaves it**
+
+```text
+webrtc:join-stage
+webrtc:view-mode   { mode: "stage" }
+webrtc:left-stage
+```
+
+**An attendee watches the live video until the session ends**
+
+```text
+webrtc:view-mode         { mode: "hls" }
+video:play               { durationAtInSeconds: 1834.6 }
+video:livestream-ended
+```
+
+**An attendee watches the recording after the session**
+
+```text
+webrtc:view-mode   { mode: "hls" }
+video:play         { durationAtInSeconds: 0 }
+video:pause        { durationAtInSeconds: 312.4 }
+video:play         { durationAtInSeconds: 312.4 }
+video:ended
+```
+
+### Important notes
+
+- **Don't trust events for anything critical.** Events run in the user's browser and can be faked. They are fine for updating your page. For anything that matters, such as attendance records or marking a session complete, confirm it on your server, for example with the live stream status from the [API](../list-live-stream-api.md) or your [webhook](start-and-stop#webhooks).
+- **Always check the origin and source.** Your page can receive messages from other scripts and iframes. Check `event.origin` and `event.source` as shown in [Listening for events](#listening-for-events).
+- **Events need an iframe.** Events are only sent when the `playback_url` is loaded inside an iframe. Opening it directly in a browser tab sends no events.
+- **Ignore unknown events.** Only the events on this page are sent. New events may be added in the future, so ignore any `type` you don't recognize.
+
+---
+
+## Start and stop
+
+### Start a live stream
+
+To start an interactive live stream, send an HTTP POST request to the API endpoint with the [authentication header](../../authentication.md).
+
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/start_live_stream/
+```
+
+This endpoint only works for interactive live streams. Broadcast live streams start when the encoder starts streaming.
+
+For valid requests the API server returns `200 OK` with the live stream asset, now in the `Streaming` status:
+
+```json
+{
+    "title": "Data science live class",
+    "type": "livestream",
+    "id": "5h6EpZQC6sh",
+    "live_stream": {
+        "type": "interactive",
+        "external_session_id": "6a9d565031ba022f16368188",
+        "status": "Streaming",
+        "start": "2026-11-05 15:30:00",
+        "enable_drm": true
+    }
+}
+```
+
+Calling start on a live stream that is already `Streaming` returns the same response and changes nothing.
+
+**Errors**
+
+| Status code | Reason |
+| ----------- | ------ |
+| 400 Bad Request | The live stream is not interactive, or it is already `Completed`, `Stopped` or in `Error`. |
+| 404 Not Found | No live stream exists with this asset id. |
+| 502 Bad Gateway | The interactive session could not be started. Retry the request. |
+
+### Stop a live stream
+
+To stop an interactive live stream, use the same [stop API](../stop-a-live-stream-api.md) as broadcast live streams:
+
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/stop_live_stream/
+```
+
+For valid requests the API server returns:
+
+```json
+{
+    "message": "Live stream stopped successfully",
+    "trim_scheduled": false
+}
+```
+
+The live stream moves to `Completed` and all attendees leave the session. Stopping a live stream that is already `Completed` returns `204 No Content`.
+
+If the host ends the session from the studio, the live stream also moves to `Completed`, so you do not need to call the stop API in that case.
+
+### Status lifecycle
+
+| Status      | Description |
+| ----------- | ----------- |
+| Not Started | The live stream is created and waiting to be started. |
+| Streaming   | The session is live. Hosts and attendees can join. |
+| Completed   | The session has ended. The `playback_url` now plays the recording. |
+
+### Webhooks
+
+If you have [registered a webhook](../../webhooks.md), TPStreams sends the live stream asset to it on every status change: when the live stream is created (`Not Started`), started (`Streaming`) and ended (`Completed`). The payload has the same format as [broadcast live stream webhooks](../webhook-response.md), with `live_stream.type` set to `interactive`.
 
 ---
 

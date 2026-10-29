@@ -12,3 +12,5 @@ sidebar_position: 1
 1. [Create a live stream instantly](create_live_stream_instantly)
 2. [Schedule live streams and start them later](./live-stream/schedule-a-live-stream)
 
+To host a browser-based session where attendees can join the stage, see [Interactive live stream](./interactive-live-stream/introduction).
+

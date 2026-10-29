@@ -1,0 +1,8 @@
+{
+    "label": "Interactive Live Stream",
+    "position": 9,
+    "link": {
+        "type": "doc",
+        "id": "server-api/live-stream-api/interactive-live-stream/introduction"
+    }
+}

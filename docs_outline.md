@@ -25,6 +25,12 @@
 - **Delete Live Stream API** (`live-stream-api/delete-live-stream-api.md`)
 - **WebHook** (`live-stream-api/webhook-response.md`)
 - **Chat SDK** (`live-stream-api/chat-sdk.md`)
+- **Interactive Live Stream**
+  - **Introduction** (`live-stream-api/interactive-live-stream/introduction.md`)
+  - **Create an interactive live stream** (`live-stream-api/interactive-live-stream/create-interactive-live-stream.md`)
+  - **Start and stop** (`live-stream-api/interactive-live-stream/start-and-stop.md`)
+  - **Access tokens and embedding** (`live-stream-api/interactive-live-stream/access-tokens-and-embedding.md`)
+  - **Player events** (`live-stream-api/interactive-live-stream/player-events.md`)
 
 ## 3. Video Embedding
 - **Getting started** (`video-embedding/getting-started.md`)

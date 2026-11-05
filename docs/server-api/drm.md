@@ -6,6 +6,10 @@ sidebar_position: 6
 
 To play DRM protected videos, your player should request DRM licence from our URL.
 
+:::tip Stopping Playback in Real Time (Renewable Licenses)
+If you need short-lived, renewable Widevine licenses to revoke playback in real time (e.g., when a user logs out or their subscription expires), configure the `widevine` renewal block when creating an [Access Token](./access-token.md#renewable-widevine-licenses-real-time-playback-revocation). The DRM license service will automatically enforce periodic renewal intervals.
+:::
+
 This API requires [access_token](../video-embedding/authentication.md) in query param for authentication.
 
 ```bash

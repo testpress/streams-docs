@@ -21,6 +21,18 @@ TPStreamPlayer(
 )
 ```
 
+### Offline license duration
+
+`offlineLicenseExpireDays` is expressed in **days** in the Flutter API and
+defaults to 15 days. The native SDKs convert this value to seconds when
+requesting the DRM license. On iOS, the underlying FairPlay API and license
+server use `license_duration_seconds` and `rental_duration_seconds`.
+
+Offline license expiry is enforced by the DRM key system, not by the
+downloaded media file. When an iOS offline license needs renewal, configure
+`onAccessTokenExpired` on the offline player as described in [Offline license
+renewal on iOS](./player-events.md#offline-license-renewal-on-ios).
+
 ## Initiating a Download
 
 Use the `startDownload` method from `TPStreamsDownloadManager` to initiate a video download for offline playback.
@@ -85,8 +97,17 @@ To play a video that has been downloaded, use the `TPStreamPlayer.offline` const
 ```dart
 TPStreamPlayer.offline(
   assetId: 'YOUR_DOWNLOADED_ASSET_ID',
+  onPlayerCreated: (controller) {
+    controller.onAccessTokenExpired = (videoId) async {
+      // Replace this with the fresh token returned by your backend.
+      return 'NEW_ACCESS_TOKEN';
+    };
+  },
 )
 ```
+
+For DRM-protected offline playback on iOS, use a physical device. FairPlay
+DRM is not available for offline playback in the iOS simulator.
 
 ## Data Structures
 

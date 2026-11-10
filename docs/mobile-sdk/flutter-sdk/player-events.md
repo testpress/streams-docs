@@ -63,12 +63,37 @@ _controller?.onReplay = () {
 
 ### Access Token Expiration Callback
 
-Set `onAccessTokenExpired` to refresh the access token seamlessly when it expires during playback:
+Set `onAccessTokenExpired` to refresh the access token seamlessly when the native SDK needs a fresh credential:
 
 ```dart
 _controller?.onAccessTokenExpired = (String videoId) async {
-  // Fetch a fresh token for the given video and return it
-  String newToken = await fetchNewTokenFromServer(videoId);
-  return newToken;
+  // Replace this with the fresh token returned by your backend.
+  return 'NEW_ACCESS_TOKEN';
 };
 ```
+
+#### Offline license renewal on iOS
+
+For offline FairPlay playback on iOS, the same callback is invoked when the
+offline content key/license needs renewal. Return a fresh access token from
+your backend. The native iOS SDK uses that token to request and store a new
+offline license; DRM license data never enters the Flutter layer.
+
+```dart
+TPStreamPlayer.offline(
+  assetId: 'DOWNLOADED_ASSET_ID',
+  onPlayerCreated: (controller) {
+    controller.onAccessTokenExpired = (videoId) async {
+      // Replace this with the fresh token returned by your backend.
+      return 'NEW_ACCESS_TOKEN';
+    };
+  },
+)
+```
+
+The callback must complete promptly. If it returns an empty token, throws, or
+does not complete within the native renewal timeout, renewal fails and
+playback cannot continue with the expired license. Renewal requires network
+access; an already-expired offline license cannot be renewed while the device
+is completely offline. This callback is also used for Android online access
+token expiration.

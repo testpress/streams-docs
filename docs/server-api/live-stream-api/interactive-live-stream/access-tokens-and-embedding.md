@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Access tokens and embedding
 
-Every host and attendee needs their own access token. The token identifies the user inside the session, and its `playback_url` is the page you open or embed for that user.
+Every host and attendee needs their own access token. The token identifies the user inside the session. Its `playback_url` is the page you open or embed for that user, and its `chat_embed_url` is the session's chat for the same user.
 
 To generate an access token, send an HTTP POST request to the API endpoint with the [authentication header](../../authentication.md). This is the same endpoint used for [video access tokens](../../access-token.md). For interactive live streams it accepts the fields below.
 
@@ -56,6 +56,7 @@ For valid requests the API server returns `201 Created`:
 ```json
 {
     "playback_url": "https://app.tpstreams.com/embed/gcdem4/5h6EpZQC6sh/?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "chat_embed_url": "https://app.tpstreams.com/embed/gcdem4/5h6EpZQC6sh/chat/?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
     "user_id": "student-1024"
 }
@@ -116,3 +117,15 @@ Embed the attendee's `playback_url` in an iframe. The `allow` attribute is requi
 - When an attendee leaves the stage, the embed shows a **Rejoin** option. When the session ends, the recording stays visible in the embed.
 
 To react to what happens inside the embed, such as an attendee joining the stage or the session ending, see [player events](player-events).
+
+## Embed the chat
+
+Embed the attendee's `chat_embed_url` in a separate iframe, for example next to the live stream. It uses the same token as `playback_url`, so one access token gives you both the player and the chat for that user.
+
+```html
+<iframe
+  src="https://app.tpstreams.com/embed/gcdem4/5h6EpZQC6sh/chat/?access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  style="border: 0; width: 100%; height: 600px;"
+  allow="clipboard-write">
+</iframe>
+```

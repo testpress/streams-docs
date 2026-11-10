@@ -29,7 +29,7 @@ Interactive live streaming must be enabled for your organization. Contact TPStre
 1. [Create an interactive live stream](create-interactive-live-stream), either instantly or scheduled for later.
 2. [Generate a host access token](access-tokens-and-embedding#host-token) and open its `playback_url` for the host. This is the host's studio.
 3. [Start the live stream](start-and-stop#start-a-live-stream).
-4. [Generate an attendee access token](access-tokens-and-embedding#attendee-token) for each attendee and [embed](access-tokens-and-embedding#embed-the-live-stream) the `playback_url` in your page.
+4. [Generate an attendee access token](access-tokens-and-embedding#attendee-token) for each attendee and [embed](access-tokens-and-embedding#embed-the-live-stream) the `playback_url` in your page. Optionally, [embed the chat](access-tokens-and-embedding#embed-the-chat) using the `chat_embed_url` from the same response.
 5. Optionally, listen for [player events](player-events) on your page to react when an attendee joins or leaves the stage, or when the session ends.
 6. [Stop the live stream](start-and-stop#stop-a-live-stream) when the session is over. The recording plays in the same embed afterwards.
 

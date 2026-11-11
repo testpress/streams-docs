@@ -17,8 +17,8 @@ https://app.tpstreams.com/api/v1/{{org_code}}/assets/{{asset_id}}/access_tokens/
 
 | Name                            | Type         | description |
 | -----------                     | -----------  | ----------- |
-| time_to_live                    | integer      | By default, the Access token validity is set to infinity. You can create shorter-lived URLs by passing the time_to_live parameter. This value is to be set in seconds. |
-| expires_after_first_usage       | boolean      | Passing true will make the access token expire immediately after the first usage. |
+| time_to_live                    | integer      | For single-use tokens, the validity defaults to 7 days (604,800 seconds). You can create shorter-lived URLs by passing the time_to_live parameter. This value is to be set in seconds. |
+| expires_after_first_usage       | boolean      | Passing true will make the access token expire immediately after the first usage. If the token is never played, it will automatically expire after 7 days. |
 | annotations                     | json         | JSON containing all the information about the watermark. Please refer to this [doc](../video-embedding/watermarking.md) for details on watermarking. |
 | widevine                        | object       | Optional configuration object for Widevine DRM license renewal. Used for real-time playback revocation. See [Renewable Widevine Licenses](#renewable-widevine-licenses-real-time-playback-revocation) for details. *(Write-only at creation)* |
 
@@ -33,6 +33,8 @@ For valid requests the API server returns a JSON:
     "annotations":[]
 }
 ```
+
+**Note:** For single-use tokens created without time_to_live, valid_until now returns the 7-day expiration timestamp instead of null.
 
 ### Renewable Widevine Licenses (Real-Time Playback Revocation)
 

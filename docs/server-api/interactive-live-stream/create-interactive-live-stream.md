@@ -1,10 +1,11 @@
 ---
 sidebar_position: 2
+slug: /server-api/live-stream-api/interactive-live-stream/create-interactive-live-stream
 ---
 
 # Create an interactive live stream
 
-To create an interactive live stream, send an HTTP POST request to the API endpoint with the [authentication header](../../authentication.md) and `type` set to `interactive`.
+To create an interactive live stream, send an HTTP POST request to the API endpoint with the [authentication header](../authentication.md) and `type` set to `interactive`.
 
 ```bash
 https://app.tpstreams.com/api/v1/<organization_id>/assets/live_streams/

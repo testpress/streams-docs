@@ -1,12 +1,13 @@
 ---
 sidebar_position: 4
+slug: /server-api/live-stream-api/interactive-live-stream/access-tokens-and-embedding
 ---
 
 # Access tokens and embedding
 
 Every host and attendee needs their own access token. The token identifies the user inside the session. Its `playback_url` is the page you open or embed for that user, and its `chat_embed_url` is the session's chat for the same user.
 
-To generate an access token, send an HTTP POST request to the API endpoint with the [authentication header](../../authentication.md). This is the same endpoint used for [video access tokens](../../access-token.md). For interactive live streams it accepts the fields below.
+To generate an access token, send an HTTP POST request to the API endpoint with the [authentication header](../authentication.md). This is the same endpoint used for [video access tokens](../access-token.md). For interactive live streams it accepts the fields below.
 
 ```bash
 https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/access_tokens/

@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+slug: /server-api/live-stream-api/interactive-live-stream/introduction
 ---
 
 # Introduction
@@ -16,7 +17,7 @@ Attendees who are not on stage watch the session as a normal live video, and the
 | Attendees on stage   | No                                     | Yes                                           |
 | `type` field         | `broadcast`                            | `interactive`                                 |
 | Start the stream     | Start streaming from the encoder       | [Start API](start-and-stop) or the dashboard  |
-| Playback for viewers | [Access token](../../access-token.md) `playback_url` | Interactive [access token](access-tokens-and-embedding) `playback_url` |
+| Playback for viewers | [Access token](../access-token.md) `playback_url` | Interactive [access token](access-tokens-and-embedding) `playback_url` |
 
 :::important
 

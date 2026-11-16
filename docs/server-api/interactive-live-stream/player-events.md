@@ -1,5 +1,6 @@
 ---
 sidebar_position: 5
+slug: /server-api/live-stream-api/interactive-live-stream/player-events
 ---
 
 # Player events
@@ -180,7 +181,7 @@ video:ended
 
 ## Important notes
 
-- **Don't trust events for anything critical.** Events run in the user's browser and can be faked. They are fine for updating your page. For anything that matters, such as attendance records or marking a session complete, confirm it on your server, for example with the live stream status from the [API](../list-live-stream-api.md) or your [webhook](start-and-stop#webhooks).
+- **Don't trust events for anything critical.** Events run in the user's browser and can be faked. They are fine for updating your page. For anything that matters, such as attendance records or marking a session complete, confirm it on your server, for example with the live stream status from the [API](../live-stream-api/list-live-stream-api.md) or your [webhook](start-and-stop#webhooks).
 - **Always check the origin and source.** Your page can receive messages from other scripts and iframes. Check `event.origin` and `event.source` as shown in [Listening for events](#listening-for-events).
 - **Events need an iframe.** Events are only sent when the `playback_url` is loaded inside an iframe. Opening it directly in a browser tab sends no events.
 - **Ignore unknown events.** Only the events on this page are sent. New events may be added in the future, so ignore any `type` you don't recognize.

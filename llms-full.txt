@@ -5236,188 +5236,11 @@ For valid requests the API server returns a JSON:
 
 ---
 
-## Introduction
-
-- A live stream is a real-time video broadcast delivered through a streaming platform. You can create live streams, allowing users to ingest media content into the TP Streams system for processing and delivery.
-
-- With the TP Streams system, you have the ability to create live streams in two distinct ways:
-
-1. [Create a live stream instantly](create_live_stream_instantly)
-2. [Schedule live streams and start them later](./live-stream/schedule-a-live-stream)
-
-To host a browser-based session where attendees can join the stage, see [Interactive live stream](./interactive-live-stream/introduction).
-
----
-
-## Chat SDK
-
-This SDK enables you to integrate live chat to your website
-
-### Adding dependency
-
-- Open the HTML file for the page where you want the live chat to appear.
-- Inside the `<head>` section, add a new line with this code:
-
-```html
-  <link rel="stylesheet" href="https://static.tpstreams.com/static/css/live_chat_v1.css">
-  <script src="https://static.tpstreams.com/static/js/live_chat_v1.umd.cjs"></script>
-```
-### Create a Container Element
-
-Within the `<body>` section of your HTML, add a `<div>` element with a unique ID (e.g., id="app"). This element will serve as the container for the live chat widget. The chat widget will be displayed within this `<div>` element on your webpage.
-
-```html
-<div id="app"></div>
-```
-
-### Initializing Chat SDK
- After the script tag including the JavaScript file, add another `<script>` element to initialize the Live Chat widget using JavaScript:
-
-```html
-<script>
-    const config = {
-        username : "User Name" // Replace with user name
-        roomId: "YOUR_ROOM_ID", // Replace with your actual room ID
-        title: "Your Chat Title" // Replace with your desired title
-    }
-    new TPStreamsChat.load(document.querySelector("#app"), config)//replace id with container element id
-</script>
-```
-
-**Fields**
-
-| Field    | Description                                     |
-|----------|-------------------------------------------------|
-| username | The username of the user interacting with chat  |
-| roomId   | The ID of the chat room                         |
-| title    | The title displayed for the chat interface      |
-
-:::important
-**Note:** You can obtain the `roomId` after creating a live stream. It will be available on the live stream detail page or through the API.
-
-:::
-
-#### Sample HTML Code
-
-Below is a sample HTML code demonstrating how to integrate the live chat widget into your webpage:
-
-```html
-<!DOCTYPE html>
-<html lang="en" style="height: 100%">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://static.tpstreams.com/static/css/live_chat_v1.css">
-      <script src="https://static.tpstreams.com/static/js/live_chat_v1.umd.cjs"></script>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script>
-      const config = {
-        username : "Test User",
-        roomId: "93b76b94-c9a5-42df-a0af-c196cff1103c",
-        title: "Test"
-      }
-      new TPStreamsChat.load(document.querySelector("#app"), config)
-    </script>
-  </body>
-</html>
-```
-
----
-
-## Create a live stream instantly
-
-To Create a live stream instantly you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../authentication.md).
-
-```bash
-https://app.tpstreams.com/api/v1/<organization_id>/assets/live_streams/
-```
-
-**Fields**
-
-| Name             | Type         | Description |    Required  |
-| -----------      | -----------  | ----------- |   ---------- |
-| title            | string      |  Specify a text string or identifier which can be used for filtering or searching the live stream.| Yes |
-| enable_drm_for_recording       | boolean      | A boolean value to enable or disable DRM for live stream recording.| No |
-| latency       | string      | Selects the desired latency for the live stream (Options: Low Latency, Normal Latency).| No |
-
-**Sample request body**
-
-```json 
-{
-  "title": "Data science Live class",
-  "enable_drm_for_recording": true,
-  "latency": "Low Latency"
-}
-
-```
-
-For valid requests the API server returns a JSON:
-
-```json
-{
-    "title": "Data science Live class",
-    "bytes": null,
-    "type": "livestream",
-    "video": null,
-    "id": "5h6EpZQC6sh",
-    "live_stream": {
-        "rtmp_url": "",
-        "stream_key": null,
-        "status": "Not Started",
-        "hls_url": "https://d28qihy7z761lk.cloudfront.net/live/gcdem4/5h6EpZQC6sh/video.m3u8",
-        "start": "2024-04-23 16:56:48",
-        "transcode_recorded_video": true,
-        "enable_drm_for_recording": true,
-        "chat_embed_url": null,
-        "resolutions": [
-            "240p",
-            "480p",
-            "720p"
-        ],
-        "enable_drm": true,
-        "enable_llhls": false,
-        "latency": "Low Latency"
-    },
-    "parent": null,
-    "parent_id": null
-}
-```
-:::important
-
-- The live stream server typically takes around 20-30 seconds to start. 
-- Once it's up and running, both the "rtmp_url" and "stream_key" will become accessible. 
-
-:::
-To automatically receive rtmp_url and stream key as soon as the server is established,[WebHook Response](webhook-response).
-
-After successfully registering the webhook, you will receive an rtmp_url and stream_key as a response paste it in the obs stream settings  **Settings > Stream**
-
- ![OBS settings](/img/obs.png)
-
----
-
-## Delete Live Stream API
-
-To delete an individual live stream in the organization, send an HTTP DELETE request to the API Endpoint , with the [authentication Header](../authentication.md). This API supports the deletion of both live and scheduled live streams. 
-
-```bash
-https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
-```
-For a successful request, status 204 is returned.
-
-:::important
- If the streaming live stream or a live stream with an active server is deleted, it will result in stopping the server.
-:::
-
----
-
 ## Access tokens and embedding
 
 Every host and attendee needs their own access token. The token identifies the user inside the session. Its `playback_url` is the page you open or embed for that user, and its `chat_embed_url` is the session's chat for the same user.
 
-To generate an access token, send an HTTP POST request to the API endpoint with the [authentication header](../../authentication.md). This is the same endpoint used for [video access tokens](../../access-token.md). For interactive live streams it accepts the fields below.
+To generate an access token, send an HTTP POST request to the API endpoint with the [authentication header](../authentication.md). This is the same endpoint used for [video access tokens](../access-token.md). For interactive live streams it accepts the fields below.
 
 ```bash
 https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/access_tokens/
@@ -5545,7 +5368,7 @@ Embed the attendee's `chat_embed_url` in a separate iframe, for example next to 
 
 ## Create an interactive live stream
 
-To create an interactive live stream, send an HTTP POST request to the API endpoint with the [authentication header](../../authentication.md) and `type` set to `interactive`.
+To create an interactive live stream, send an HTTP POST request to the API endpoint with the [authentication header](../authentication.md) and `type` set to `interactive`.
 
 ```bash
 https://app.tpstreams.com/api/v1/<organization_id>/assets/live_streams/
@@ -5609,7 +5432,7 @@ For valid requests the API server returns `201 Created` with the live stream ass
 
 ---
 
-## Introduction(Interactive-live-stream)
+## Introduction
 
 An interactive live stream is a real-time session that runs in the browser. The host goes live from a studio page with their camera, microphone or screen, and attendees can be brought on stage to talk with the host. There is no RTMP ingest and no OBS setup.
 
@@ -5623,7 +5446,7 @@ Attendees who are not on stage watch the session as a normal live video, and the
 | Attendees on stage   | No                                     | Yes                                           |
 | `type` field         | `broadcast`                            | `interactive`                                 |
 | Start the stream     | Start streaming from the encoder       | [Start API](start-and-stop) or the dashboard  |
-| Playback for viewers | [Access token](../../access-token.md) `playback_url` | Interactive [access token](access-tokens-and-embedding) `playback_url` |
+| Playback for viewers | [Access token](../access-token.md) `playback_url` | Interactive [access token](access-tokens-and-embedding) `playback_url` |
 
 :::important
 
@@ -5822,7 +5645,7 @@ video:ended
 
 ### Important notes
 
-- **Don't trust events for anything critical.** Events run in the user's browser and can be faked. They are fine for updating your page. For anything that matters, such as attendance records or marking a session complete, confirm it on your server, for example with the live stream status from the [API](../list-live-stream-api.md) or your [webhook](start-and-stop#webhooks).
+- **Don't trust events for anything critical.** Events run in the user's browser and can be faked. They are fine for updating your page. For anything that matters, such as attendance records or marking a session complete, confirm it on your server, for example with the live stream status from the [API](../live-stream-api/list-live-stream-api.md) or your [webhook](start-and-stop#webhooks).
 - **Always check the origin and source.** Your page can receive messages from other scripts and iframes. Check `event.origin` and `event.source` as shown in [Listening for events](#listening-for-events).
 - **Events need an iframe.** Events are only sent when the `playback_url` is loaded inside an iframe. Opening it directly in a browser tab sends no events.
 - **Ignore unknown events.** Only the events on this page are sent. New events may be added in the future, so ignore any `type` you don't recognize.
@@ -5833,7 +5656,7 @@ video:ended
 
 ### Start a live stream
 
-To start an interactive live stream, send an HTTP POST request to the API endpoint with the [authentication header](../../authentication.md).
+To start an interactive live stream, send an HTTP POST request to the API endpoint with the [authentication header](../authentication.md).
 
 ```bash
 https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/start_live_stream/
@@ -5870,7 +5693,7 @@ Calling start on a live stream that is already `Streaming` returns the same resp
 
 ### Stop a live stream
 
-To stop an interactive live stream, use the same [stop API](../stop-a-live-stream-api.md) as broadcast live streams:
+To stop an interactive live stream, use the same [stop API](../live-stream-api/stop-a-live-stream-api.md) as broadcast live streams:
 
 ```bash
 https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/stop_live_stream/
@@ -5899,7 +5722,184 @@ If the host ends the session from the studio, the live stream also moves to `Com
 
 ### Webhooks
 
-If you have [registered a webhook](../../webhooks.md), TPStreams sends the live stream asset to it on every status change: when the live stream is created (`Not Started`), started (`Streaming`) and ended (`Completed`). The payload has the same format as [broadcast live stream webhooks](../webhook-response.md), with `live_stream.type` set to `interactive`.
+If you have [registered a webhook](../webhooks.md), TPStreams sends the live stream asset to it on every status change: when the live stream is created (`Not Started`), started (`Streaming`) and ended (`Completed`). The payload has the same format as [broadcast live stream webhooks](../live-stream-api/webhook-response.md), with `live_stream.type` set to `interactive`.
+
+---
+
+## Introduction(Live-stream-api)
+
+- A live stream is a real-time video broadcast delivered through a streaming platform. You can create live streams, allowing users to ingest media content into the TP Streams system for processing and delivery.
+
+- With the TP Streams system, you have the ability to create live streams in two distinct ways:
+
+1. [Create a live stream instantly](create_live_stream_instantly)
+2. [Schedule live streams and start them later](./live-stream/schedule-a-live-stream)
+
+To host a browser-based session where attendees can join the stage, see [Interactive live stream](../interactive-live-stream/introduction.md).
+
+---
+
+## Chat SDK
+
+This SDK enables you to integrate live chat to your website
+
+### Adding dependency
+
+- Open the HTML file for the page where you want the live chat to appear.
+- Inside the `<head>` section, add a new line with this code:
+
+```html
+  <link rel="stylesheet" href="https://static.tpstreams.com/static/css/live_chat_v1.css">
+  <script src="https://static.tpstreams.com/static/js/live_chat_v1.umd.cjs"></script>
+```
+### Create a Container Element
+
+Within the `<body>` section of your HTML, add a `<div>` element with a unique ID (e.g., id="app"). This element will serve as the container for the live chat widget. The chat widget will be displayed within this `<div>` element on your webpage.
+
+```html
+<div id="app"></div>
+```
+
+### Initializing Chat SDK
+ After the script tag including the JavaScript file, add another `<script>` element to initialize the Live Chat widget using JavaScript:
+
+```html
+<script>
+    const config = {
+        username : "User Name" // Replace with user name
+        roomId: "YOUR_ROOM_ID", // Replace with your actual room ID
+        title: "Your Chat Title" // Replace with your desired title
+    }
+    new TPStreamsChat.load(document.querySelector("#app"), config)//replace id with container element id
+</script>
+```
+
+**Fields**
+
+| Field    | Description                                     |
+|----------|-------------------------------------------------|
+| username | The username of the user interacting with chat  |
+| roomId   | The ID of the chat room                         |
+| title    | The title displayed for the chat interface      |
+
+:::important
+**Note:** You can obtain the `roomId` after creating a live stream. It will be available on the live stream detail page or through the API.
+
+:::
+
+#### Sample HTML Code
+
+Below is a sample HTML code demonstrating how to integrate the live chat widget into your webpage:
+
+```html
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://static.tpstreams.com/static/css/live_chat_v1.css">
+      <script src="https://static.tpstreams.com/static/js/live_chat_v1.umd.cjs"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      const config = {
+        username : "Test User",
+        roomId: "93b76b94-c9a5-42df-a0af-c196cff1103c",
+        title: "Test"
+      }
+      new TPStreamsChat.load(document.querySelector("#app"), config)
+    </script>
+  </body>
+</html>
+```
+
+---
+
+## Create a live stream instantly
+
+To Create a live stream instantly you need to send an HTTP POST request to the API Endpoint, with the [authentication Header](../authentication.md).
+
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/live_streams/
+```
+
+**Fields**
+
+| Name             | Type         | Description |    Required  |
+| -----------      | -----------  | ----------- |   ---------- |
+| title            | string      |  Specify a text string or identifier which can be used for filtering or searching the live stream.| Yes |
+| enable_drm_for_recording       | boolean      | A boolean value to enable or disable DRM for live stream recording.| No |
+| latency       | string      | Selects the desired latency for the live stream (Options: Low Latency, Normal Latency).| No |
+
+**Sample request body**
+
+```json 
+{
+  "title": "Data science Live class",
+  "enable_drm_for_recording": true,
+  "latency": "Low Latency"
+}
+
+```
+
+For valid requests the API server returns a JSON:
+
+```json
+{
+    "title": "Data science Live class",
+    "bytes": null,
+    "type": "livestream",
+    "video": null,
+    "id": "5h6EpZQC6sh",
+    "live_stream": {
+        "rtmp_url": "",
+        "stream_key": null,
+        "status": "Not Started",
+        "hls_url": "https://d28qihy7z761lk.cloudfront.net/live/gcdem4/5h6EpZQC6sh/video.m3u8",
+        "start": "2024-04-23 16:56:48",
+        "transcode_recorded_video": true,
+        "enable_drm_for_recording": true,
+        "chat_embed_url": null,
+        "resolutions": [
+            "240p",
+            "480p",
+            "720p"
+        ],
+        "enable_drm": true,
+        "enable_llhls": false,
+        "latency": "Low Latency"
+    },
+    "parent": null,
+    "parent_id": null
+}
+```
+:::important
+
+- The live stream server typically takes around 20-30 seconds to start. 
+- Once it's up and running, both the "rtmp_url" and "stream_key" will become accessible. 
+
+:::
+To automatically receive rtmp_url and stream key as soon as the server is established,[WebHook Response](webhook-response).
+
+After successfully registering the webhook, you will receive an rtmp_url and stream_key as a response paste it in the obs stream settings  **Settings > Stream**
+
+ ![OBS settings](/img/obs.png)
+
+---
+
+## Delete Live Stream API
+
+To delete an individual live stream in the organization, send an HTTP DELETE request to the API Endpoint , with the [authentication Header](../authentication.md). This API supports the deletion of both live and scheduled live streams. 
+
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/
+```
+For a successful request, status 204 is returned.
+
+:::important
+ If the streaming live stream or a live stream with an active server is deleted, it will result in stopping the server.
+:::
 
 ---
 

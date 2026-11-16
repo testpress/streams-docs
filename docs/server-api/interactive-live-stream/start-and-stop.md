@@ -1,12 +1,13 @@
 ---
 sidebar_position: 3
+slug: /server-api/live-stream-api/interactive-live-stream/start-and-stop
 ---
 
 # Start and stop
 
 ## Start a live stream
 
-To start an interactive live stream, send an HTTP POST request to the API endpoint with the [authentication header](../../authentication.md).
+To start an interactive live stream, send an HTTP POST request to the API endpoint with the [authentication header](../authentication.md).
 
 ```bash
 https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/start_live_stream/
@@ -43,7 +44,7 @@ Calling start on a live stream that is already `Streaming` returns the same resp
 
 ## Stop a live stream
 
-To stop an interactive live stream, use the same [stop API](../stop-a-live-stream-api.md) as broadcast live streams:
+To stop an interactive live stream, use the same [stop API](../live-stream-api/stop-a-live-stream-api.md) as broadcast live streams:
 
 ```bash
 https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/stop_live_stream/
@@ -72,4 +73,4 @@ If the host ends the session from the studio, the live stream also moves to `Com
 
 ## Webhooks
 
-If you have [registered a webhook](../../webhooks.md), TPStreams sends the live stream asset to it on every status change: when the live stream is created (`Not Started`), started (`Streaming`) and ended (`Completed`). The payload has the same format as [broadcast live stream webhooks](../webhook-response.md), with `live_stream.type` set to `interactive`.
+If you have [registered a webhook](../webhooks.md), TPStreams sends the live stream asset to it on every status change: when the live stream is created (`Not Started`), started (`Streaming`) and ended (`Completed`). The payload has the same format as [broadcast live stream webhooks](../live-stream-api/webhook-response.md), with `live_stream.type` set to `interactive`.

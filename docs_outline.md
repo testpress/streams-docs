@@ -31,6 +31,8 @@
   - **Start and stop** (`live-stream-api/interactive-live-stream/start-and-stop.md`)
   - **Access tokens and embedding** (`live-stream-api/interactive-live-stream/access-tokens-and-embedding.md`)
   - **Player events** (`live-stream-api/interactive-live-stream/player-events.md`)
+  - **Recording and transcript** (`live-stream-api/interactive-live-stream/recording-and-transcript.md`)
+  - **Session analytics** (`live-stream-api/interactive-live-stream/session-analytics.md`)
 
 ## 3. Video Embedding
 - **Getting started** (`video-embedding/getting-started.md`)

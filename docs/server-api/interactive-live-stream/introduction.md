@@ -33,5 +33,6 @@ Interactive live streaming must be enabled for your organization. Contact TPStre
 4. [Generate an attendee access token](access-tokens-and-embedding#attendee-token) for each attendee and [embed](access-tokens-and-embedding#embed-the-live-stream) the `playback_url` in your page. Optionally, [embed the chat](access-tokens-and-embedding#embed-the-chat) using the `chat_embed_url` from the same response.
 5. Optionally, listen for [player events](player-events) on your page to react when an attendee joins or leaves the stage, or when the session ends.
 6. [Stop the live stream](start-and-stop#stop-a-live-stream) when the session is over. The recording plays in the same embed afterwards.
+7. After the session, optionally [download the recording and transcript](recording-and-transcript), and get [session analytics](session-analytics) such as attendance and watch time.
 
-Status changes are sent to your [webhook](start-and-stop#webhooks), just like broadcast live streams.
+Status changes are sent to your [webhook](start-and-stop#webhooks), just like broadcast live streams. Your webhook is also notified when the [recording and transcript are ready](recording-and-transcript#webhooks).

@@ -5462,8 +5462,9 @@ Interactive live streaming must be enabled for your organization. Contact TPStre
 4. [Generate an attendee access token](access-tokens-and-embedding#attendee-token) for each attendee and [embed](access-tokens-and-embedding#embed-the-live-stream) the `playback_url` in your page. Optionally, [embed the chat](access-tokens-and-embedding#embed-the-chat) using the `chat_embed_url` from the same response.
 5. Optionally, listen for [player events](player-events) on your page to react when an attendee joins or leaves the stage, or when the session ends.
 6. [Stop the live stream](start-and-stop#stop-a-live-stream) when the session is over. The recording plays in the same embed afterwards.
+7. After the session, optionally [download the recording and transcript](recording-and-transcript), and get [session analytics](session-analytics) such as attendance and watch time.
 
-Status changes are sent to your [webhook](start-and-stop#webhooks), just like broadcast live streams.
+Status changes are sent to your [webhook](start-and-stop#webhooks), just like broadcast live streams. Your webhook is also notified when the [recording and transcript are ready](recording-and-transcript#webhooks).
 
 ---
 
@@ -5652,6 +5653,210 @@ video:ended
 
 ---
 
+## Recording and transcript
+
+After an interactive live stream ends, TPStreams processes the session into an MP4 recording. Once the recording is ready, an English transcript is generated from its audio. You can download both through the API, and TPStreams sends a [webhook](#webhooks) when each one becomes ready.
+
+The recording also keeps playing in the same [embed](access-tokens-and-embedding#embed-the-live-stream) after the session ends. Use these endpoints when you need the files themselves, for example to store them or to show captions in your own player.
+
+:::tip
+
+Download links are temporary. Download the file right away, and call the endpoint again whenever you need a new link instead of storing it.
+
+:::
+
+### Get the recording
+
+To get a download link for the recording, send an HTTP GET request to the API endpoint with the [authentication header](../authentication.md).
+
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/live_stream/recording/
+```
+
+When the recording is ready, the API server returns `200 OK`:
+
+```json
+{
+    "status": "ready",
+    "download_url": "https://storage.example.com/recordings/5h6EpZQC6sh.mp4?signature=..."
+}
+```
+
+`download_url` points to an MP4 file in the highest quality available, up to 1080p.
+
+If the recording is not ready yet, the API server returns `409 Conflict` with a `status` that tells you why:
+
+```json
+{
+    "status": "processing",
+    "detail": "Recording is still being processed."
+}
+```
+
+#### Errors
+
+| Status code | `status` | Reason |
+| ----------- | -------- | ------ |
+| 400 Bad Request | | The live stream is not interactive. |
+| 404 Not Found | | No live stream exists with this asset id. |
+| 409 Conflict | `not_available` | The live stream has not ended yet. |
+| 409 Conflict | `processing` | The recording is still being processed. Retry later, or wait for the [recording ready webhook](#webhooks). |
+| 422 Unprocessable Entity | `failed` | The recording could not be processed. Contact TPStreams support. |
+| 502 Bad Gateway | | The recording could not be fetched. Retry the request. |
+
+### Get the transcript
+
+To get a download link for the transcript, send an HTTP GET request to the API endpoint with the [authentication header](../authentication.md).
+
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/live_stream/transcript/
+```
+
+When the transcript is ready, the API server returns `200 OK`:
+
+```json
+{
+    "status": "ready",
+    "download_url": "https://storage.example.com/captions/5h6EpZQC6sh-en.vtt?signature=..."
+}
+```
+
+`download_url` points to a WebVTT (`.vtt`) file. Transcripts are generated in English only.
+
+The transcript is generated after the recording, so it is never ready before the recording is.
+
+#### Errors
+
+The errors are the same as for the [recording](#errors), with `processing` and `failed` referring to the transcript.
+
+### Webhooks
+
+If you have [registered a webhook](../webhooks.md), TPStreams notifies it when the recording and the transcript become ready:
+
+| Event | Sent when | Call |
+| ----- | --------- | ---- |
+| `LIVESTREAM_RECORDING_READY` | The recording is ready to download. | [Get the recording](#get-the-recording) |
+| `LIVESTREAM_TRANSCRIPT_READY` | The transcript is ready to download. It always arrives after `LIVESTREAM_RECORDING_READY`. | [Get the transcript](#get-the-transcript) |
+
+The payload is the live stream asset, the same as for [status changes](start-and-stop#webhooks), with the `event` field naming what happened. It does not contain a download link: use the asset `id` to call the endpoint for that event. The payload below is trimmed to the fields that matter here:
+
+```json
+{
+    "title": "Data science live class",
+    "type": "livestream",
+    "id": "5h6EpZQC6sh",
+    "live_stream": {
+        "type": "interactive",
+        "external_session_id": "6a9d565031ba022f16368188",
+        "status": "Completed",
+        "start": "2026-11-05 15:30:00"
+    },
+    "event": "LIVESTREAM_RECORDING_READY"
+}
+```
+
+Webhooks created through the API receive every event, including these two. For a webhook set up in the dashboard to receive only selected events, select **Recording Ready** and **Transcript Ready** under **Live Stream**.
+
+---
+
+## Session analytics
+
+Session analytics show who attended an interactive live stream, how long they watched, and how engaged the session was. They are available while the session is live and after it ends.
+
+To get the analytics, send an HTTP GET request to the API endpoint with the [authentication header](../authentication.md).
+
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/live_stream/analytics/
+```
+
+**Query parameters**
+
+| Name               | Type    | Description | Required |
+| ------------------ | ------- | ----------- | -------- |
+| participants_limit | integer | Number of participants to return, from `0` to `1000`. Defaults to `100`. | No |
+
+For example, to get up to 500 participants:
+
+```bash
+https://app.tpstreams.com/api/v1/<organization_id>/assets/<asset_id>/live_stream/analytics/?participants_limit=500
+```
+
+#### Response
+
+For valid requests the API server returns `200 OK`:
+
+```json
+{
+    "started_at": "2026-11-05T10:00:00.000Z",
+    "ended_at": "2026-11-05T11:02:00.000Z",
+    "total_viewers": 412,
+    "peak_concurrent_viewers": 380,
+    "current_viewers": 0,
+    "chat_messages_count": 1250,
+    "host_messages_count": 40,
+    "polls_count": 3,
+    "viewers_over_time": [
+        {
+            "start": "2026-11-05T10:00:00.000Z",
+            "end": "2026-11-05T10:01:00.000Z",
+            "viewers": 120
+        }
+    ],
+    "participants": [
+        {
+            "user_id": "student-1024",
+            "name": "Priya Sharma",
+            "email": "priya@example.com",
+            "watch_time_minutes": 58,
+            "first_seen_at": "2026-11-05T10:01:12.000Z",
+            "last_seen_at": "2026-11-05T11:00:40.000Z"
+        }
+    ]
+}
+```
+
+All times are in UTC.
+
+| Field | Description |
+| ----- | ----------- |
+| started_at | When the session went live. |
+| ended_at | When the session ended. `null` while the session is live. |
+| total_viewers | Number of unique users who watched the session. |
+| peak_concurrent_viewers | Highest number of users watching at the same time. |
+| current_viewers | Number of users watching right now. `0` after the session ends. |
+| chat_messages_count | Number of chat messages sent by everyone, including hosts. |
+| host_messages_count | Number of chat messages sent by hosts. |
+| polls_count | Number of polls conducted. |
+| viewers_over_time | Number of users watching in each minute of the session, in time order. |
+| participants | Users who watched the session, sorted by watch time, highest first. Up to `participants_limit` users. |
+
+Each participant has these fields:
+
+| Field | Description |
+| ----- | ----------- |
+| user_id | The `user_id` you passed when [generating the user's access token](access-tokens-and-embedding). Use it to match participants to users in your system. |
+| name | The user's display name. |
+| email | The user's email address, or `null` if it was not provided. |
+| watch_time_minutes | Number of minutes the user was actively watching. |
+| first_seen_at | When the user first started watching. |
+| last_seen_at | When the user was last seen watching. |
+
+#### Limitations
+
+- Exact join and leave times are not available. For each participant you get only the first and last time they were seen, and the total minutes they were watching. A user who left and came back shows a single span from `first_seen_at` to `last_seen_at`, and `watch_time_minutes` counts only the minutes they were watching.
+- At most 1000 participants are returned, and the list is not paginated.
+
+#### Errors
+
+| Status code | Reason |
+| ----------- | ------ |
+| 400 Bad Request | The live stream is not interactive, or `participants_limit` is not a number from `0` to `1000`. |
+| 404 Not Found | No live stream exists with this asset id. |
+| 409 Conflict | The live stream has not started yet. |
+| 502 Bad Gateway | The analytics could not be fetched. Retry the request. |
+
+---
+
 ## Start and stop
 
 ### Start a live stream
@@ -5723,6 +5928,8 @@ If the host ends the session from the studio, the live stream also moves to `Com
 ### Webhooks
 
 If you have [registered a webhook](../webhooks.md), TPStreams sends the live stream asset to it on every status change: when the live stream is created (`Not Started`), started (`Streaming`) and ended (`Completed`). The payload has the same format as [broadcast live stream webhooks](../live-stream-api/webhook-response.md), with `live_stream.type` set to `interactive`.
+
+After the session ends, TPStreams also notifies your webhook when the [recording and transcript are ready](recording-and-transcript#webhooks).
 
 ---
 

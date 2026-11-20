@@ -74,3 +74,5 @@ If the host ends the session from the studio, the live stream also moves to `Com
 ## Webhooks
 
 If you have [registered a webhook](../webhooks.md), TPStreams sends the live stream asset to it on every status change: when the live stream is created (`Not Started`), started (`Streaming`) and ended (`Completed`). The payload has the same format as [broadcast live stream webhooks](../live-stream-api/webhook-response.md), with `live_stream.type` set to `interactive`.
+
+After the session ends, TPStreams also notifies your webhook when the [recording and transcript are ready](recording-and-transcript#webhooks).
